@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		0F54D1351E0D7B8100FEC2F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */; };
 		0F54D1371E0D7B8100FEC2F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F54D1361E0D7B8100FEC2F7 /* Assets.xcassets */; };
-		0F54D13A1E0D7B8100FEC2F7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F54D1381E0D7B8100FEC2F7 /* MainMenu.xib */; };
 		0F54D1451E0D7B8100FEC2F7 /* Bugs4MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D1441E0D7B8100FEC2F7 /* Bugs4MacTests.swift */; };
 		0F54D1501E0D7B8100FEC2F7 /* Bugs4MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D14F1E0D7B8100FEC2F7 /* Bugs4MacUITests.swift */; };
+		0F54D15F1E0D7E3100FEC2F7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F54D15D1E0D7E3100FEC2F7 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 		0F54D1311E0D7B8100FEC2F7 /* Bugs4Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bugs4Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F54D1361E0D7B8100FEC2F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0F54D1391E0D7B8100FEC2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0F54D13B1E0D7B8100FEC2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F54D1401E0D7B8100FEC2F7 /* Bugs4MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bugs4MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D1441E0D7B8100FEC2F7 /* Bugs4MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bugs4MacTests.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		0F54D14B1E0D7B8100FEC2F7 /* Bugs4MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bugs4MacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D14F1E0D7B8100FEC2F7 /* Bugs4MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bugs4MacUITests.swift; sourceTree = "<group>"; };
 		0F54D1511E0D7B8100FEC2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F54D15E1E0D7E3100FEC2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 			children = (
 				0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */,
 				0F54D1361E0D7B8100FEC2F7 /* Assets.xcassets */,
-				0F54D1381E0D7B8100FEC2F7 /* MainMenu.xib */,
+				0F54D15D1E0D7E3100FEC2F7 /* MainMenu.xib */,
 				0F54D13B1E0D7B8100FEC2F7 /* Info.plist */,
 			);
 			path = Bugs4Mac;
@@ -230,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F54D1371E0D7B8100FEC2F7 /* Assets.xcassets in Resources */,
-				0F54D13A1E0D7B8100FEC2F7 /* MainMenu.xib in Resources */,
+				0F54D15F1E0D7E3100FEC2F7 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,10 +291,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0F54D1381E0D7B8100FEC2F7 /* MainMenu.xib */ = {
+		0F54D15D1E0D7E3100FEC2F7 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0F54D1391E0D7B8100FEC2F7 /* Base */,
+				0F54D15E1E0D7E3100FEC2F7 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
