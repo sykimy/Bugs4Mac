@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>BugsWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0F3D6A2C1E0F76EC00571F6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0F54D1301E0D7B8100FEC2F7</key>
 		<dict>
 			<key>primary</key>
