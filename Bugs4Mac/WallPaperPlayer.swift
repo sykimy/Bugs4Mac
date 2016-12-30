@@ -176,7 +176,7 @@ class WallpaperPlayer:NSObject {
                 artistWindow.setText(string: artist)
             }
             
-            /* 아티스트윈도우가 켜져있으면 실행 */
+            /* 앨범윈도우가 켜져있으면 실행 */
             if albumWindow != nil {
                 /* 자동 색상이 켜져있으면 색상을 동기화한다. */
                 if autoAlbumColor {
@@ -187,7 +187,7 @@ class WallpaperPlayer:NSObject {
                 albumWindow.setText(string: album)
             }
             
-            /* 아티스트윈도우가 켜져있으면 실행 */
+            /* 가사윈도우가 켜져있으면 실행 */
             if lyricWindow != nil {
                 /* 자동 색상이 켜져있으면 색상을 동기화한다. */
                 if autoLyricColor {
@@ -209,6 +209,7 @@ class WallpaperPlayer:NSObject {
         }
     }
     
+    //자막을 다시 출력한다. (몇번쨰 줄이 재생중인지 입력)
     func refreshLyric(_ i:Int) {
         if lyricWindow != nil {
             if realTime {
@@ -224,6 +225,7 @@ class WallpaperPlayer:NSObject {
         }
     }
     
+    //색상을 연동한다.
     func syncColor(window:WallpaperText, color:NSColor) {
         let innerColor = getInnerColor(color)
         let outerColor = getOuterColor(color)
@@ -232,6 +234,7 @@ class WallpaperPlayer:NSObject {
         window.setOuterColor(color: outerColor)
     }
     
+    //창의 레벨을 설정한다.
     func setImageWindowLevel(level:Int) {
         if imageWindow != nil {
             imageWindow.setLevel(level: level)
@@ -262,6 +265,7 @@ class WallpaperPlayer:NSObject {
         }
     }
     
+    //배경화면보기를 끈다.
     func offWallpaper() {
         openAllState = false
         if titleWindow != nil {
@@ -281,6 +285,7 @@ class WallpaperPlayer:NSObject {
         }
     }
     
+    //배경화면 보기를 킨다.
     func onWallpaper() {
         openAllState = true
         
