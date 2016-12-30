@@ -344,7 +344,7 @@ extension WebPlayerController {
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
         }
         
-        let lyric = str.replacingOccurrences(of: "&amp;", with: "&")
+        let lyric = str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         
         return lyric
     }
