@@ -278,8 +278,7 @@ extension WebPlayerController {
         
         var front = str.startIndex
         
-        let lyric2 = str.replacingOccurrences(of: "&amp;", with: "&")
-        let lyric = lyric2.replacingOccurrences(of: "&nbsp;", with: " ")
+        let lyric = str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         
         for i in lyric.characters.indices {
             if lyric[i] == "<" {

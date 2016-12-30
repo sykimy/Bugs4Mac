@@ -83,14 +83,12 @@ class RadioController: NSObject, WKNavigationDelegate, WKUIDelegate {
     
     func getTitle()->String {
         let str = injectScript("document.getElementsByClassName('title')[0].getElementsByTagName('span')[0].getAttribute('title')") as! NSString
-        let tmp = str.replacingOccurrences(of: "&amp;", with: "&")
-        return tmp.replacingOccurrences(of: "&nbsp;", with: " ")
+        return str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
     }
     
     func getArtist()->String {
         let str = injectScript("document.getElementsByClassName('artist')[0].getElementsByTagName('a')[0].getAttribute('title')") as! NSString
-        let tmp = str.replacingOccurrences(of: "&amp;", with: "&")
-        return tmp.replacingOccurrences(of: "&nbsp;", with: " ")
+        return str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
     }
     
     /* 곡의 가사를 String으로 반환한다. for Bugs */
@@ -114,8 +112,7 @@ class RadioController: NSObject, WKNavigationDelegate, WKUIDelegate {
         
         var front = str.startIndex
         
-        let tmp = str.replacingOccurrences(of: "&amp;", with: "&")
-        let lyric = tmp.replacingOccurrences(of: "&nbsp;", with: " ")
+        let lyric = str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         
         for i in lyric.characters.indices {
             if lyric[i] == "<" {
