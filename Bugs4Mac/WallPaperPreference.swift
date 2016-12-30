@@ -71,19 +71,12 @@ class WallPaperPlayerPreference:NSObject {
         
         /* 월페이퍼기능이 켜져있는지 체크 */
         getOnOffDefault()
-        
-        getColorDefault()
-        
-        /* 항상 위인지 체크 */
-        getWindowTopDefault()
-        
-        getTextAlignmentDefault()
-        
-        getFontDefault()
-        
-        getRealTimeDefault()
-        
-        getOneLineDefault()
+        getColorDefault()   //색상정보 체크
+        getWindowTopDefault()   //항상 위인지 체크
+        getTextAlignmentDefault()   //텍스트 배열 체크
+        getFontDefault()    //폰트 체크
+        getRealTimeDefault()    //실시간 가사 여부 체크
+        getOneLineDefault() //한줄 가사 여부 체크
     }
     
     func getOnOffDefault() {
@@ -240,8 +233,7 @@ class WallPaperPlayerPreference:NSObject {
     func getTextAlignmentDefault() {
         defaults.set(true, forKey: "checkAlighnment")
         if defaults.be(forKey: "titleAlignment") {
-            
-            let alignment = defaults.defaults.object(forKey: "titleAlignment") as! Int
+            let alignment = defaults.alignment(forKey: "titleAlignment")
             wallPaperPlayer.changeTitleAlignment(alignment)
             
             titleAlignmentButton.selectItem(at: alignment+1)
@@ -251,7 +243,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "artistAlignment") {
-            let alignment = defaults.defaults.object(forKey: "artistAlignment") as! Int
+            let alignment = defaults.alignment(forKey: "artistAlignment")
             wallPaperPlayer.changeArtistAlignment(alignment)
             
             artistAlignmentButton.selectItem(at: alignment+1)
@@ -261,7 +253,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "albumAlignment") {
-            let alignment = defaults.defaults.object(forKey: "albumAlignment") as! Int
+            let alignment = defaults.alignment(forKey: "albumAlignment")
             wallPaperPlayer.changeAlbumAlignment(alignment)
             
             albumAlignmentButton.selectItem(at: alignment+1)
@@ -271,7 +263,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "lyricAlignment") {
-            let alignment = defaults.defaults.object(forKey: "lyricAlignment") as! Int
+            let alignment = defaults.alignment(forKey: "lyricAlignment")
             wallPaperPlayer.changeLyricAlignment(alignment)
             
             lyricAlignmentButton.selectItem(at: alignment+1)
@@ -284,7 +276,7 @@ class WallPaperPlayerPreference:NSObject {
     func getFontDefault() {
         defaults.set(true, forKey: "checkFont")
         if defaults.be(forKey: "titleFont") {
-            let font = NSFont(name: defaults.defaults.object(forKey: "titleFont") as! String, size: CGFloat(defaults.defaults.float(forKey: "titleFontSize")))
+            let font = NSFont(name: defaults.string(forKey: "titleFont"), size: defaults.cgFloat(forKey: "titleFontSize"))
             wallPaperPlayer.changeTitleTextFont(font: font!)
         }
         else {
@@ -293,7 +285,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "artistFont") {
-            let font = NSFont(name: defaults.defaults.object(forKey: "artistFont") as! String, size: CGFloat(defaults.defaults.float(forKey: "artistFontSize")))
+            let font = NSFont(name: defaults.string(forKey: "artistFont"), size: defaults.cgFloat(forKey: "artistFontSize"))
             wallPaperPlayer.changeArtistTextFont(font: font!)
         }
         else {
@@ -302,7 +294,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "albumFont") {
-            let font = NSFont(name: defaults.defaults.object(forKey: "albumFont") as! String, size: CGFloat(defaults.defaults.float(forKey: "albumFontSize")))
+            let font = NSFont(name: defaults.string(forKey: "albumFont"), size: defaults.cgFloat(forKey: "albumFontSize"))
             wallPaperPlayer.changeAlbumTextFont(font: font!)
         }
         else {
@@ -311,7 +303,7 @@ class WallPaperPlayerPreference:NSObject {
         }
         
         if defaults.be(forKey: "lyricFont") {
-            let font = NSFont(name: defaults.defaults.object(forKey: "lyricFont") as! String, size: CGFloat(defaults.defaults.float(forKey: "lyricFontSize")))
+            let font = NSFont(name: defaults.string(forKey: "lyricFont"), size: defaults.cgFloat(forKey: "lyricFontSize"))
             wallPaperPlayer.changeLyricTextFont(font: font!)
         }
     }
@@ -810,28 +802,29 @@ extension WallPaperPlayerPreference {
     }
     
     override func changeFont(_ sender: Any?) {
+        //super.changeFont(sender)
         let fontManager = sender as! NSFontManager
         let oldFont = NSFont.systemFont(ofSize: 10)
         let newFont = fontManager.convert(oldFont)
         if fontWindow == 0 {
             wallPaperPlayer.changeTitleTextFont(font: newFont)
-            defaults.defaults.set(newFont.fontName, forKey: "titleFont")
-            defaults.defaults.set(newFont.pointSize, forKey: "titleFontSize")
+            defaults.set(string: newFont.fontName, forKey: "titleFont")
+            defaults.set(CGFloat: newFont.pointSize, forKey: "titleFontSize")
         }
         else if fontWindow == 1 {
             wallPaperPlayer.changeArtistTextFont(font: newFont)
-            defaults.defaults.set(newFont.fontName, forKey: "artistFont")
-            defaults.defaults.set(newFont.pointSize, forKey: "artistFontSize")
+            defaults.set(string: newFont.fontName, forKey: "artistFont")
+            defaults.set(CGFloat: newFont.pointSize, forKey: "artistFontSize")
         }
         else if fontWindow == 2 {
             wallPaperPlayer.changeAlbumTextFont(font: newFont)
-            defaults.defaults.set(newFont.fontName, forKey: "albumFont")
-            defaults.defaults.set(newFont.pointSize, forKey: "albumFontSize")
+            defaults.set(string: newFont.fontName, forKey: "albumFont")
+            defaults.set(CGFloat: newFont.pointSize, forKey: "albumFontSize")
         }
         else if fontWindow == 3 {
             wallPaperPlayer.changeLyricTextFont(font: newFont)
-            defaults.defaults.set(newFont.fontName, forKey: "lyricFont")
-            defaults.defaults.set(newFont.pointSize, forKey: "lyricFontSize")
+            defaults.set(string: newFont.fontName, forKey: "lyricFont")
+            defaults.set(CGFloat: newFont.pointSize, forKey: "lyricFontSize")
         }
     }
     

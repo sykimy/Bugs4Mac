@@ -15,27 +15,36 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     let nc = NotificationCenter.default
     let sharedUserDefaults = UserDefaults.init(suiteName: "group.bugs4mac.sykimy")
     
+    //곡 정보 표시
     @IBOutlet var titleText: NSTextField!
     @IBOutlet var artistText: NSTextField!
     @IBOutlet var albumText: NSTextField!
     
+    //진행바
     @IBOutlet var progressBar: WidgetProgressBarView!
     
+    //메인뷰
     @IBOutlet var widgetView: WidgetView!
     
+    //곡 시간 정보
     @IBOutlet var playTimeText: NSTextField!
     @IBOutlet var totalTimeString: NSTextField!
     @IBOutlet var slash: NSTextField!
     
+    //버튼
     @IBOutlet var playButton: NSButton!
     @IBOutlet var nextButton: NSButton!
     @IBOutlet var prevButton: NSButton!
     @IBOutlet var likeButton: NSButton!
     @IBOutlet var bugsButton: NSButton!
     
+    //검색창
     @IBOutlet var search: NSSearchField!
     
+    //곡이 실행중인가
     var isPlay = false
+    
+    //곡이 좋아요 상탱인가
     var isLike = false
     
     override var nibName: String? {
@@ -44,6 +53,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
     
     override func awakeFromNib() {
+        //벅스 앱으로부터 받아온다.
         sharedUserDefaults?.addObserver(self, forKeyPath: "timeInfo", options: NSKeyValueObservingOptions.new, context: nil)
         sharedUserDefaults?.addObserver(self, forKeyPath: "songInfo", options: NSKeyValueObservingOptions.new, context: nil)
         sharedUserDefaults?.addObserver(self, forKeyPath: "isPlay", options: NSKeyValueObservingOptions.new, context: nil)
@@ -63,12 +73,15 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         self.widgetView.delegate = self
         
+        //아티스트의 글자색을 회색으로
         artistText.textColor = NSColor.darkGray
         
         completionHandler(.noData)
     }
     
     override func viewWillAppear() {
+        //사용자가 뷰를 요청할떄마다 (위젯을 킬때마다)
+        //곡정보 반영
         let info = sharedUserDefaults?.object(forKey: "songInfo") as! NSDictionary
         
         titleText.stringValue = info.object(forKey: "title") as! String
@@ -82,6 +95,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         progressBar.changeBarColor(r, g: g, b: b)
         
+        //시간정보 반영
         refreshTimeInfo()
         sendTimeInfoNotification2ProgressBar()
         
@@ -265,6 +279,7 @@ extension TodayViewController:WidgetViewDelegate {
         sharedUserDefaults?.synchronize()
     }
     
+    //좋아요가 되있는지 물어본다.
     func checkLikeState() {
         var state = false
         if sharedUserDefaults?.object(forKey: "checkLike") != nil {

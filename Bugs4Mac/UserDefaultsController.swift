@@ -24,11 +24,19 @@ class UserDefaultsController:NSObject {
         return defaults.bool(forKey: forKey)
     }
     
+    func alignment(forKey:String)->Int {
+        return defaults.object(forKey: forKey) as! Int
+    }
+    
     func be(forKey:String)->Bool {
         if (defaults.object(forKey: forKey) != nil) {
             return true
         }
         return false
+    }
+    
+    func string(forKey:String)->String {
+        return defaults.object(forKey: forKey) as! String
     }
     
     func cgFloat(forKey:String)->CGFloat {
@@ -73,6 +81,14 @@ class UserDefaultsController:NSObject {
     
     func set(_ value:Bool, forKey:String) {
         defaults.set(value, forKey: forKey)
+    }
+    
+    func set(string:String, forKey:String) {
+        defaults.set(string, forKey: forKey)
+    }
+    
+    func set(CGFloat:CGFloat, forKey:String) {
+        defaults.set(CGFloat, forKey: forKey)
     }
     
     func set(rect:NSRect, type:String) {
