@@ -561,9 +561,20 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             /* 진행바의 색을 변경한다. */
             progressBar.changeBarColor(r, g: g, b: b)
             
+            //가사가 없을시 갱신하지 가사가 없음을 반영한다.
+            var lyrics:Lyrics? = nil
+            if radio.beLyrics() {
+                lyrics = radio.getLyrics()
+            }
+            else {
+                let noLyric = Lyrics()
+                noLyric.append("")
+                lyrics = noLyric
+            }
+            
             /* 배경화면 플레이어에 곡정보를 전달한다. */
             /* 배경화면 플레이어가 꺼져있다면 작동되지 않는다. wallPaperPlayer.set() 참조 */
-            wallPaperPlayer.set(title: nameTextField.stringValue, artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: radio.getLyrics(), color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
+            wallPaperPlayer.set(title: nameTextField.stringValue, artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: lyrics!, color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
             
             /* 진행바의 상태를 반영한다.(라디오 상태에선 뜨지 않는다.) */
             progressBar.sync(totalTime: 1, playTime: 1)
@@ -615,6 +626,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     func syncLyricWithWebPlayer() {
         let numOfLyrics = webPlayer.getNumOfNowPlayingLyric()
+        
         if prevNumOfLyrics != numOfLyrics {
             wallPaperPlayer.refreshLyric(numOfLyrics)
             prevNumOfLyrics = numOfLyrics
@@ -753,8 +765,19 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 앨범명의 색을 회색으로 설정 */
         albumTextField.textColor = NSColor.gray
         
+        //가사가 없을시 갱신하지 가사가 없음을 반영한다.
+        var lyrics:Lyrics? = nil
+        if webPlayer.beLyrics() {
+            lyrics = webPlayer.getLyrics()
+        }
+        else {
+            let noLyric = Lyrics()
+            noLyric.append("")
+            lyrics = noLyric
+        }
+        
         /* 월페이퍼의 정보를 갱신한다. */
-        wallPaperPlayer.set(title: webPlayer.getTitle(), artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: webPlayer.getLyrics(), color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
+        wallPaperPlayer.set(title: webPlayer.getTitle(), artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: lyrics!, color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
         
         /* 현재 재생중인 곡의 스트리밍 타입을 반영한다. */
         if webPlayer.getStreamingType() == 0 {
