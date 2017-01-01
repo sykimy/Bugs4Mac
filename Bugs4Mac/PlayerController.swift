@@ -208,7 +208,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         if defaults.object(forKey: "volume") != nil {
             return defaults.integer(forKey: "volume")
         }
-        return 20
+        
+        return 354
     }
     
     //-------------------------------------------------------------------------------------------------------------------------
