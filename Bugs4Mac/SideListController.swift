@@ -75,11 +75,12 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
     }
     
     func syncSideList() {
-        initSideListWebView()   //사이드리스트의 웹뷰를 초기화한다.(웹뷰를 생성하고 설정한다.)
+        if webView == nil {
+            initSideListWebView()   //사이드리스트의 웹뷰를 초기화한다.(웹뷰를 생성하고 설정한다.)
+        }
     }
     
     func getSideList() {
-        
         /* 리스트의 배열을 초기화한다. */
         for i in 0..<items.count {
             items[i].children.removeAll()
@@ -123,7 +124,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         /* 벅스TV의 자식들의 수를 받아온다. */
         let numOfBugsOnTVElements = getNumOfBugsOnTV()
         
-        /* 0개가 아니면(때떄로 0개가 받아져 충돌이 일어난다.) */
+        /* 0개가 아니면(때때로 0개가 받아져 충돌이 일어난다.) */
         if numOfBugsOnTVElements != 0 {
             /* 자식들의 값을 받아와 리스트에 추가한다. */
             for i in 0..<numOfBugsOnTVElements {
@@ -161,7 +162,6 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
         
         let numOfMyAlbumElements = getNumOfMyAlbum()
-        //print("numOfMyAlbum : \(numOfMyAlbumElements)")
         
         for i in 0..<numOfMyAlbumElements {
             while ( getHrefOfMyAlbumElement(i) == "" ) {
@@ -171,16 +171,21 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
         
         self.sideList.reloadData()
+        
         deinitSideListView()
     }
     
     /* 선택시 함수 */
     @IBAction func action(_ sender: NSOutlineView) {
+        //let item = NSOutlineView
+        
         let item = sender.item(atRow: sender.clickedRow)
         
         /* 아이템이 부모항목이면 */
         if item is ParentItem {
+            
             let node = item as! ParentItem
+            
             if node.isHeader {
                 if node.name == "지금 재생 목록" {
                     tabView.selectTabViewItem(at: 0)
@@ -270,8 +275,9 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             }
         }
     }
+    
     @IBAction func reload(_ sender: AnyObject) {
-        getSideList()
+        syncSideList()
     }
     
     @IBAction func editMyAlbum(_ sender: AnyObject) {
