@@ -485,12 +485,12 @@ extension MainWebViewController: WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage: String, initiatedByFrame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(true)
-        sideList.getSideList()
+        sideList.syncSideList()
     }
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage: String, initiatedByFrame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         completionHandler()
-        sideList.getSideList()
+        sideList.syncSideList()
     }
     
 }
