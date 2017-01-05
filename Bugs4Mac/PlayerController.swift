@@ -832,7 +832,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             case 0:
                 setMenuBarTextWithTitle()
             case 1:
-                setMenuBarTextWithTitleAndAlbum()
+                setMenuBarTextWithTitleAndArtist()
             case 2:
                 setMenuBarTextWithTitleArtistAndAlbum()
             case 3:
@@ -1125,6 +1125,10 @@ extension PlayerController {
     
     func setMenuBarTextWithTitleAndAlbum() {
         statusItem.title = "\(nameTextField.stringValue) - \(albumTextField.stringValue)"
+    }
+    
+    func setMenuBarTextWithTitleAndArtist() {
+        statusItem.title = "\(nameTextField.stringValue) - \(artistTextField.stringValue)"
     }
     
     func setMenuBarTextWithTitleArtistAndAlbum() {
