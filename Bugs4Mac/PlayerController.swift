@@ -107,6 +107,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     var syncTimer:Timer!
     var mouseInTimer:Timer!
     var mouseOutTimer:Timer!
+    var listTimer:Timer!
     
     var nowLogin = false
     
@@ -646,7 +647,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         if !webPlayer.checkPlayList() {
             alertNoList()   //재생목록에 곡이 없다고 알린다.
             if nowPlayingListController.dataArray.count != 0 {
-                nowPlayingListController.getPlayList()
+                _ = nowPlayingListController.getPlayList()
             }
         }
         else {
@@ -661,7 +662,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
                 
                 prevSongName = songName //현재 재생곡의 타이틀을 저장한다.
 
-                nowPlayingListController.getPlayList()  //플레이리스트를 불러온다.
+                _ = nowPlayingListController.getPlayList()  //플레이리스트를 불러온다.
            }
             
             /* 현재 플레이리스트의 음악수를 받아온다. */
@@ -670,9 +671,35 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             /* 플레이리스트의 음악 수가 변경되면 플레이리스트를 갱신한다. */
             if numOfSong != prevNumOfSong {
                 prevNumOfSong = numOfSong
-                nowPlayingListController.getPlayList()
+                
+                //리스트가 바뀜을 알린다.
+                listChanged(num: nowPlayingListController.getPlayList())
+
             }
         }
+    }
+    
+    //리스트가 바뀜을 앨범명을 통하여 알린다.
+    func listChanged(num:Int) {
+        albumTextField.textColor = NSColor.orange.blended(withFraction: 0.3, of: NSColor.black)
+        if num < 0 {
+            albumTextField.stringValue = "\(-num)개의 곡이 추가되었습니다."
+        }
+        else if num > 0 {
+            albumTextField.stringValue = "\(num)개의 곡이 삭제되었습니다."
+        }
+        
+        //1초후 다시 원래대로 되돌린다.
+        if listTimer != nil {
+            listTimer.invalidate()
+        }
+        listTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showInfoAgain), userInfo: nil, repeats: true)
+    }
+    
+    func showInfoAgain() {
+        albumTextField.stringValue = webPlayer.getArtist()
+        albumTextField.textColor = NSColor.darkGray
+        listTimer.invalidate()
     }
     
     /* WebPlayer로부터 시간정보를 받아와 반영한다. */
@@ -764,7 +791,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         progressBar.changeBarColor(r, g: g, b: b)
         
         /* 앨범명의 색을 회색으로 설정 */
-        albumTextField.textColor = NSColor.gray
+        albumTextField.textColor = NSColor.darkGray
         
         //가사가 없을시 갱신하지 가사가 없음을 반영한다.
         var lyrics:Lyrics? = nil

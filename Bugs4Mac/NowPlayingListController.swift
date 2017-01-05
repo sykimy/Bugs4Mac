@@ -15,6 +15,8 @@ class NowPlayingListController: NSObject {
     
     var dataArray: NSMutableArray! = NSMutableArray()
     
+    var prevNum = 0
+    
     let nc = NotificationCenter.default
     
     override func awakeFromNib() {
@@ -27,8 +29,11 @@ class NowPlayingListController: NSObject {
     }
     
     /* 플레이 리스트를 불러오는 함수 */
-    func getPlayList() {
+    func getPlayList()->Int {
         let numOfSong = webPlayer.getNumOfSong()
+        
+        let change = prevNum - numOfSong
+        prevNum = numOfSong
         
         self.dataArray.removeAllObjects()
         
@@ -38,6 +43,8 @@ class NowPlayingListController: NSObject {
         }
         
         self.nowPlayingList.reloadData()
+        
+        return change
     }
     
     /* 자료의 수를 테이블뷰에 전달한다. */
