@@ -681,7 +681,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     //리스트가 바뀜을 앨범명을 통하여 알린다.
     func listChanged(num:Int) {
+        //앨범명의 색을 바꾼다.
         albumTextField.textColor = NSColor.orange.blended(withFraction: 0.3, of: NSColor.black)
+        
         if num < 0 {
             albumTextField.stringValue = "\(-num)개의 곡이 추가되었습니다."
         }
