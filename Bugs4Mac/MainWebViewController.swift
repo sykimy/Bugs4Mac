@@ -57,6 +57,7 @@ class MainWebViewController: NSViewController {
         webView = WKWebView(frame: view.bounds, configuration: configuration)
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
         
         self.view.addSubview(webView)
         webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))
