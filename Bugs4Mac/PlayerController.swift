@@ -774,7 +774,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         let album = webPlayer.getAlbum()
         
         /* 이름, 아티스트, 앨범명을 반영 */
-        nameTextField.stringValue = " " + title
+        nameTextField.stringValue = title
         artistTextField.stringValue = artist
         albumTextField.stringValue = album
         
@@ -848,7 +848,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     func sendSongInfo2Widget(title:String, artist:String, album:String, r:CGFloat, g:CGFloat, b:CGFloat) {
         var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
-        info["title"] = " " + title
+        info["title"] = title
         info["artist"] = artist
         info["album"] = album
         info["r"] = r

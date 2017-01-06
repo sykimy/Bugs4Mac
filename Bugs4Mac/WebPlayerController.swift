@@ -173,7 +173,9 @@ extension WebPlayerController {
         let value = injectScript("document.getElementsByClassName('trackInfo')[0].getElementsByClassName('albumtitle')[0].innerHTML")
         
         if value is String {
-            return (value as! String).replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
+            let str = value as! String
+            
+            return str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         }
         else {
             return "앨범명을 불러올 수 없습니다."
@@ -185,7 +187,14 @@ extension WebPlayerController {
         let value = injectScript("document.getElementsByClassName('trackInfo')[0].getElementsByClassName('tracktitle')[0].innerHTML")
         
         if value is String {
-            return (value as! String).replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
+            var str = value as! String
+
+            //끝이 " " 이면 이를 제거.
+            if str[str.index(str.endIndex, offsetBy: -1)] == " " {
+                str = str.substring(to: str.index(str.endIndex, offsetBy: -1))
+            }
+            
+            return str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         }
         else {
             return "타이틀을 불러올 수 없습니다."
@@ -197,7 +206,9 @@ extension WebPlayerController {
         let value = injectScript("document.getElementsByClassName('trackInfo')[0].getElementsByClassName('artistname')[0].innerHTML")
         
         if value is String {
-            return (value as! String).replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
+            let str = value as! String
+            
+            return str.replacingOccurrences(of: "&nbsp;", with: " ").replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&lt;", with: "<").replacingOccurrences(of: "&gt;", with: ">")
         }
         else {
             return "아티스트를 불러올 수 없습니다."
