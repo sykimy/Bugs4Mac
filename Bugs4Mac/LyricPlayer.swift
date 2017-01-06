@@ -114,7 +114,6 @@ class LyricPlayer: NSObject, NSWindowDelegate {
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         
-        
         tmpImage = nil
         
         scrollView.documentView = textView
@@ -152,7 +151,7 @@ class LyricPlayer: NSObject, NSWindowDelegate {
         window = nil
     }
     
-    //앨범커버 이미지를 흐리게 한다.
+    //앨범커버 이미지를 확대하고 흐리게 한다.
     func blurImage(image:NSImage)->NSImage {
         let filter = CIFilter(name: "CIGaussianBlur")
         filter?.setDefaults()
@@ -163,6 +162,8 @@ class LyricPlayer: NSObject, NSWindowDelegate {
         
         blurredImage.lockFocus()
         outputImage.draw(at: NSZeroPoint, from: NSRect(x: 85, y: 90, width: 200, height: 200), operation: .copy, fraction: 0.5)
+        NSColor(calibratedRed: 0.6, green: 0.6, blue: 0.6, alpha: 0.5).set()
+        NSRectFillUsingOperation(NSRect(origin: .zero, size: NSRectFromCGRect(outputImage.extent).size), .overlay)
         blurredImage.unlockFocus()
         
         return blurredImage
@@ -229,7 +230,9 @@ class LyricPlayer: NSObject, NSWindowDelegate {
                     
                     var imageRect = CGRect(x: 0, y: 0, width: 100, height: 100)
                     tmpImage = blurImage(image: NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL() as URL)?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 100, height: 100)))
+                    
                     image.image = NSImage(cgImage: (tmpImage.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: window.frame.width, height: window.frame.height))
+                    
                     
                     prevId = id
                     

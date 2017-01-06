@@ -177,7 +177,7 @@ extension NowPlayingListController {
                 webPlayer.selectAllSong()
             }
             
-            getPlayList()
+            _ = getPlayList()
             
             return true
         }
@@ -199,7 +199,7 @@ extension NowPlayingListController {
     
     @IBAction func menuDeleteNGetTop100(_ sender: AnyObject) {
         webPlayer.deleteNGetTop100()
-        getPlayList()
+        _ = getPlayList()
     }
     
     @IBAction func menuDelete(_ sender: AnyObject) {
