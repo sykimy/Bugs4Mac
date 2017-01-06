@@ -681,13 +681,13 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     //리스트가 바뀜을 앨범명을 통하여 알린다.
     func listChanged(num:Int) {
-        //앨범명의 색을 바꾼다.
-        albumTextField.textColor = NSColor.orange.blended(withFraction: 0.3, of: NSColor.black)
         
         if num < 0 {
+            albumTextField.textColor = NSColor.orange.blended(withFraction: 0.3, of: NSColor.black)
             albumTextField.stringValue = "\(-num)개의 곡이 추가되었습니다."
         }
         else if num > 0 {
+            albumTextField.textColor = NSColor.orange.blended(withFraction: 0.3, of: NSColor.black)
             albumTextField.stringValue = "\(num)개의 곡이 삭제되었습니다."
         }
         
@@ -699,8 +699,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     }
     
     func showInfoAgain() {
-        albumTextField.stringValue = webPlayer.getArtist()
         albumTextField.textColor = NSColor.darkGray
+        albumTextField.stringValue = webPlayer.getAlbum()
         listTimer.invalidate()
     }
     
