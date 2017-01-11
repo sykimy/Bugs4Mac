@@ -20,8 +20,6 @@ class LoginWebViewController: NSViewController, WKNavigationDelegate, WKUIDelega
     
     @IBOutlet var webPlayer: WebPlayerController!
     
-    var processPool = WKProcessPool()
-    
     @IBOutlet var sideListController: SideListController!
     
     @IBOutlet var idTextField: NSTextField!
@@ -144,7 +142,7 @@ class LoginWebViewController: NSViewController, WKNavigationDelegate, WKUIDelega
         /* Create a configuration for our preferences */
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
-        configuration.processPool = processPool
+        configuration.processPool = webPlayer.processPool
         
         /* 새로운 WKWebView를 만든다. */
         popupView = WKWebView(frame: popupWindow.contentLayoutRect, configuration: configuration)
@@ -181,7 +179,7 @@ class LoginWebViewController: NSViewController, WKNavigationDelegate, WKUIDelega
         /* Create a configuration for our preferences */
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
-        configuration.processPool = processPool
+        configuration.processPool = webPlayer.processPool
         
         /* 새로운 WKWebView를 만든다. */
         popupView = WKWebView(frame: popupWindow.contentLayoutRect, configuration: configuration)
