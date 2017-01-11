@@ -175,6 +175,23 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         deinitSideListView()
     }
     
+    @IBAction func doubleAction(_ sender: NSOutlineView) {
+        let item = sender.item(atRow: sender.clickedRow)
+        
+        if item is ParentItem {
+            
+            let node = item as! ParentItem
+            
+            if !node.isHeader {
+                if sender.isItemExpanded(item) {
+                    sender.collapseItem(item)
+                } else {
+                    sender.expandItem(item)
+                }
+            }
+        }
+    }
+    
     /* 선택시 함수 */
     @IBAction func action(_ sender: NSOutlineView) {
         //let item = NSOutlineView
