@@ -48,6 +48,8 @@ class WebPlayerController: NSViewController {
         self.view.addSubview(webView)
         
         /* 웹플레이어 페이지 로드 */
+        webView.load(URLRequest(url: URL(string: "http://music.bugs.co.kr/newPlayer?autoplay=false")!))
+        
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(loadPlayer), userInfo: nil, repeats: true)
     }
     

@@ -225,7 +225,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         while(!webPlayer.isSync) {
             count += 1
             if count > 50 {
-                print("break")
                 break
             }
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
