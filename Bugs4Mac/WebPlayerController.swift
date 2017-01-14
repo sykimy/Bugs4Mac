@@ -22,6 +22,8 @@ class WebPlayerController: NSViewController {
     //웹플레이어가 동기화를 시작했나 저장하는 변수.
     var isSync = false
     
+    var timer:Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -46,6 +48,15 @@ class WebPlayerController: NSViewController {
         self.view.addSubview(webView)
         
         /* 웹플레이어 페이지 로드 */
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(loadPlayer), userInfo: nil, repeats: true)
+    }
+    
+    func loadPlayer() {
+        if isSync {
+            timer.invalidate()
+            return
+        }
+
         webView.load(URLRequest(url: URL(string: "http://music.bugs.co.kr/newPlayer?autoplay=false")!))
     }
     
@@ -219,7 +230,9 @@ extension WebPlayerController {
     func getAlbumImageURL()->URL {
         let value = injectScript("document.getElementsByClassName('thumbnail')[0].getElementsByTagName('img')[0].src")
 
-        
+        if value is NSNull {
+            return URL(fileURLWithPath: "")
+        }
         return URL(string:(value as! String).replacingOccurrences(of: "/100/", with: "/368/"))!
     }
     

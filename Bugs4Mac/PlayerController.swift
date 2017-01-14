@@ -220,7 +220,14 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     /* 웹플레이어와 플레이어의 동기화 타이밍을 조절한다. */
     func setSyncTiming(_ t:Double) {
         /* 웹플레이어가 시작될때까지 대기한다. */
+        
+        var count = 0
         while(!webPlayer.isSync) {
+            count += 1
+            if count > 50 {
+                print("break")
+                break
+            }
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
         }
         
@@ -754,9 +761,14 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* WebPlayer로부터 곡의 정보를 받아와 반영한다. */
     func syncInfoWithWebPlayer() {
+        if !webPlayer.isSync {
+            return
+        }
+        
         /* 엘범 이미지 화면에 반영 */
         /* 이미지 사이즈 변환 */
         var imageRect = CGRect(x: 0, y: 0, width: 150, height: 150)
+
         let albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 150, height: 150))
         
         albumImageField.image = albumImage
