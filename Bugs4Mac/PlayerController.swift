@@ -31,6 +31,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     @IBOutlet var toggle: NSMenu!
     
+    var fullScreenMode = false
+    
     var statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     /* DockAndMenuBarPreference에서 조작 */
@@ -147,6 +149,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         nc.addObserver(self, selector: #selector(PlayerController.fnNext), name: NSNotification.Name(rawValue: "next"), object: nil)
         nc.addObserver(self, selector: #selector(PlayerController.fnPrev), name: NSNotification.Name(rawValue: "prev"), object: nil)
         
+        nc.addObserver(self, selector: #selector(PlayerController.enterFullScreen), name: NSNotification.Name.NSWindowDidEnterFullScreen, object: nil)
+        nc.addObserver(self, selector: #selector(PlayerController.exitFullScreen), name: NSNotification.Name.NSWindowDidExitFullScreen, object: nil)
+        
         /* 이미지 버튼의 이미지 파일을 불러온다. */
         //loginButton.image = NSImage(named: "login.png")
         loginButton.title = "로그인"
@@ -184,9 +189,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     }
     
     func hideTitleButton() {
-        self.window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
-        self.window.standardWindowButton(NSWindowButton.zoomButton)!.isHidden = true
-        self.window.standardWindowButton(NSWindowButton.miniaturizeButton)!.isHidden = true
+        if !fullScreenMode {
+            self.window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+            self.window.standardWindowButton(NSWindowButton.zoomButton)!.isHidden = true
+            self.window.standardWindowButton(NSWindowButton.miniaturizeButton)!.isHidden = true
+        }
     }
     
     func showTitleButton() {
@@ -1353,7 +1360,17 @@ extension PlayerController:PlayerViewDelegate {
         similarButton.alphaValue = CGFloat(buttonTrans)
         search.alphaValue(value: CGFloat(buttonTrans))
     }
+    
+    func enterFullScreen() {
+        fullScreenMode = true
+        mouseOut()
+    }
+    
+    func exitFullScreen() {
+        fullScreenMode = false
+    }
 }
+
 
 extension PlayerController:ProgressBarDelegate {
     func progressBar(percent: CGFloat) {

@@ -162,15 +162,12 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
         
         let numOfMyAlbumElements = getNumOfMyAlbum()
-        print(numOfMyAlbumElements)
         
         for i in 0..<numOfMyAlbumElements {
             while ( getHrefOfMyAlbumElement(i) == "" ) {
                 RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: NSDate.distantFuture)
             }
-            //print(getTitleOfMyAlbumElement(i))
             items[items.count-1].appendChild(getTitleOfMyAlbumElement(i), href: getHrefOfMyAlbumElement(i), num: i, parent: items[items.count-1].name)
-            //print(items[items.count-1].children[i].title)
         }
         
         sideList.reloadItem(items, reloadChildren: true)
