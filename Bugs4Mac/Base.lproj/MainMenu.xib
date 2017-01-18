@@ -296,7 +296,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
                                         <clipView key="contentView" drawsBackground="NO" id="lES-CE-Uhl">
                                             <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="3bv-eA-YMM" id="XrY-xW-axh">
                                                     <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
@@ -416,7 +416,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="993" height="615"/>
                                                             <clipView key="contentView" id="QAZ-0A-BQY">
                                                                 <rect key="frame" x="1" y="0.0" width="991" height="614"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" rowHeight="14" rowSizeStyle="automatic" headerView="TZw-R2-b9z" viewBased="YES" id="bsc-P2-nuE" customClass="NowPlayingList" customModule="Bugs4Mac" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="991" height="591"/>
@@ -1808,7 +1808,7 @@ CA
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suc-BV-Vmu">
                                         <rect key="frame" x="77" y="251" width="35" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="꺼짐" bezelStyle="roundedRect" image="7CD446BB-6F5F-41A4-BA58-9788B8E93A20" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="gyM-7E-bvv">
+                                        <buttonCell key="cell" type="roundRect" title="꺼짐" bezelStyle="roundedRect" image="08E385A4-17A6-4C72-8CF3-DE17D3ECFE30" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="gyM-7E-bvv">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name=".AppleSDGothicNeoI-Regular"/>
                                         </buttonCell>
@@ -2573,7 +2573,7 @@ CA
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="128-zR-Osu">
                         <rect key="frame" x="105" y="135" width="76" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="버전 1.0.6.3" id="fg2-OD-a9r">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="버전 1.0.6.4" id="fg2-OD-a9r">
                             <font key="font" size="11" name=".AppleSDGothicNeoI-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2626,7 +2626,7 @@ CA
         </window>
     </objects>
     <resources>
-        <image name="7CD446BB-6F5F-41A4-BA58-9788B8E93A20" width="1" height="1">
+        <image name="08E385A4-17A6-4C72-8CF3-DE17D3ECFE30" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
