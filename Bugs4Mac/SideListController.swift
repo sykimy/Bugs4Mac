@@ -162,15 +162,20 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
         
         let numOfMyAlbumElements = getNumOfMyAlbum()
+        print(numOfMyAlbumElements)
         
         for i in 0..<numOfMyAlbumElements {
             while ( getHrefOfMyAlbumElement(i) == "" ) {
                 RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: NSDate.distantFuture)
             }
+            //print(getTitleOfMyAlbumElement(i))
             items[items.count-1].appendChild(getTitleOfMyAlbumElement(i), href: getHrefOfMyAlbumElement(i), num: i, parent: items[items.count-1].name)
+            //print(items[items.count-1].children[i].title)
         }
         
+        sideList.reloadItem(items, reloadChildren: true)
         self.sideList.reloadData()
+
         
         deinitSideListView()
     }
@@ -197,6 +202,9 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         //let item = NSOutlineView
         
         let item = sender.item(atRow: sender.clickedRow)
+        
+        //print(sender.clickedRow)
+        //print(item)
         
         /* 아이템이 부모항목이면 */
         if item is ParentItem {
@@ -518,21 +526,20 @@ extension SideListController {
 
 extension SideListController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        //1
+
         if let parentItem = item as? ParentItem {
             return parentItem.children.count
         }
-        //2
-        
+
         return self.items.count
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if index >= self.items.count {
-            return 0
-        }
-        
         if let parentItem = item as? ParentItem {
+            if index >= (item as! ParentItem).children.count {
+                return 0
+            }
+            
             return parentItem.children[index]
         }
         
