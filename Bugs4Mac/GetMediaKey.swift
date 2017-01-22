@@ -38,6 +38,12 @@ class GetMediaKey: NSApplication {
             case NX_KEYTYPE_REWIND:
                 nc.post(name: Notification.Name(rawValue: "prev"), object: self)
                 break
+            case NX_KEYTYPE_NEXT:
+                nc.post(name: Notification.Name(rawValue: "next"), object: self)
+                break
+            case NX_KEYTYPE_PREVIOUS:
+                nc.post(name: Notification.Name(rawValue: "prev"), object: self)
+                break
             default:
                 break
             }

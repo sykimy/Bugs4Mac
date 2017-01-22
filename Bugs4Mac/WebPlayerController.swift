@@ -260,6 +260,7 @@ extension WebPlayerController {
     
     /* 가사 유무를 Bool로 반환한다. */
     func beLyrics()->Bool {
+        webView.evaluateJavaScript("bugs.player.tabClickHandler(this,'playlist');", completionHandler: nil)
         webView.evaluateJavaScript("bugs.player.tabClickHandler(this,'lyrics');", completionHandler: nil)
         
         var isFinish = false
@@ -278,15 +279,11 @@ extension WebPlayerController {
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
         }
         
-        //webView.evaluateJavaScript("document.getElementsByClassName('tab_play_list')[0].click()", completionHandler: nil)
-        
         return state
     }
     
     /* 곡의 가사를 String으로 반환한다. */
     func getLyrics()->Lyrics {
-        webView.evaluateJavaScript("bugs.player.tabClickHandler(this,'lyrics');", completionHandler: nil)
-        
         var str:String = ""
         var isFinish = false
         let lyrics = Lyrics()
@@ -315,15 +312,11 @@ extension WebPlayerController {
             }
         }
         
-        //webView.evaluateJavaScript("document.getElementsByClassName('tab_play_list')[0].click()", completionHandler: nil)
-        
         return lyrics
     }
     
     /* 현재 재생중인 가사의 줄수를 반환한다. */
     func getNumOfNowPlayingLyric()->Int {
-        webView.evaluateJavaScript("bugs.player.tabClickHandler(this,'lyrics');", completionHandler: nil)
-        
         var str:String = ""
         var isFinish = false
         
@@ -348,8 +341,6 @@ extension WebPlayerController {
             }
         }
         
-        //webView.evaluateJavaScript("document.getElementsByClassName('tab_play_list')[0].click()", completionHandler: nil)
-        
         return count
     }
     
@@ -357,7 +348,6 @@ extension WebPlayerController {
     func getLyricsNow()->String {
         var str:NSString = ""
         var isFinish = false
-        webView.evaluateJavaScript("bugs.player.tabClickHandler(this,'lyrics');", completionHandler: nil)
         
         webView.evaluateJavaScript("document.getElementById('lyricsContent').getElementsByTagName('strong')[0].innerHTML") { (result, error) in
             if error == nil {
