@@ -102,6 +102,7 @@ class MainWebViewController: NSViewController {
     
     /* 검색창을 열고 검색을 시작한다. */
     func openSearch(_ str:String) {
+        initWebView()
         openHome()
         
         webView.evaluateJavaScript("document.getElementById('headerSearchInput').value = ''", completionHandler: nil)
