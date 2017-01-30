@@ -16,6 +16,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
     /* 텝 뷰 */
     @IBOutlet var tabView: NSTabView!
     
+    @IBOutlet var webPlayerWindow: NSWindow!
+    
     /* processPool공유를 위한 링크 */
     @IBOutlet var webPlayer: WebPlayerController!
     
@@ -37,6 +39,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
     
     /* 내 앨범의 로딩 딜레이를 해결하기 위한 타이머 */
     var myAlbumTimer:Timer!
+    
+    var changed = false
     
     /* 사이드 리스트 뷰를 열고 윈도우에 등록 */
     func initSideListWebView() {
@@ -194,6 +198,15 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
     }
     
+    func showWebPlayer() {
+        //webPlayerWindow.alphaValue = 0   //윈도우를 투명하게 변경
+        //webPlayerWindow.makeKeyAndOrderFront(self)    //윈도우를 연다.
+    }
+    
+    func closeWebPlayer() {
+        //webPlayerWindow.close()
+    }
+    
     /* 선택시 함수 */
     @IBAction func action(_ sender: NSOutlineView) {
         //let item = NSOutlineView
@@ -211,13 +224,21 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             if node.isHeader {
                 if node.name == "지금 재생 목록" {
                     tabView.selectTabViewItem(at: 0)
+                    mainWebViewController.deinitWebView()
                 }
                 else if node.name == "벅스 뮤직" {
+                    showWebPlayer()
+                    mainWebViewController.deinitWebView()
+                    mainWebViewController.initWebView()
                     mainWebViewController.openHome()
                     tabView.selectTabViewItem(at: 1)
+                    closeWebPlayer()
                 }
             }
             else {
+                showWebPlayer()
+                mainWebViewController.deinitWebView()
+                mainWebViewController.initWebView()
                 if node.name == "벅스차트" {
                     mainWebViewController.openBugsChart()
                     tabView.selectTabViewItem(at: 2)
@@ -246,10 +267,15 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
                     mainWebViewController.openFLAC()
                     tabView.selectTabViewItem(at: 2)
                 }
+                closeWebPlayer()
             }
         }
         else if item is ChildItem {
             let node = item as! ChildItem
+            
+            showWebPlayer()
+            mainWebViewController.deinitWebView()
+            mainWebViewController.initWebView()
             
             if node.parent == "테마" {
                 if node.num == 0 {
@@ -295,6 +321,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
                 mainWebViewController.openHref(node.href)
                 tabView.selectTabViewItem(at: 2)
             }
+            
+            closeWebPlayer()
         }
     }
     

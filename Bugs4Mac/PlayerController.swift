@@ -687,7 +687,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
                 
                 //리스트가 바뀜을 알린다.
                 listChanged(num: nowPlayingListController.getPlayList())
-
+                
+                sideListController.changed = true
             }
         }
     }

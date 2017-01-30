@@ -40,7 +40,7 @@ class MainWebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
+        /*
         /* Create our preferences on how the web page should be loaded */
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
@@ -60,9 +60,44 @@ class MainWebViewController: NSViewController {
         webView.allowsBackForwardNavigationGestures = true
         
         self.view.addSubview(webView)
-        webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))
+        webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))*/
         
         nc.addObserver(self, selector: #selector(MainWebViewController.resizeWebView), name: NSNotification.Name(rawValue: "NSViewFrameDidChangeNotification"), object: nil)
+    }
+    
+    func initWebView() {
+        /* Create our preferences on how the web page should be loaded */
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true
+        preferences.javaEnabled = true
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        preferences.plugInsEnabled = true
+        
+        /* Create a configuration for our preferences */
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+        configuration.processPool = webPlayer.processPool
+        
+        /* Now instantiate the web view */
+        webView = WKWebView(frame: view.bounds, configuration: configuration)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+        
+        self.view.addSubview(webView)
+        //webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))
+    }
+    
+    func deinitWebView() {
+        for view in view.subviews {
+            view.removeFromSuperview()
+        }
+        
+        webView = nil
+        
+        if chartTimer != nil {
+            chartTimer.invalidate()
+        }
     }
     
     /* 검색창을 열고 검색을 시작한다. */
@@ -83,7 +118,9 @@ class MainWebViewController: NSViewController {
     
     /* 웹뷰의 사이즈를 화면 크기에 맞춘다. */
     func resizeWebView() {
-        webView.setFrameSize(NSSize(width: view.bounds.width, height: view.bounds.height))
+        if webView != nil {
+            webView.setFrameSize(NSSize(width: view.bounds.width, height: view.bounds.height))
+        }
     }
     
     //-------------------------------------------------------------------------------------------------------------------------
