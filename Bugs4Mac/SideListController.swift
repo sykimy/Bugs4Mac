@@ -21,6 +21,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
     /* processPool공유를 위한 링크 */
     @IBOutlet var webPlayer: WebPlayerController!
     
+    @IBOutlet var player: PlayerController!
     /* 내 앨범 리스트를 받아올 웹뷰가 로드될때까지 대기시키기 위한 변수 */
     var loadComplete = false
     
@@ -80,6 +81,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
     
     func syncSideList() {
         if webView == nil {
+            player.nameTextField.stringValue = "initSideListWebView"
             initSideListWebView()   //사이드리스트의 웹뷰를 초기화한다.(웹뷰를 생성하고 설정한다.)
         }
     }
@@ -91,6 +93,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         }
         items.removeAll()
         
+        player.nameTextField.stringValue = "add Header"
         /* 헤더를 추가해준다. */
         items.append(ParentItem(name:"지금 재생 목록", isHeader: true))
         items.append(ParentItem(name:"벅스 뮤직", isHeader: true))
@@ -113,6 +116,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         items.append(ParentItem(name: "FLAC전용관", isHeader: false))
         items.append(ParentItem(name: "벅스 on TV", isHeader: false))
         
+        
+        player.nameTextField.stringValue = "get Bugs TV"
         /* 벅스TV의 목록을 받아온다. */
         /* 웹뷰에서 완전 로드 될때까지 대기한다. */
         if webView == nil {
@@ -125,6 +130,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             }
         }
         
+        player.nameTextField.stringValue = "get NumOfButgsTV"
         /* 벅스TV의 자식들의 수를 받아온다. */
         let numOfBugsOnTVElements = getNumOfBugsOnTV()
         
@@ -147,6 +153,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         
         items.append(ParentItem(name: "내 앨범", isHeader: false))
         
+        
+        player.nameTextField.stringValue = "get MyAlbum"
         if webView == nil {
             return
         }
@@ -157,6 +165,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             }
         }
         
+        player.nameTextField.stringValue = "get NumOFMYAlbum"
         /* 내 앨범의 자식들의 수를 받아온다. */
         for _ in 0..<50 {
             if getNumOfMyAlbum() > 0 {
@@ -174,9 +183,9 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             items[items.count-1].appendChild(getTitleOfMyAlbumElement(i), href: getHrefOfMyAlbumElement(i), num: i, parent: items[items.count-1].name)
         }
         
+        player.nameTextField.stringValue = "end"
         sideList.reloadItem(items, reloadChildren: true)
         self.sideList.reloadData()
-
         
         deinitSideListView()
     }
