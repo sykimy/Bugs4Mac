@@ -123,17 +123,12 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         if webView == nil {
             return
         }
-        
-        var breakNum = 0
-        while( getNumOfBugsOnTV() == -1 ) {
-            breakNum += 1
-            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
-            if webView == nil {
-                return
-            }
-            else if breakNum == 50 {
+
+        for _ in 0..<50 {
+            if getNumOfBugsOnTV() != -1 {
                 break
             }
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
         }
         
         player.nameTextField.stringValue = "get NumOfButgsTV"
@@ -143,7 +138,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         /* 0개가 아니면(때때로 0개가 받아져 충돌이 일어난다.) */
         if numOfBugsOnTVElements != 0 {
             /* 자식들의 값을 받아와 리스트에 추가한다. */
-            for i in 0..<numOfBugsOnTVElements {
+            for i in 0 ..< numOfBugsOnTVElements {
                 while ( getHrefOfBugsOnTVElement(i) == "" ) {
                     RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
                 }
