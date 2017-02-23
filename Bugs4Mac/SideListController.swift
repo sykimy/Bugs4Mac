@@ -123,10 +123,16 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         if webView == nil {
             return
         }
+        
+        var breakNum = 0
         while( getNumOfBugsOnTV() == -1 ) {
+            breakNum += 1
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
             if webView == nil {
                 return
+            }
+            else if breakNum == 50 {
+                break
             }
         }
         
