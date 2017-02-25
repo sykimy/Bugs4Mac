@@ -8,6 +8,10 @@
 
 import Foundation
 import Cocoa
+import CoreAudio
+import AVKit
+import CoreAudioKit
+import AVFoundation
 
 enum PlayerState {
     case WebPlayer
@@ -141,6 +145,10 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         search.alphaValue(value: 0)
     }
     
+    func ppp() {
+        print("#")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -151,6 +159,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         
         nc.addObserver(self, selector: #selector(PlayerController.enterFullScreen), name: NSNotification.Name.NSWindowDidEnterFullScreen, object: nil)
         nc.addObserver(self, selector: #selector(PlayerController.exitFullScreen), name: NSNotification.Name.NSWindowDidExitFullScreen, object: nil)
+        
         
         /* 이미지 버튼의 이미지 파일을 불러온다. */
         //loginButton.image = NSImage(named: "login.png")
@@ -541,6 +550,14 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* 라디오 타이머의 함수(정해진 시간마다 라디오플레이어에서 곡 정보를 받아온다.) */
     func syncWithRadio() {
+        //오디오의 상태를 체크한다.
+        if prevAudioJackState == 0 {
+            prevAudioJackState = getAudioJackState()
+        }
+        else if prevAudioJackState != getAudioJackState() {
+            prevAudioJackState = getAudioJackState()
+            radio.pause()
+        }
         
         /* 곡의 타이틀이 변경되면 함수를 실행한다. */
         if prevRadioTitle != radio.getTitle() {
@@ -648,8 +665,50 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         }
     }
     
+    func getAudioJackState()->UInt32 {
+        //get the built-in output device
+        var defaultDevice:AudioDeviceID = 0
+        var defaultSize:UInt32 = UInt32(MemoryLayout<AudioDeviceID>.size)
+        
+        var defaultAddr = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMaster
+        )
+        
+        AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &defaultAddr, 0, nil, &defaultSize, &defaultDevice)
+        
+        //Read its current data source
+        var sourceAddr = AudioObjectPropertyAddress(
+            mSelector: kAudioDevicePropertyDataSource,
+            mScope: kAudioDevicePropertyScopeOutput,
+            mElement: kAudioObjectPropertyElementMaster
+        )
+        
+        var dataSourceId:UInt32 = 0
+        var dataSourceIDSize:UInt32 = UInt32(MemoryLayout<UInt32>.size)
+        
+        AudioObjectGetPropertyData(defaultDevice, &sourceAddr, 0, nil, &dataSourceIDSize, &dataSourceId)
+        
+        //Observe for changes to the data source
+        
+        AudioObjectAddPropertyListenerBlock(defaultDevice, &sourceAddr, DispatchQueue.global(qos: .background)) {_,_ in }
+        
+        return dataSourceId
+    }
+    
+    var prevAudioJackState:UInt32 = 0
     /* WebPlayer로부터 값을 받아와 반영한다. */
     func syncWithWebPlayer() {
+        //오디오의 상태를 체크한다.
+        if prevAudioJackState == 0 {
+            prevAudioJackState = getAudioJackState()
+        }
+        else if prevAudioJackState != getAudioJackState() {
+            prevAudioJackState = getAudioJackState()
+            webPlayer.pause()
+        }
+        
         /* WebPlayer로부터 시간 정보를 받아온다. */
         syncTimeWithWebPlayer()
         

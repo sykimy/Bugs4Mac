@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     let startTask = Process()
     let endTask = Process()
     
+    
     //메인 플레이어 컨트로러
     @IBOutlet var player: PlayerController!
     
@@ -64,12 +65,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         endTask.launch()
     }
     
-    /* 독 아이콘의 클릭으로 창을 다시 불러온다. */
+    /* 아이콘의 클릭으로 창을 다시 불러온다. */
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         /* 독 아이콘의 클릭으로 창을 다시 불러온다. */
         self.window.makeKeyAndOrderFront(self)
         
         return true
     }
+    
 }
 

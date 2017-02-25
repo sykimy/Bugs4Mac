@@ -21,6 +21,7 @@ class GetMediaKey: NSApplication {
             let keyRepeat = (keyFlags & 0x1)
             mediaKeyEvent(Int32(keyCode), state: keyState, keyRepeat: Bool(keyRepeat > 0))
         }
+
         
         super.sendEvent(event)
     }
