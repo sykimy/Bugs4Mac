@@ -61,6 +61,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     let sharedUserDefaults = UserDefaults.init(suiteName: "group.bugs4mac.sykimy")
     
+    var checkAudioJack = false
+    
     /* 마우스 In/Out여부에 따라 투명도가 바뀌는 버튼 */
     @IBOutlet var prevButton: ButtonController!
     @IBOutlet var playButton: ButtonController!
@@ -551,12 +553,14 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     /* 라디오 타이머의 함수(정해진 시간마다 라디오플레이어에서 곡 정보를 받아온다.) */
     func syncWithRadio() {
         //오디오의 상태를 체크한다.
-        if prevAudioJackState == 0 {
-            prevAudioJackState = getAudioJackState()
-        }
-        else if prevAudioJackState != getAudioJackState() {
-            prevAudioJackState = getAudioJackState()
-            radio.pause()
+        if checkAudioJack {
+            if prevAudioJackState == 0 {
+                prevAudioJackState = getAudioJackState()
+            }
+            else if prevAudioJackState != getAudioJackState() {
+                prevAudioJackState = getAudioJackState()
+                radio.pause()
+            }
         }
         
         /* 곡의 타이틀이 변경되면 함수를 실행한다. */
@@ -701,12 +705,14 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     /* WebPlayer로부터 값을 받아와 반영한다. */
     func syncWithWebPlayer() {
         //오디오의 상태를 체크한다.
-        if prevAudioJackState == 0 {
-            prevAudioJackState = getAudioJackState()
-        }
-        else if prevAudioJackState != getAudioJackState() {
-            prevAudioJackState = getAudioJackState()
-            webPlayer.pause()
+        if checkAudioJack {
+            if prevAudioJackState == 0 {
+                prevAudioJackState = getAudioJackState()
+            }
+            else if prevAudioJackState != getAudioJackState() {
+                prevAudioJackState = getAudioJackState()
+                webPlayer.pause()
+            }
         }
         
         /* WebPlayer로부터 시간 정보를 받아온다. */

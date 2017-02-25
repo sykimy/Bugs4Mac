@@ -11,6 +11,7 @@ import Cocoa
 class AlarmCenterPreference:NSObject {
     @IBOutlet var notificationButton: NSButton!
     @IBOutlet var funcKeyButton: NSButton!
+    @IBOutlet var audioJackButton: NSButton!
     
     let defaults = UserDefaults.standard
     
@@ -51,6 +52,21 @@ class AlarmCenterPreference:NSObject {
                 playerController.funcKey = false
             }
         }
+        
+        if defaults.object(forKey: "checkAudioJack") != nil {
+            if defaults.bool(forKey: "checkAudioJack") {
+                notificationButton.state = 1
+                playerController.checkAudioJack = true
+            }
+            else {
+                notificationButton.state = 0
+                playerController.checkAudioJack = false
+            }
+        }
+        else {
+            notificationButton.state = 1
+            playerController.checkAudioJack = true
+        }
     }
     
     @IBAction func notification(_ sender: AnyObject) {
@@ -72,6 +88,17 @@ class AlarmCenterPreference:NSObject {
         else {
             playerController.funcKey = false
             defaults.set(false, forKey: "funcKey")
+        }
+    }
+    
+    @IBAction func checkAudioJack(_ sender: Any) {
+        if audioJackButton.state == 1 {
+            playerController.checkAudioJack = true
+            defaults.set(true, forKey: "checkAudioJack")
+        }
+        else {
+            playerController.checkAudioJack = false
+            defaults.set(false, forKey: "checkAudioJack")
         }
     }
 }
