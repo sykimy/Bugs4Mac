@@ -12,6 +12,7 @@ import CoreAudio
 import AVKit
 import CoreAudioKit
 import AVFoundation
+import MediaPlayer
 
 enum PlayerState {
     case WebPlayer
@@ -121,6 +122,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     var prevNumOfLyrics = -1
     
+    var prevAudioJackState:UInt32 = 0
+    
     /* 버튼이 사라지고 생기는데 걸리는 시간 */
     var fadeValue: Double = 0.1
     var fadeTiming: Double = 0.01
@@ -147,10 +150,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         search.alphaValue(value: 0)
     }
     
-    func ppp() {
-        print("#")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -161,7 +160,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         
         nc.addObserver(self, selector: #selector(PlayerController.enterFullScreen), name: NSNotification.Name.NSWindowDidEnterFullScreen, object: nil)
         nc.addObserver(self, selector: #selector(PlayerController.exitFullScreen), name: NSNotification.Name.NSWindowDidExitFullScreen, object: nil)
-        
         
         /* 이미지 버튼의 이미지 파일을 불러온다. */
         //loginButton.image = NSImage(named: "login.png")
@@ -701,9 +699,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         return dataSourceId
     }
     
-    var prevAudioJackState:UInt32 = 0
     /* WebPlayer로부터 값을 받아와 반영한다. */
     func syncWithWebPlayer() {
+        
         //오디오의 상태를 체크한다.
         if checkAudioJack {
             if prevAudioJackState == 0 {

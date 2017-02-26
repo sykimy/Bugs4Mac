@@ -16,6 +16,9 @@ class NowPlayingListController: NSObject {
     var dataArray: NSMutableArray! = NSMutableArray()
     
     var prevNum = 0
+    var nowNum = 0
+    var deleteDuplicateSong = false
+    var addPosition = 2
     
     let nc = NotificationCenter.default
     
@@ -30,11 +33,101 @@ class NowPlayingListController: NSObject {
     
     /* 플레이 리스트를 불러오는 함수 */
     func getPlayList()->Int {
-        let numOfSong = webPlayer.getNumOfSong()
+        var numOfSong = webPlayer.getNumOfSong()
         
         let change = prevNum - numOfSong
         prevNum = numOfSong
         
+        self.dataArray.removeAllObjects()
+        
+        for i:Int in 0..<numOfSong {
+            let song = webPlayer.getPlayListSong(i)
+            dataArray.add(song)
+        }
+
+        var deleteSong = 0
+        //중복 항목 삭제
+        
+        if deleteDuplicateSong && change < 0 {
+            let addSong = -change
+            for i:Int in 1...addSong {
+                for j in 0..<(numOfSong - addSong) {
+                    if (dataArray.object(at: j) as! Song).getName() == (dataArray.object(at: numOfSong-i) as! Song).getName() {
+                        if (dataArray.object(at: j) as! Song).getArtist() == (dataArray.object(at: numOfSong-i) as! Song).getArtist() {
+                            webPlayer.selectSong(j)
+                            deleteSong += 1
+                        }
+                    }
+                }
+            }
+            webPlayer.deleteSelectSong()
+            
+            /* 선택 초기화 */
+            if selectedRows.count == webPlayer.getNumOfSong() {
+                webPlayer.selectAllSong()
+            }
+            else {
+                webPlayer.selectAllSong()
+                webPlayer.selectAllSong()
+            }
+        }
+        
+        //재생중인 곡 아래에 곡 추가
+        if addPosition == 2 && change < 0 {
+            let addSong = -change
+
+            if numOfSong != addSong && nowNum != numOfSong {
+                let selectNum = nowNum + 1
+                for i in selectNum..<numOfSong-addSong-deleteSong {
+                    webPlayer.selectSong(i)
+                }
+                
+                for _ in 0..<addSong {
+                    webPlayer.moveDown()
+                }
+                
+                /* 선택 초기화 */
+                if selectedRows.count == webPlayer.getNumOfSong() {
+                    webPlayer.selectAllSong()
+                }
+                else {
+                    webPlayer.selectAllSong()
+                    webPlayer.selectAllSong()
+                }
+                
+            }
+
+        }
+        
+        
+        //맨 위에 추가
+        if addPosition == 0 && change < 0 {
+            let addSong = -change
+            
+            if numOfSong != addSong {
+                for i in 0..<numOfSong-addSong-deleteSong {
+                    webPlayer.selectSong(i)
+                }
+                
+                for _ in 0..<addSong {
+                    webPlayer.moveDown()
+                }
+                
+                /* 선택 초기화 */
+                if selectedRows.count == webPlayer.getNumOfSong() {
+                    webPlayer.selectAllSong()
+                }
+                else {
+                    webPlayer.selectAllSong()
+                    webPlayer.selectAllSong()
+                }
+                
+                _ = getPlayList()
+            }
+            
+        }
+        
+        numOfSong = webPlayer.getNumOfSong()
         self.dataArray.removeAllObjects()
         
         for i:Int in 0..<numOfSong {
@@ -61,6 +154,7 @@ class NowPlayingListController: NSObject {
         if tableColumn == nowPlayingList.tableColumns[0] {
             let cellNum = nowPlayingList.make(withIdentifier: "now", owner: self) as! NSTableCellView
             if (self.dataArray.object(at: row) as! Song).getNow() {
+                nowNum = row
                 cellNum.textField!.stringValue = "✔"
             }
             else {

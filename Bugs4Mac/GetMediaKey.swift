@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Carbon
 
 /* 미디어 키를 받아오는 함수 */
 class GetMediaKey: NSApplication {
@@ -21,7 +22,6 @@ class GetMediaKey: NSApplication {
             let keyRepeat = (keyFlags & 0x1)
             mediaKeyEvent(Int32(keyCode), state: keyState, keyRepeat: Bool(keyRepeat > 0))
         }
-
         
         super.sendEvent(event)
     }

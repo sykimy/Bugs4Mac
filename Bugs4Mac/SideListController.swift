@@ -184,7 +184,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             items[items.count-1].appendChild(getTitleOfMyAlbumElement(i), href: getHrefOfMyAlbumElement(i), num: i, parent: items[items.count-1].name)
         }
         
-        player.nameTextField.stringValue = "end"
+        player.nameTextField.stringValue = webPlayer.getTitle()
         sideList.reloadItem(items, reloadChildren: true)
         self.sideList.reloadData()
         

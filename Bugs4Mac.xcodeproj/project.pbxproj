@@ -73,6 +73,7 @@
 		0F54D15F1E0D7E3100FEC2F7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F54D15D1E0D7E3100FEC2F7 /* MainMenu.xib */; };
 		0F54D1621E0D80E300FEC2F7 /* WebPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D1611E0D80E300FEC2F7 /* WebPlayerController.swift */; };
 		0F54D1641E0D813D00FEC2F7 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D1631E0D813D00FEC2F7 /* Song.swift */; };
+		0F673B6B1E62E21900CC9F72 /* NowPlayingListPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F673B6A1E62E21900CC9F72 /* NowPlayingListPreference.swift */; };
 		0F9152791E15FBEA00BDA341 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0F9152771E15FBEA00BDA341 /* LICENSE */; };
 		0F91527A1E15FBEA00BDA341 /* LICENSE_2 in Resources */ = {isa = PBXBuildFile; fileRef = 0F9152781E15FBEA00BDA341 /* LICENSE_2 */; };
 /* End PBXBuildFile section */
@@ -191,6 +192,7 @@
 		0F54D15E1E0D7E3100FEC2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0F54D1611E0D80E300FEC2F7 /* WebPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPlayerController.swift; sourceTree = "<group>"; };
 		0F54D1631E0D813D00FEC2F7 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		0F673B6A1E62E21900CC9F72 /* NowPlayingListPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingListPreference.swift; sourceTree = "<group>"; };
 		0F9152771E15FBEA00BDA341 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0F9152781E15FBEA00BDA341 /* LICENSE_2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_2; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				0F2B1F541E0E03D700CEBDEF /* UserDefaultsController.swift */,
+				0F673B6A1E62E21900CC9F72 /* NowPlayingListPreference.swift */,
 				0F2B1F561E0E03EB00CEBDEF /* PreferenceViewController.swift */,
 				0F2B1F581E0E040200CEBDEF /* WallPaperPreference.swift */,
 				0F2B1F5A1E0E041600CEBDEF /* Dock&MenuBarPreference.swift */,
@@ -715,6 +718,7 @@
 				0F54D1351E0D7B8100FEC2F7 /* AppDelegate.swift in Sources */,
 				0F2B1F521E0E039500CEBDEF /* LoginView.swift in Sources */,
 				0F2B1F701E0E3FD000CEBDEF /* TitleBarView.swift in Sources */,
+				0F673B6B1E62E21900CC9F72 /* NowPlayingListPreference.swift in Sources */,
 				0F2B1F611E0E044100CEBDEF /* UpdatePreference.swift in Sources */,
 				0F2B1F281E0E009E00CEBDEF /* LoadViewController.swift in Sources */,
 				0F2B1F231E0E000B00CEBDEF /* Lyrics.swift in Sources */,

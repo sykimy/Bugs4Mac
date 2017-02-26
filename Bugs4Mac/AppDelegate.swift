@@ -8,20 +8,23 @@
 
 import Cocoa
 import NotificationCenter
+import AVFoundation
+import MediaPlayer
+import IOKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
     @IBOutlet var window: NSWindow!     //주 윈도우
     @IBOutlet var icon: NSImageView!    //about 벅스의 icon
+
+    
+    //메인 플레이어 컨트롤러
+    @IBOutlet var player: PlayerController!
     
     //프로그램 실행 시 펑션키의 아이튠즈로의 현결을 해제하기 위해 task를 생성.
     let startTask = Process()
     let endTask = Process()
-    
-    
-    //메인 플레이어 컨트로러
-    @IBOutlet var player: PlayerController!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setWindow() //윈도우의 상태(창모양, 버튼유무 등)를 설정한다.
@@ -36,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         /* about bugs의 아이콘을 설정한다. */
         icon.image = NSImage(named: "load.png")
+
     }
     
     func setWindow() {
