@@ -2,11 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="7104"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" message="Use a version of macOS with Touch Bar support." minToolsVersion="8.1" minSystemVersion="10.12.1" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -28,7 +30,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="1150" height="700"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="p9P-eP-jAv">
                 <rect key="frame" x="0.0" y="0.0" width="1150" height="700"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -296,7 +298,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
                                         <clipView key="contentView" drawsBackground="NO" id="lES-CE-Uhl">
                                             <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="3bv-eA-YMM" id="XrY-xW-axh">
                                                     <rect key="frame" x="0.0" y="0.0" width="156" height="615"/>
@@ -416,7 +418,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="993" height="615"/>
                                                             <clipView key="contentView" id="QAZ-0A-BQY">
                                                                 <rect key="frame" x="1" y="0.0" width="991" height="614"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" rowHeight="14" rowSizeStyle="automatic" headerView="TZw-R2-b9z" viewBased="YES" id="bsc-P2-nuE" customClass="NowPlayingList" customModule="Bugs4Mac" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="991" height="591"/>
@@ -1168,6 +1170,30 @@ CA
                 <outlet property="removeDuplicateSongButton" destination="D7m-1s-vAJ" id="wDh-2h-Tm1"/>
             </connections>
         </customObject>
+        <customObject id="2qk-f6-MRL" customClass="TouchBarController" customModule="Bugs4Mac" customModuleProvider="target">
+            <connections>
+                <outlet property="addSimilarButton" destination="mIv-T2-gqs" id="uIW-Sp-hEe"/>
+                <outlet property="albumImageButton" destination="lxL-di-2rZ" id="oue-of-ksx"/>
+                <outlet property="label" destination="gP1-OS-18I" id="7iW-0d-lg8"/>
+                <outlet property="likeButton" destination="rZl-Tb-M7r" id="a6d-Cd-Z2Y"/>
+                <outlet property="lyricButton" destination="J0v-K3-ay1" id="BlI-WV-25Q"/>
+                <outlet property="othersTB" destination="S7O-7e-ISD" id="dmn-wa-n4s"/>
+                <outlet property="player" destination="dtv-af-M2g" id="0dg-Ha-NNL"/>
+                <outlet property="preference" destination="M8z-BE-qRP" id="HLj-Xu-ItW"/>
+                <outlet property="preferenceButton" destination="TTn-K8-edF" id="KuT-5b-gbP"/>
+                <outlet property="prevButton" destination="F3o-58-8P5" id="RgF-0K-loU"/>
+                <outlet property="randomButton" destination="mbe-hW-KUd" id="lIh-wm-gEd"/>
+                <outlet property="repeatButton" destination="JB3-lv-Tul" id="Coz-qG-iUj"/>
+                <outlet property="scrubber" destination="cli-dy-gXA" id="edo-w8-LTW"/>
+                <outlet property="scrubberAlbumImageButton" destination="qNX-mC-GTs" id="mok-oT-XXp"/>
+                <outlet property="scrubberLikeButton" destination="Dpx-H9-eoA" id="fgy-7k-Kac"/>
+                <outlet property="scrubberTouchBar" destination="LHA-a1-a1H" id="sW2-GO-nQA"/>
+                <outlet property="searchButton" destination="m2q-JC-meq" id="0bo-gm-olE"/>
+                <outlet property="streamingTypeButton" destination="QZJ-AL-jb1" id="v4n-Dv-QQm"/>
+                <outlet property="tb" destination="9zL-ef-Mt7" id="dcb-5o-tbM"/>
+                <outlet property="volumeSlider" destination="QW8-BC-Jwu" id="h34-if-VBP"/>
+            </connections>
+        </customObject>
         <customObject id="KBh-ib-seA" customClass="WebPlayerController" customModule="Bugs4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="playerController" destination="dtv-af-M2g" id="ciz-6X-A1M"/>
@@ -1290,7 +1316,7 @@ CA
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="348" width="428" height="718"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="dWa-CN-W5a">
                 <rect key="frame" x="0.0" y="0.0" width="428" height="718"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1820,7 +1846,7 @@ CA
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suc-BV-Vmu">
                                         <rect key="frame" x="77" y="251" width="35" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="꺼짐" bezelStyle="roundedRect" image="C8D26CC2-1E51-4A30-B2C0-A0951C8E3CFA" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="gyM-7E-bvv">
+                                        <buttonCell key="cell" type="roundRect" title="꺼짐" bezelStyle="roundedRect" image="ADB67849-21F8-4BD3-9710-0AF2E740799A" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="gyM-7E-bvv">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name=".AppleSDGothicNeoI-Regular"/>
                                         </buttonCell>
@@ -2648,13 +2674,16 @@ CA
                     </connections>
                 </menuItem>
             </items>
+            <connections>
+                <outlet property="delegate" destination="2qk-f6-MRL" id="aHE-oa-1iQ"/>
+            </connections>
             <point key="canvasLocation" x="123" y="63"/>
         </menu>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="XK4-r7-Kgt">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="348" width="286" height="260"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="mmE-Fe-05F">
                 <rect key="frame" x="0.0" y="0.0" width="286" height="260"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -2722,9 +2751,428 @@ CA
             </view>
             <point key="canvasLocation" x="-551" y="-205"/>
         </window>
+        <touchBar id="9zL-ef-Mt7">
+            <touchBarItems>
+                <touchBarItem id="FhL-6N-EbF">
+                    <viewController key="viewController" id="4ak-vf-VS0">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFN-V4-oP4">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="x1m-TN-2GH"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9bH-2R-4hv">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="others:" target="2qk-f6-MRL" id="RNR-Pi-M8A"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="vgs-XD-PdZ">
+                    <viewController key="viewController" id="CSN-sJ-hBU">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wL4-Jh-Ixt">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Gea-0g-ckf"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="PREV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gv2-57-oH3">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="prev:" target="2qk-f6-MRL" id="POf-2M-9ng"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="MPt-yq-8Hk">
+                    <viewController key="viewController" id="6Z6-Eg-8mu">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-wg-bOu">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="VWy-qQ-egq"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="PLAY" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c2L-Wd-Int">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="play:" target="2qk-f6-MRL" id="BIE-rr-xPJ"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="vLe-zO-gcf">
+                    <viewController key="viewController" id="SBL-ju-uN2">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nU6-D3-ShM">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="wUq-PS-0MU"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="NEXT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uX1-mr-5CV">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="next:" target="2qk-f6-MRL" id="xxV-k1-nby"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="Ijd-go-Om5">
+                    <viewController key="viewController" id="K7y-ce-f4U">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rZl-Tb-M7r">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="qpF-uM-vLU"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="LIKE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HR0-Vi-yff">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="like:" target="2qk-f6-MRL" id="JlC-H6-w3g"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="XzN-gc-3UQ"/>
+                <touchBarItem id="zJP-5o-M1b">
+                    <viewController key="viewController" id="wtG-Eh-mjK">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lxL-di-2rZ">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="hi0-2v-IuM"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yL9-Sh-2eF">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="album:" target="2qk-f6-MRL" id="EOE-9n-yaR"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="30" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="zAM-f6-ozy">
+                    <viewController key="viewController" id="0Fh-Rl-g0g">
+                        <textField key="view" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gP1-OS-18I">
+                            <rect key="frame" x="0.0" y="0.0" width="350" height="24"/>
+                            <textFieldCell key="cell" borderStyle="bezel" alignment="left" title="Label" drawsBackground="YES" id="Ysh-Yc-QsF">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </viewController>
+                    <size key="designTimeSize" width="350" height="24"/>
+                </touchBarItem>
+            </touchBarItems>
+            <connections>
+                <outlet property="delegate" destination="2qk-f6-MRL" id="0xD-lM-xZU"/>
+            </connections>
+            <point key="canvasLocation" x="-77.5" y="-278"/>
+        </touchBar>
+        <touchBar id="S7O-7e-ISD">
+            <touchBarItems>
+                <touchBarItem id="EmR-DY-aoI">
+                    <viewController key="viewController" id="Uds-xF-c8w">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lza-PT-DOn">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="3J7-ta-p34"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pye-qQ-G6q">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="main:" target="2qk-f6-MRL" id="4LA-Ah-jzA"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="Ism-0D-5ib">
+                    <viewController key="viewController" id="3SU-cq-FWI">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QZJ-AL-jb1">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="t4t-fC-ElS"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="320" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9HQ-cC-yvL">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="streamingType:" target="2qk-f6-MRL" id="ups-tF-vR5"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="YmF-DC-aDk">
+                    <viewController key="viewController" id="QxT-gH-jRG">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-lv-Tul">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="MWr-jH-joR"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="REPEAT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wx8-XI-Lqf">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="repeatType:" target="2qk-f6-MRL" id="XLz-Mk-Nc7"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="jje-cY-hG3">
+                    <viewController key="viewController" id="qDs-LP-zhR">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mbe-hW-KUd">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="4KQ-gu-bfz"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="REPEAT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="29k-Dt-3uS">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="random:" target="2qk-f6-MRL" id="gKy-Ny-Y93"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="AEo-2P-dfh">
+                    <viewController key="viewController" id="lyn-N9-l4T">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mIv-T2-gqs">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="8Xl-Lf-c94"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="ADD" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BSO-y2-FsH">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="addSimilar:" target="2qk-f6-MRL" id="O05-Bg-wQv"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="Duv-Ne-NFj">
+                    <viewController key="viewController" id="PCr-4K-c9f">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m2q-JC-meq">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="KEQ-Wq-Q9s"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="SEARCH" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qNc-Oh-FE8">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="search:" target="2qk-f6-MRL" id="evE-tC-3h8"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="Orw-IJ-Jdh">
+                    <viewController key="viewController" id="cnv-Eh-byQ">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J0v-K3-ay1">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Gm7-se-2da"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="가사" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Ag-Il-gqm">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showLyric:" target="2qk-f6-MRL" id="0In-hD-0bp"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="gpE-xX-Zdf">
+                    <viewController key="viewController" id="vQv-by-hUY">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TTn-K8-edF">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="xgn-aO-heo"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="설정" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mvf-ML-55J">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="openPreference:" target="2qk-f6-MRL" id="Xp6-qa-B0r"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <sliderTouchBarItem id="9ge-yK-Nrr">
+                    <sliderAccessory key="minimumValueAccessory" id="8Lp-j9-wkc">
+                        <sliderAccessoryBehavior key="behavior" id="gZ8-K0-LTh"/>
+                    </sliderAccessory>
+                    <sliderAccessory key="maximumValueAccessory" id="hE4-9i-6zC">
+                        <sliderAccessoryBehavior key="behavior" id="ntA-GW-giS"/>
+                    </sliderAccessory>
+                    <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-BC-Jwu">
+                        <rect key="frame" x="0.0" y="0.0" width="221" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5ho-Cs-yMR"/>
+                        </constraints>
+                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="76.475209497206706" tickMarkPosition="above" sliderType="linear" id="I3g-6C-vS6"/>
+                    </slider>
+                </sliderTouchBarItem>
+            </touchBarItems>
+            <point key="canvasLocation" x="-79" y="-149"/>
+        </touchBar>
+        <touchBar id="LHA-a1-a1H">
+            <touchBarItems>
+                <touchBarItem id="Txf-nh-Aep">
+                    <viewController key="viewController" id="4WA-jn-XKU">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-Ti-zfw">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Gql-YS-7Aw"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HkM-EU-IRS">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="others:" target="2qk-f6-MRL" id="g81-kL-7Vf"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="Q6h-60-b6f">
+                    <viewController key="viewController" id="v51-gR-caz">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F3o-58-8P5">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="N1V-3K-teV"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="PREV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FYu-bv-zDJ">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="prev:" target="2qk-f6-MRL" id="wwi-ns-OTc"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="lbt-Nu-xrD">
+                    <viewController key="viewController" id="wao-jt-dpU">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-6S-cyb">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="L92-1v-cSQ"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="PLAY" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9gL-P3-9aC">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="play:" target="2qk-f6-MRL" id="Bks-ix-grX"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="abb-JS-Tgt">
+                    <viewController key="viewController" id="FNc-1i-IiL">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NzR-pa-6ob">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="IMR-c8-svA"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="NEXT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W8k-nG-KtV">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="next:" target="2qk-f6-MRL" id="7RR-1r-BlI"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="9gn-X8-2NK">
+                    <viewController key="viewController" id="WtU-OM-YXj">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dpx-H9-eoA">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="FIQ-7d-YGe"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="LIKE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5bH-XT-iQA">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="like:" target="2qk-f6-MRL" id="OCl-Hd-YUE"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="50" height="30"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="XC8-eO-40Y"/>
+                <touchBarItem id="HGP-4I-UTn">
+                    <viewController key="viewController" id="4XH-35-17Z">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qNX-mC-GTs">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="IYt-GY-yVf"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Fe-cQ-GHx">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="album:" target="2qk-f6-MRL" id="mxf-gZ-Kgn"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="30" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="d08-TX-uOy">
+                    <viewController key="viewController" id="t33-2p-eLu">
+                        <scrubber key="view" translatesAutoresizingMaskIntoConstraints="NO" id="cli-dy-gXA">
+                            <rect key="frame" x="0.0" y="0.0" width="349" height="30"/>
+                            <scrubberFlowLayout key="scrubberLayout">
+                                <size key="itemSize" width="3" height="30"/>
+                            </scrubberFlowLayout>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </scrubber>
+                    </viewController>
+                </touchBarItem>
+            </touchBarItems>
+            <point key="canvasLocation" x="-78" y="-217"/>
+        </touchBar>
     </objects>
     <resources>
-        <image name="C8D26CC2-1E51-4A30-B2C0-A0951C8E3CFA" width="1" height="1">
+        <image name="ADB67849-21F8-4BD3-9710-0AF2E740799A" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

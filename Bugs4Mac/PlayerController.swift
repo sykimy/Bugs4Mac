@@ -796,9 +796,22 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 진행바에 시간을 반영한다. */
         progressBar.sync(totalTime: totalTimeInt, playTime: playTimeInt)
         
+        /* 터치바에 시간 정보를 보낸다. */
+        sendTimeInfo2TouchBar(total:totalTimeInt, play:playTimeInt, totalString: totalTimeString, playString:playTimeString)
         /* 시간 정보를 widget에 전송한다. */
         sendTimeInfo2Widget(total:totalTimeInt, play:playTimeInt, totalString: totalTimeString, playString:playTimeString)
 
+    }
+    
+    func sendTimeInfo2TouchBar(total:Int, play:Int, totalString:String, playString:String) {
+        var timeInfo = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        timeInfo["totalTimeInt"] = total
+        timeInfo["playTimeInt"] = play
+        timeInfo["totalTimeString"] = totalString
+        timeInfo["playTimeString"] = playString
+  
+        //시간 정보를 widget에 전송한다.
+        nc.post(name: Notification.Name(rawValue: "touchBarTimeInfo"), object: self, userInfo: timeInfo)
     }
     
     func sendTimeInfo2Widget(total:Int, play:Int, totalString:String, playString:String) {
@@ -839,9 +852,13 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 이미지 사이즈 변환 */
         var imageRect = CGRect(x: 0, y: 0, width: 150, height: 150)
 
-        let albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 150, height: 150))
+        var albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 150, height: 150))
         
         albumImageField.image = albumImage
+        
+        imageRect = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 30, height: 30))
         
         /* Dock Icon에 엘범 이미지 반영 */
         if cover2Icon {
@@ -860,13 +877,23 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         artistTextField.stringValue = artist
         albumTextField.stringValue = album
         
+        /* Progress Bar 색상 반영 */
+        let (r, g, b) = getAverageRGB(albumImage)
+        
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["image"] = albumImage
+        info["title"] = title
+        info["artist"] = artist
+        info["r"] = r
+        info["g"] = g
+        info["b"] = b
+            
+        nc.post(name: Notification.Name(rawValue: "touchBarImage"), object: self, userInfo: info)
+        
         /* 알림센터에 정보를 보낸다. */
         if alarmCenter {
             setAlarmCenter(title: nameTextField.stringValue, artist: artistTextField.stringValue, album: "- \(albumTextField.stringValue)", image: albumImage)
         }
-        
-        /* Progress Bar 색상 반영 */
-        let (r, g, b) = getAverageRGB(albumImage)
         
         /* 위젯으로 곡의 정보를 보낸다. */
         sendSongInfo2Widget(title: title, artist: artist, album: album, r: r, g: g, b: b)
@@ -1018,40 +1045,58 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     func syncRepeat() {
         let state = webPlayer.stateOfRepeat()
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
             
         if state == 0 {
+            info["repeat"] = 0
             repeatButton.image = NSImage(named: "repeat.png")
             repeatButton.alphaValue = CGFloat(0.3)
         }
         else if state == 1 {
+            info["repeat"] = 1
             repeatButton.image = NSImage(named: "repeat.png")
             repeatButton.alphaValue = CGFloat(1.0)
         }
         else {
+            info["repeat"] = 2
             repeatButton.image = NSImage(named: "repeatonce.png")
             repeatButton.alphaValue = CGFloat(1.0)
+            
+            nc.post(name: Notification.Name(rawValue: "touchBarRepeat"), object: self, userInfo: info)
         }
     }
     
     func syncRandom() {
         let state = webPlayer.stateOfRandom()
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
         
         if state {
+            info["random"] = true
             randomButton.alphaValue = CGFloat(1.0)
         }
         else {
+            info["random"] = false
             randomButton.alphaValue = CGFloat(0.3)
+            
+            nc.post(name: Notification.Name(rawValue: "touchBarRandom"), object: self, userInfo: info)
         }
     }
     
     func syncLike() {
         let state = webPlayer.stateOfLike()
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        
         if state {
+            info["like"] = true
             likeButton.alphaValue = CGFloat(1.0)
+            
         }
         else {
+            info["like"] = false
             likeButton.alphaValue = CGFloat(0.3)
         }
+        
+        nc.post(name: Notification.Name(rawValue: "touchBarLike"), object: self, userInfo: info)
     }
     
     //-------------------------------------------------------------------------------------------------------------------------

@@ -59,6 +59,7 @@
 		0F2B1F6C1E0E050900CEBDEF /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B1F6B1E0E050900CEBDEF /* PlayerView.swift */; };
 		0F2B1F6E1E0E062E00CEBDEF /* GetMediaKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B1F6D1E0E062E00CEBDEF /* GetMediaKey.swift */; };
 		0F2B1F701E0E3FD000CEBDEF /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B1F6F1E0E3FD000CEBDEF /* TitleBarView.swift */; };
+		0F2F9E9D1E6456CE005DEEFB /* BSScrubberItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2F9E9C1E6456CE005DEEFB /* BSScrubberItemView.swift */; };
 		0F3D6A301E0F76EC00571F6A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F3D6A2F1E0F76EC00571F6A /* NotificationCenter.framework */; };
 		0F3D6A351E0F76EC00571F6A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D6A341E0F76EC00571F6A /* TodayViewController.swift */; };
 		0F3D6A381E0F76EC00571F6A /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3D6A361E0F76EC00571F6A /* TodayViewController.xib */; };
@@ -76,6 +77,7 @@
 		0F673B6B1E62E21900CC9F72 /* NowPlayingListPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F673B6A1E62E21900CC9F72 /* NowPlayingListPreference.swift */; };
 		0F9152791E15FBEA00BDA341 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0F9152771E15FBEA00BDA341 /* LICENSE */; };
 		0F91527A1E15FBEA00BDA341 /* LICENSE_2 in Resources */ = {isa = PBXBuildFile; fileRef = 0F9152781E15FBEA00BDA341 /* LICENSE_2 */; };
+		0FF0EFC11E632219008138A7 /* TouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0EFC01E632219008138A7 /* TouchBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,7 @@
 		0F2B1F6B1E0E050900CEBDEF /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0F2B1F6D1E0E062E00CEBDEF /* GetMediaKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMediaKey.swift; sourceTree = "<group>"; };
 		0F2B1F6F1E0E3FD000CEBDEF /* TitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
+		0F2F9E9C1E6456CE005DEEFB /* BSScrubberItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSScrubberItemView.swift; sourceTree = "<group>"; };
 		0F3D6A2D1E0F76EC00571F6A /* BugsWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BugsWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F3D6A2F1E0F76EC00571F6A /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		0F3D6A331E0F76EC00571F6A /* BugsWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BugsWidget.entitlements; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 		0F673B6A1E62E21900CC9F72 /* NowPlayingListPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingListPreference.swift; sourceTree = "<group>"; };
 		0F9152771E15FBEA00BDA341 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0F9152781E15FBEA00BDA341 /* LICENSE_2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_2; sourceTree = "<group>"; };
+		0FF0EFC01E632219008138A7 /* TouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				0F2B1F331E0E018C00CEBDEF /* PlayerController.swift */,
+				0FF0EFC01E632219008138A7 /* TouchBarController.swift */,
+				0F2F9E9C1E6456CE005DEEFB /* BSScrubberItemView.swift */,
 				0F2B1F671E0E04E600CEBDEF /* ButtonView.swift */,
 				0F2B1F691E0E050000CEBDEF /* ProgressBarView.swift */,
 				0F2B1F6B1E0E050900CEBDEF /* PlayerView.swift */,
@@ -728,6 +734,7 @@
 				0F2B1F551E0E03D700CEBDEF /* UserDefaultsController.swift in Sources */,
 				0F2B1F481E0E031B00CEBDEF /* WallPaperLyric.swift in Sources */,
 				0F2B1F431E0E02C000CEBDEF /* MoviePlayerController.swift in Sources */,
+				0F2F9E9D1E6456CE005DEEFB /* BSScrubberItemView.swift in Sources */,
 				0F2B1F2A1E0E00A800CEBDEF /* LoadView.swift in Sources */,
 				0F2B1F6E1E0E062E00CEBDEF /* GetMediaKey.swift in Sources */,
 				0F2B1F681E0E04E600CEBDEF /* ButtonView.swift in Sources */,
@@ -740,6 +747,7 @@
 				0F2B1F3F1E0E029E00CEBDEF /* LyricPlayer.swift in Sources */,
 				0F54D1621E0D80E300FEC2F7 /* WebPlayerController.swift in Sources */,
 				0F2B1F2E1E0E00FB00CEBDEF /* SideListController.swift in Sources */,
+				0FF0EFC11E632219008138A7 /* TouchBarController.swift in Sources */,
 				0F2B1F341E0E018C00CEBDEF /* PlayerController.swift in Sources */,
 				0F2B1F5D1E0E042700CEBDEF /* AlarmCenterPreference.swift in Sources */,
 				0F2B1F4F1E0E038700CEBDEF /* LoginWebViewController.swift in Sources */,

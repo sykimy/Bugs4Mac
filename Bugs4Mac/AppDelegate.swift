@@ -17,7 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBOutlet var window: NSWindow!     //주 윈도우
     @IBOutlet var icon: NSImageView!    //about 벅스의 icon
-
     
     //메인 플레이어 컨트롤러
     @IBOutlet var player: PlayerController!
@@ -39,7 +38,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         /* about bugs의 아이콘을 설정한다. */
         icon.image = NSImage(named: "load.png")
-
+/*
+        if #available(OSX 10.12.2, *) {
+            NSApplication.shared().isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        }*/
     }
     
     func setWindow() {
