@@ -218,7 +218,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         sideListController.syncSideList()
         
         /* 볼륨값을 받아온다. */
-        webPlayer.volume(getDefaultVolume())
+        let vol = getDefaultVolume()
+        webPlayer.volume(vol)
+        sendVolumeNotification(volume: vol)
     }
     
     func getDefaultVolume()->Int {
@@ -410,6 +412,27 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             let volume = Double(volumeBar.intValue)/40*58
             radio.volume(Int(volume)+100)
         }
+        sendVolumeNotification(volume: volumeBar.integerValue)
+    }
+    
+    func setVolumeByTouchBar(_ volume:Int) {
+        volumeBar.integerValue = volume
+        switch mode {
+        case .WebPlayer :
+            webPlayer.volume(volume+334)
+            defaults.set(volume+334, forKey: "volume")
+        case .Radio :
+            let vol = Double(volume)/40*58
+            radio.volume(Int(vol)+100)
+        }
+    }
+    
+    func sendVolumeNotification(volume:Int) {
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["volume"] = volume
+        
+        //시간 정보를 widget에 전송한다.
+        nc.post(name: Notification.Name(rawValue: "touchBarVolume"), object: self, userInfo: info)
     }
     
     /* 랜덤재생 버튼 */
@@ -438,6 +461,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             let state = webPlayer.stateOfLike()
             
             webPlayer.like()
+            sendLikeNotification(!state)
             if state {
                 likeButton.alphaValue = CGFloat(0.3)
             }
@@ -446,6 +470,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             }
         case .Radio :
             radio.like()
+            sendLikeNotification(true)
             likeButton.alphaValue = CGFloat(1.0)
             repeatButton.isEnabled = false
         }
@@ -456,10 +481,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         webPlayer.changeStreamingType()
         if webPlayer.getStreamingType() == 0 {
             streamingTypeButton.title = "AAC->320kbps"
+            sendStreamingTypeNotification("AAC->\n320kbps")
         }
         else {
             streamingTypeButton.title = "320kbps->AAC"
-            
+            sendStreamingTypeNotification("320kbps\n->AAC")
         }
     }
     
@@ -468,6 +494,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* 라디오를 실행한다. */
     func startRadio() {
+        sendPlayerModeNotification(.Radio)
         /* 모든 연동 타이머를 초기화한다. */
         if syncTimer != nil { syncTimer.invalidate() }
         
@@ -491,6 +518,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* 웹플레이어를 실행한다. */
     func startPlayer() {
+        sendMode2Widget(mode:.WebPlayer)
+        sendPlayerModeNotification(.WebPlayer)
+        
         /* 모든 타이머를 초기화한다. */
         if syncTimer != nil {
             syncTimer.invalidate()
@@ -507,8 +537,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         
         /* 플레이어의 정보창을 웹플레이어에 맞게 수정한다. */
         initWebPlayerInfoScreen()
-        
-        sendMode2Widget(mode:.WebPlayer)
     }
     
     func initRadioInfoScreen() {
@@ -521,6 +549,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         similarButton.isHidden = true
         streamingTypeButton.isEnabled = false
         streamingTypeButton.title = "Radio"
+        sendStreamingTypeNotification("Radio")
     }
     
     func initWebPlayerInfoScreen() {
@@ -550,6 +579,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* 라디오 타이머의 함수(정해진 시간마다 라디오플레이어에서 곡 정보를 받아온다.) */
     func syncWithRadio() {
+        sendIsPlayNotification(radio.checkPlay())
+        
         //오디오의 상태를 체크한다.
         if checkAudioJack {
             if prevAudioJackState == 0 {
@@ -568,9 +599,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             
             resetRadioLikeButton()  //좋아요, 싫어요 버튼을 리셋한다.
             
+            let title = radio.getTitle()
+            let artist = radio.getArtist()
             /* 곡 정보를 반영한다. */
-            nameTextField.stringValue = radio.getTitle()
-            albumTextField.stringValue = radio.getArtist()
+            nameTextField.stringValue = title
+            albumTextField.stringValue = artist
             artistTextField.stringValue = ""
             
             /* 라디오플레이어로부터 엘범 이미지를 받아온다. */
@@ -588,6 +621,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             
             /* 앨범 커버의 색을 받아온다. */
             let (r, g, b) = getAverageRGB(albumImage)
+            
+            sendSongInfoNotification(image: albumImage, title: title, artist: artist, r: r, g: g, b: b)
             
             /* 위젯에 곡 정보를 보낸다. */
             sendSongInfo2Widget(title: nameTextField.stringValue, artist: albumTextField.stringValue, album: "", r: r, g: g, b: b)
@@ -699,8 +734,26 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         return dataSourceId
     }
     
+    func sendPlayerModeNotification(_ mode:PlayerState) {
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["mode"] = mode
+        
+        //시간 정보를 widget에 전송한다.
+        nc.post(name: Notification.Name(rawValue: "touchBarPlayer"), object: self, userInfo: info)
+    }
+    
+    func sendIsPlayNotification(_ state:Bool) {
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["state"] = state
+        
+        //시간 정보를 widget에 전송한다.
+        nc.post(name: Notification.Name(rawValue: "touchBarPlayState"), object: self, userInfo: info)
+    }
+    
     /* WebPlayer로부터 값을 받아와 반영한다. */
     func syncWithWebPlayer() {
+        //재생 여부를 바당온다.
+        sendIsPlayNotification(webPlayer.checkPlay())
         
         //오디오의 상태를 체크한다.
         if checkAudioJack {
@@ -842,6 +895,30 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         return time
     }
     
+    func sendStreamingTypeNotification(_ type:String) {
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["type"] = type
+        
+        //시간 정보를 widget에 전송한다.
+        nc.post(name: Notification.Name(rawValue: "touchBarStreamingType"), object: self, userInfo: info)
+    }
+    
+    func sendSongInfoNotification(image:NSImage, title:String, artist:String, r:CGFloat, g:CGFloat, b:CGFloat) {
+        var imageRect = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        let albumImage = NSImage(cgImage: (image.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 30, height: 30))
+        
+        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
+        info["image"] = albumImage
+        info["title"] = title
+        info["artist"] = artist
+        info["r"] = r
+        info["g"] = g
+        info["b"] = b
+        
+        nc.post(name: Notification.Name(rawValue: "touchBarImage"), object: self, userInfo: info)
+    }
+    
     /* WebPlayer로부터 곡의 정보를 받아와 반영한다. */
     func syncInfoWithWebPlayer() {
         if !webPlayer.isSync {
@@ -852,13 +929,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 이미지 사이즈 변환 */
         var imageRect = CGRect(x: 0, y: 0, width: 150, height: 150)
 
-        var albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 150, height: 150))
+        let albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 150, height: 150))
         
         albumImageField.image = albumImage
-        
-        imageRect = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        albumImage = NSImage(cgImage: (NSImage(contentsOf: webPlayer.getAlbumImageURL())?.cgImage(forProposedRect: &imageRect ,context: nil, hints: nil))!, size: NSSize(width: 30, height: 30))
         
         /* Dock Icon에 엘범 이미지 반영 */
         if cover2Icon {
@@ -880,15 +953,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* Progress Bar 색상 반영 */
         let (r, g, b) = getAverageRGB(albumImage)
         
-        var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
-        info["image"] = albumImage
-        info["title"] = title
-        info["artist"] = artist
-        info["r"] = r
-        info["g"] = g
-        info["b"] = b
-            
-        nc.post(name: Notification.Name(rawValue: "touchBarImage"), object: self, userInfo: info)
+        sendSongInfoNotification(image: albumImage, title: title, artist: artist, r: r, g: g, b: b)
         
         /* 알림센터에 정보를 보낸다. */
         if alarmCenter {
@@ -921,9 +986,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 현재 재생중인 곡의 스트리밍 타입을 반영한다. */
         if webPlayer.getStreamingType() == 0 {
             streamingTypeButton.title = "AAC"
+            sendStreamingTypeNotification("AAC")
         }
         else {
             streamingTypeButton.title = "320kbps"
+            sendStreamingTypeNotification("320kbps")
         }
         
         if menuBar {
@@ -1061,9 +1128,8 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             info["repeat"] = 2
             repeatButton.image = NSImage(named: "repeatonce.png")
             repeatButton.alphaValue = CGFloat(1.0)
-            
-            nc.post(name: Notification.Name(rawValue: "touchBarRepeat"), object: self, userInfo: info)
         }
+        nc.post(name: Notification.Name(rawValue: "touchBarRepeat"), object: self, userInfo: info)
     }
     
     func syncRandom() {
@@ -1077,13 +1143,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         else {
             info["random"] = false
             randomButton.alphaValue = CGFloat(0.3)
-            
-            nc.post(name: Notification.Name(rawValue: "touchBarRandom"), object: self, userInfo: info)
         }
+        nc.post(name: Notification.Name(rawValue: "touchBarRandom"), object: self, userInfo: info)
     }
     
-    func syncLike() {
-        let state = webPlayer.stateOfLike()
+    func sendLikeNotification(_ state:Bool) {
         var info = [AnyHashable: Any]()  //Notification을 이용해 데이터 전송을 위한 딕셔너리
         
         if state {
@@ -1097,6 +1161,11 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         }
         
         nc.post(name: Notification.Name(rawValue: "touchBarLike"), object: self, userInfo: info)
+    }
+    
+    func syncLike() {
+        let state = webPlayer.stateOfLike()
+        sendLikeNotification(state)
     }
     
     //-------------------------------------------------------------------------------------------------------------------------
@@ -1342,9 +1411,11 @@ extension PlayerController:PlayerViewDelegate {
         
         switch mode {
         case .WebPlayer :
-            volumeBar.intValue = Int32(webPlayer.getVolume())
+            volumeBar.integerValue = webPlayer.getVolume()
+            sendVolumeNotification(volume: volumeBar.integerValue)
         case .Radio :
-            volumeBar.intValue = Int32(radio.getVolume())
+            volumeBar.integerValue = radio.getVolume()
+            sendVolumeNotification(volume: radio.getVolume())
         }
         
         if fadeValue == 0 {

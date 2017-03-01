@@ -34,7 +34,6 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     @IBOutlet var prevButton: NSButton!
     @IBOutlet var likeButton: NSButton!
     @IBOutlet var streamingTypeButton: NSButton!
-    @IBOutlet var repeatButton: NSButton!
     @IBOutlet var randomButton: NSButton!
     @IBOutlet var addSimilarButton: NSButton!
     @IBOutlet var searchButton: NSButton!
@@ -44,7 +43,16 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     @IBOutlet var scrubberLikeButton: NSButton!
     @IBOutlet var scrubberAlbumImageButton: NSButton!
     @IBOutlet var scrubber: NSScrubber!
+    @IBOutlet var othersButton: NSButton!
+    @IBOutlet var scrubberOthersButton: NSButton!
+    @IBOutlet var othersOthersButton: NSButton!
+    @IBOutlet var repeatButton: NSButton!
     
+    @IBOutlet var scrubberPlayButton: NSButton!
+    @IBOutlet var scrubberNextButton: NSButton!
+    @IBOutlet var scrubberPrevButton: NSButton!
+    @IBOutlet var nextButton: NSButton!
+    @IBOutlet var playButton: NSButton!
     @IBOutlet var tb: NSTouchBar!
     @IBOutlet var othersTB: NSTouchBar!
     @IBOutlet var scrubberTouchBar: NSTouchBar!
@@ -74,13 +82,20 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     var latedScrubberHighlight = 0
     var scrubberChange = false
     
+    var isLyrics = false
+    
+    var mode = PlayerState.WebPlayer
+    
     override func awakeFromNib() {
         nc.addObserver(self, selector: #selector(TouchBarController.changeImage), name: NSNotification.Name(rawValue: "touchBarImage"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeRepeat), name: NSNotification.Name(rawValue: "touchBarRepeat"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeRandom), name: NSNotification.Name(rawValue: "touchBarRandom"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeLike), name: NSNotification.Name(rawValue: "touchBarLike"), object: nil)
-        nc.addObserver(self, selector: #selector(TouchBarController.changeLyric), name: NSNotification.Name(rawValue: "touchBarLyric"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeProgress), name: NSNotification.Name(rawValue: "touchBarTimeInfo"), object: nil)
+        nc.addObserver(self, selector: #selector(TouchBarController.changeStreamingType), name: NSNotification.Name(rawValue: "touchBarStreamingType"), object: nil)
+        nc.addObserver(self, selector: #selector(TouchBarController.changeVolume), name: NSNotification.Name(rawValue: "touchBarVolume"), object: nil)
+        nc.addObserver(self, selector: #selector(TouchBarController.changePlayState), name: NSNotification.Name(rawValue: "touchBarPlayState"), object: nil)
+        nc.addObserver(self, selector: #selector(TouchBarController.changePlayer), name: NSNotification.Name(rawValue: "touchBarPlayer"), object: nil)
         
         NSApplication.shared().touchBar = tb
         
@@ -93,6 +108,25 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         scrubber.backgroundColor = NSColor.clear
         scrubber.dataSource = self
         
+        lyricButton.image = NSImage(named: "tblyric.png")
+        searchButton.image = NSImage(named: "tbsearch.png")
+        prevButton.image = NSImage(named: "tblyric.png")
+        addSimilarButton.image = NSImage(named: "tbadd.png")
+        preferenceButton.image = NSImage(named: "tbsetting.png")
+        playButton.image = NSImage(named: "tbplay.png")
+        nextButton.image = NSImage(named: "tbnext.png")
+        prevButton.image = NSImage(named: "tbprev.png")
+        likeButton.image = NSImage(named: "tbunlike.png")
+        scrubberPlayButton.image = NSImage(named: "tbplay.png")
+        scrubberNextButton.image = NSImage(named: "tbnext.png")
+        scrubberPrevButton.image = NSImage(named: "tbprev.png")
+        scrubberLikeButton.image = NSImage(named: "tbunlike.png")
+        randomButton.image = NSImage(named: "tbunrandom.png")
+        repeatButton.image = NSImage(named: "tbunrepeat.png")
+        
+        othersButton.image = NSImage(named: "tbothers")
+        scrubberOthersButton.image = NSImage(named: "tbothers")
+        othersOthersButton.image = NSImage(named: "tbothers")
         
         //prevBar.view?.setFrameSize(NSSize(width: 50, height: 30))
         super.awakeFromNib()
@@ -113,10 +147,103 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         
     }
     
+    var prevState:Bool? = nil
+    func changePlayState(notification:NSNotification) {
+        let info = notification.userInfo
+        let state = info?["state"] as! Bool
+        
+        if prevState != state {
+            prevState = state
+            if state {
+                switch mode {
+                case .WebPlayer:
+                    scrubber.isHidden = false
+                    playButton.image = NSImage(named: "tbpause.png")
+                    scrubberPlayButton.image = NSImage(named: "tbpause.png")
+                    break
+                case .Radio:
+                    prevButton.image = NSImage(named: "tbpause.png")
+                    scrubberPrevButton.image = NSImage(named: "tbpause.png")
+                    break
+                }
+            }
+            else {
+                switch mode {
+                case .WebPlayer:
+                    scrubber.isHidden = true
+                    playButton.image = NSImage(named: "tbplay.png")
+                    scrubberPlayButton.image = NSImage(named: "tbplay.png")
+                    break
+                case .Radio:
+                    prevButton.image = NSImage(named: "tbplay.png")
+                    scrubberPrevButton.image = NSImage(named: "tbplay.png")
+                    break
+                }
+            }
+        }
+    }
+    
+    func changePlayer(notification:NSNotification) {
+        let info = notification.userInfo
+        mode = info?["mode"] as! PlayerState
+        
+        if mode == .Radio {
+            prevButton.image = NSImage(named: "tbplay.png")
+            playButton.image = NSImage(named: "tbnext.png")
+            nextButton.image = NSImage(named: "tbunlike.png")
+            scrubberLikeButton.image = NSImage(named: "tbhate.png")
+            scrubberPrevButton.image = NSImage(named: "tbplay.png")
+            scrubberPlayButton.image = NSImage(named: "tbnext.png")
+            scrubberNextButton.image = NSImage(named: "tbunlike.png")
+            likeButton.image = NSImage(named: "tbunhate.png")
+            scrubber.isHidden = true
+            repeatButton.isHidden = true
+            randomButton.isHidden = true
+            addSimilarButton.isHidden = true
+            streamingTypeButton.isEnabled = false
+            
+        }
+        else {
+            prevButton.image = NSImage(named: "tbprev.png")
+            playButton.image = NSImage(named: "tbplay.png")
+            nextButton.image = NSImage(named: "tbnext.png")
+            scrubberLikeButton.image = NSImage(named: "tbunlike.png")
+            scrubberPrevButton.image = NSImage(named: "tbprev.png")
+            scrubberPlayButton.image = NSImage(named: "tbplay.png")
+            scrubberNextButton.image = NSImage(named: "tbnext.png")
+            likeButton.image = NSImage(named: "tbunlike.png")
+            scrubber.isHidden = false
+            repeatButton.isHidden = false
+            randomButton.isHidden = false
+            addSimilarButton.isHidden = false
+            streamingTypeButton.isEnabled = true
+        }
+    }
+    
     func didFinishInteracting(with scrubber: NSScrubber) {
         let now = Float(scrubber.selectedIndex)/Float(116)
         player.webPlayer.jump(to: CGFloat(now))
         scrubberChange = true
+    }
+    
+    func changeStreamingType(notification:NSNotification) {
+        let info = notification.userInfo
+        let state = info?["type"] as! String
+        if state.characters.count > 10 {
+            streamingTypeButton.controlSize = .mini
+        }
+        else {
+            streamingTypeButton.controlSize = .small
+        }
+    
+        streamingTypeButton.title = state
+    }
+    
+    func changeVolume(notification:NSNotification) {
+        let info = notification.userInfo
+        let volume = info?["volume"] as! Int
+        
+        volumeSlider.integerValue = volume
     }
     
     func changeProgress(notification:NSNotification) {
@@ -129,7 +256,7 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
 
         if scrubber.highlightedIndex == -1 {
             if scrubberChange {
-                if scrubber.selectedIndex-1 <= scrubberNow {
+                if scrubber.selectedIndex-1 <= scrubberNow && scrubberNow <= scrubber.selectedIndex+1 {
                     scrubberChange = false
                 }
             }
@@ -150,33 +277,64 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         
         name = info?["title"] as! String
         artist = info?["artist"] as! String
+        
         r = info?["r"] as! CGFloat
         g = info?["g"] as! CGFloat
         b = info?["b"] as! CGFloat
         
-        print("\(r) \(g) \(b)")
-        
         if playerState == 0 {
             label.stringValue = name + " - " + artist
+        }
+        
+        if mode == .WebPlayer {
+            isLyrics = player.webPlayer.beLyrics()
+        }
+        else {
+            isLyrics = player.radio.beLyrics()
+            likeButton.isHidden = false
+            scrubberLikeButton.isHidden = false
+            scrubberNextButton.isHidden = false
+            nextButton.isHidden = false
+            
+            likeButton.image = NSImage(named: "tbunhate.png")
+            scrubberLikeButton.image = NSImage(named: "tbunhate.png")
+            nextButton.image = NSImage(named: "tbunlike.png")
+            scrubberNextButton.image = NSImage(named: "tbunlike.png")
         }
     }
     
     func changeLyric() {
-        label.stringValue = player.webPlayer.getLyricsNow()
+        switch mode {
+        case .Radio:
+            if isLyrics {
+                label.stringValue = player.radio.getLyricsNow()
+            }
+            else {
+                label.stringValue = name + " - " + artist
+            }
+            break
+        case .WebPlayer:
+            if isLyrics {
+                label.stringValue = player.webPlayer.getLyricsNow()
+            }
+            else {
+                label.stringValue = name + " - " + artist
+            }
+        }
     }
     
     func changeRepeat(notification:NSNotification) {
         let info = notification.userInfo
         let state = info?["repeat"] as! Int
-        
+
         if state == 0 {//일반 재생
-            repeatButton.title = "N"
+            repeatButton.image = NSImage(named: "tbunrepeat.png")
         }
         else if state == 1 {//전체 재생
-            repeatButton.title = "A"
+            repeatButton.image = NSImage(named: "tbrepeat.png")
         }
         else {//한곡생생
-            repeatButton.title = "O"
+            repeatButton.image = NSImage(named: "tbrepeatonce.png")
         }
     }
     
@@ -185,40 +343,98 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         let state = info?["random"] as! Bool
         
         if state {
-            randomButton.title = "R"
+            randomButton.image = NSImage(named: "tbrandom.png")
         }
         else {
-            randomButton.title = "N"
+            randomButton.image = NSImage(named: "tbunrandom.png")
         }
     }
     
     func changeLike(notification:NSNotification) {
         let info = notification.userInfo
         let state = info?["like"] as! Bool
-        
+
         if state {
-            likeButton.title = "L"
-            scrubberLikeButton.title = "L"
+            switch mode {
+            case .WebPlayer:
+                scrubberLikeButton.image = NSImage(named: "tblike.png")
+                likeButton.image = NSImage(named: "tblike.png")
+                break
+            case .Radio:
+                scrubberNextButton.image = NSImage(named: "tblike.png")
+                nextButton.image = NSImage(named: "tblike.png")
+                break
+            }
         }
         else {
-            likeButton.title = "l"
-            scrubberLikeButton.title = "l"
+            switch mode {
+            case .WebPlayer:
+                scrubberLikeButton.image = NSImage(named: "tbunlike.png")
+                likeButton.image = NSImage(named: "tbunlike.png")
+                break
+            case .Radio:
+                scrubberLikeButton.image = NSImage(named: "tbhate.png")
+                likeButton.image = NSImage(named: "tbhate.png")
+            }
         }
     }
     
+    //WebPlayer : Prev
+    //Radio : Play
     @IBAction func prev(_ sender: Any) {
-        player.fnPrev()
+        switch mode {
+        case .WebPlayer:
+            player.fnPrev()
+            break
+        case .Radio:
+            player.fnPlay()
+            break
+        }
     }
     
+    //WebPlayer : Play
+    //Radio : Next
     @IBAction func play(_ sender: Any) {
-        player.fnPlay()
+        switch mode {
+        case .WebPlayer:
+            player.fnPlay()
+            break
+        case .Radio:
+            player.fnNext()
+            break
+        }
     }
     
+    //WebPlayer : Next
+    //Radio : Like
     @IBAction func next(_ sender: Any) {
-        player.fnNext()
+        switch mode {
+        case .WebPlayer:
+            player.fnNext()
+            break
+        case .Radio:
+            player.like(sender as AnyObject)
+            likeButton.isHidden = true
+            scrubberLikeButton.isHidden = true
+            break
+        }
     }
     
+    //WebPlayer : Like
+    //Radio : Hate
     @IBAction func like(_ sender: Any) {
+        switch mode {
+        case .WebPlayer:
+            player.like(sender as AnyObject)
+            break
+        case .Radio:
+            player.repeatList(sender as AnyObject)
+            nextButton.isHidden = true
+            scrubberNextButton.isHidden = true
+            likeButton.image = NSImage(named: "tbhate.png")
+            scrubberLikeButton.image = NSImage(named: "tbhate.png")
+            break
+        }
         player.like(sender as AnyObject)
     }
     
@@ -291,6 +507,11 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     
     @IBAction func openPreference(_ sender: Any) {
         preference.openPreferences(sender as AnyObject)
+    }
+    
+    @IBAction func volume(_ sender: Any) {
+        let volume = volumeSlider.integerValue
+        print(volume)
     }
     
     
