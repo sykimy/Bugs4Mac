@@ -220,7 +220,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         /* 볼륨값을 받아온다. */
         let vol = getDefaultVolume()
         webPlayer.volume(vol)
-        sendVolumeNotification(volume: vol)
+        sendVolumeNotification(volume: webPlayer.getVolume())
     }
     
     func getDefaultVolume()->Int {
@@ -399,6 +399,19 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     /* 유사한 음악 추가 */
     @IBAction func addSimilar(_ sender: AnyObject) {
         webPlayer.addSimilarSong()
+    }
+    
+    func changeVolume(_ vol:Int) {
+        volumeBar.integerValue = vol
+        switch mode {
+        case .WebPlayer :
+            webPlayer.volume(vol+334)
+            defaults.set(vol+334, forKey: "volume")
+        case .Radio :
+            let volume = Double(vol)/40*58
+            radio.volume(Int(volume)+100)
+        }
+
     }
     
     /* 볼륨 버튼 */

@@ -27,7 +27,6 @@ class SearchController: NSObject {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         sharedUserDefaults?.addObserver(self, forKeyPath: "search", options: NSKeyValueObservingOptions.new, context: nil)
     }
     

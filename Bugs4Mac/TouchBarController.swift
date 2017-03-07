@@ -511,7 +511,7 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     
     @IBAction func volume(_ sender: Any) {
         let volume = volumeSlider.integerValue
-        print(volume)
+        player.changeVolume(volume)
     }
     
     
