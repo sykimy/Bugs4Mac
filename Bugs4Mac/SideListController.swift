@@ -551,9 +551,13 @@ extension SideListController {
         if str == nil {
             return ""
         }
+            /*
         else {
-            str.removeSubrange(str.index(str.endIndex, offsetBy: -34)..<str.endIndex)
-        }
+            print("---------------")
+            print(str)
+            print("---------------")
+            //str.removeSubrange(str.index(str.endIndex, offsetBy: -34)..<str.endIndex)
+        }*/
         
         return str
     }
