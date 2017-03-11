@@ -86,27 +86,33 @@ class NowPlayingListPreference:NSObject {
             addTopButton.isEnabled = false
             addBottomButton.isEnabled = true
             addNextButton.isEnabled = true
+            addBottomButton.state = 0
+            addNextButton.state = 0
         }
     }
     
     @IBAction func addBottom(_ sender: Any) {
-        if addTopButton.state == 1 {
+        if addBottomButton.state == 1 {
             nowPlayingList.addPosition = 1
             defaults.set(1, forKey: "addPosition")
             addTopButton.isEnabled = true
             addBottomButton.isEnabled = false
             addNextButton.isEnabled = true
+            addTopButton.state = 0
+            addNextButton.state = 0
         }
     }
 
     
     @IBAction func addNext(_ sender: Any) {
-        if addTopButton.state == 1 {
+        if addNextButton.state == 1 {
             nowPlayingList.addPosition = 2
             defaults.set(2, forKey: "addPosition")
             addTopButton.isEnabled = true
             addBottomButton.isEnabled = true
             addNextButton.isEnabled = false
+            addTopButton.state = 0
+            addBottomButton.state = 0
         }
     }
 }
