@@ -8,10 +8,23 @@
 
 import Cocoa
 import Carbon
+import MediaPlayer
 
 /* 미디어 키를 받아오는 함수 */
+@available(OSX 10.12.2, *)
 class GetMediaKey: NSApplication {
     let nc = NotificationCenter.default
+    
+    let rcc: MPRemoteCommandCenter! = MPRemoteCommandCenter.shared()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        rcc.pauseCommand.addTarget(self, action: #selector(play))
+        rcc.stopCommand.addTarget(self, action: #selector(play))
+        rcc.playCommand.addTarget(self, action: #selector(play))
+        rcc.togglePlayPauseCommand.addTarget(self, action: #selector(play))
+    }
     
     override func sendEvent(_ event: NSEvent) {
         if (event.type == .systemDefined && event.subtype.rawValue == 8) {
@@ -24,6 +37,10 @@ class GetMediaKey: NSApplication {
         }
         
         super.sendEvent(event)
+    }
+    
+    func play() {
+        //print("play");
     }
     
     func mediaKeyEvent(_ key: Int32, state: Bool, keyRepeat: Bool) {

@@ -1067,6 +1067,9 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     func getLyric() {
         statusItem.title = webPlayer.getLyricsNow()
+        if statusItem.title == "" {
+            statusItem.title = "\(nameTextField.stringValue) - \(artistTextField.stringValue)"
+        }
     }
     
     func getRadioLyric() {
@@ -1351,14 +1354,17 @@ extension PlayerController {
         
         switch mode {
         case .WebPlayer:
-            if !webPlayer.beLyrics() || webPlayer.getLyricsNow() == "" {
+            self.statusItem.title = "\(nameTextField.stringValue) - \(artistTextField.stringValue)"
+            
+            if !webPlayer.beLyrics() {
                 self.statusItem.title = "\(nameTextField.stringValue) - \(artistTextField.stringValue)"
             }
             else {
                 lyricTimer = Timer.scheduledTimer(timeInterval: 0.7, target: self, selector: #selector(getLyric), userInfo: nil, repeats: true)
             }
         case .Radio:
-            if !radio.beLyrics() || radio.getLyricsNow() == "" {
+            self.statusItem.title = "\(nameTextField.stringValue) - \(albumTextField.stringValue)"
+            if !radio.beLyrics() {
                 self.statusItem.title = "\(nameTextField.stringValue) - \(albumTextField.stringValue)"
             }
             else {
