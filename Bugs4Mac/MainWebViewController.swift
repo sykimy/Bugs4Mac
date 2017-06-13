@@ -165,6 +165,12 @@ class MainWebViewController: NSViewController {
         isMain = false
     }
     
+    func openBside() {
+        webView.load(URLRequest(url: URL(string: "http://music.bugs.co.kr/bside?wl_ref=M_left_02_13")!))
+        
+        isMain = false
+    }
+    
     func openRadio() {
         webView.load(URLRequest(url: URL(string: "http://music.bugs.co.kr/radio?wl_ref=M_left_02_10")!))
         

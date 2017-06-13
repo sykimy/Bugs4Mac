@@ -112,6 +112,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         items[items.count-1].appendChild("연도별", num: 2, parent: items[items.count-1].name)
         items[items.count-1].appendChild("매니아", num: 3, parent: items[items.count-1].name)
         
+        items.append(ParentItem(name: "Bside", isHeader: false))
         items.append(ParentItem(name: "라디오", isHeader: false))
         items.append(ParentItem(name: "FLAC전용관", isHeader: false))
         items.append(ParentItem(name: "벅스 on TV", isHeader: false))
@@ -267,6 +268,10 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
                 }
                 else if node.name == "뮤직포스트" {
                     mainWebViewController.openMusicPost()
+                    tabView.selectTabViewItem(at: 2)
+                }
+                else if node.name == "Bside" {
+                    mainWebViewController.openBside()
                     tabView.selectTabViewItem(at: 2)
                 }
                 else if node.name == "라디오" {
