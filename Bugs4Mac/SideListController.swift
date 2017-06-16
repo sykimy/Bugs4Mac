@@ -442,9 +442,10 @@ extension SideListController {
         if str == nil {
             return ""
         }
+            /*
         else {
             str.removeSubrange(str.index(str.endIndex, offsetBy: -13)..<str.endIndex)
-        }
+        }*/
         
         return str
     }
