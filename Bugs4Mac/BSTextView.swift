@@ -40,7 +40,7 @@ class BSTextView: NSTextView {
     func makeLyric2AttributedString() {
         attributedStr = NSMutableAttributedString(string: "")
         
-        for i in 1..<lyric.string.count {
+        for i in 0..<lyric.string.count {
             var attributes = [String : AnyObject]()
             attributes[NSForegroundColorAttributeName] = NSColor.white
             

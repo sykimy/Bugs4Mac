@@ -12,15 +12,26 @@ class TitleBarView: NSView {
     
     var trackingArea:NSTrackingArea!
     let nc = NotificationCenter.default
+    var al: CGFloat = 0.15;
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
         // Drawing code here.
-        NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.15).set()
+        NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: al).set()
         NSRectFill(self.bounds)
         NSBezierPath.fill(self.bounds)
         
+    }
+    
+    func full() {
+        al = 0.0
+        self.setNeedsDisplay(self.bounds)
+    }
+    
+    func defull() {
+        al = 0.15
+        self.setNeedsDisplay(self.bounds)
     }
     
     override func mouseEntered(with theEvent:NSEvent) {

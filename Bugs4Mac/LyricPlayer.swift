@@ -36,6 +36,8 @@ class LyricPlayer: NSObject, NSWindowDelegate {
     
     var mode = PlayerState.WebPlayer
     
+    var fullScreenMode = false
+    
     @IBOutlet var menu: NSMenu!
     @IBOutlet var alwaysTop: NSMenuItem!
     
@@ -46,6 +48,24 @@ class LyricPlayer: NSObject, NSWindowDelegate {
         nc.addObserver(self, selector: #selector(resizeView), name: NSNotification.Name(rawValue: "NSViewFrameDidChangeNotification"), object: nil)
         nc.addObserver(self, selector: #selector(showTitle), name: NSNotification.Name(rawValue: "titleMouseIn"), object: nil)
         nc.addObserver(self, selector: #selector(hideTitle), name: NSNotification.Name(rawValue: "titleMouseOut"), object: nil)
+        nc.addObserver(self, selector: #selector(LyricPlayer.enterFullScreen), name: NSNotification.Name.NSWindowDidEnterFullScreen, object: nil)
+        nc.addObserver(self, selector: #selector(LyricPlayer.exitFullScreen), name: NSNotification.Name.NSWindowDidExitFullScreen, object: nil)
+    }
+    
+    func enterFullScreen() {
+        if timer != nil {
+            fullScreenMode = true
+            hideTitle();
+            titleView.full();
+        }
+
+    }
+    
+    func exitFullScreen() {
+        if timer != nil {
+            fullScreenMode = false
+            titleView.defull();
+        }
     }
     
     @IBAction func alwaysTop(_ sender: AnyObject) {
@@ -208,7 +228,7 @@ class LyricPlayer: NSObject, NSWindowDelegate {
                     prevLyric = lyric.string[0] as String
                     
                     /* window title 설정 */
-                    window.title = prevLyric
+                    window.title = webPlayer.getTitle()+" - "+webPlayer.getArtist()
                     
                     /* textView 설정 */
                     /* 가사를 설정한다. */
@@ -389,10 +409,14 @@ class LyricPlayer: NSObject, NSWindowDelegate {
     
     func showTitle() {
         self.window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = false
+        self.window.standardWindowButton(NSWindowButton.zoomButton)!.isHidden = false
     }
     
     func hideTitle() {
-        self.window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+        if !fullScreenMode {
+            self.window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+            self.window.standardWindowButton(NSWindowButton.zoomButton)!.isHidden = true
+        }
     }
     
     func resizeView() {

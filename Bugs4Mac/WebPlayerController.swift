@@ -311,7 +311,7 @@ extension WebPlayerController {
                 }
             }
         }
-        
+
         return lyrics
     }
     

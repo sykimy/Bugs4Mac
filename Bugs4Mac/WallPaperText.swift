@@ -78,11 +78,11 @@ class WallpaperText: NSObject {
     }
     
     func setInnerColor(color:NSColor) {
-        innerColor = color
+        innerColor = color.blended(withFraction: 0.3, of: NSColor.white)!
     }
     
     func setOuterColor(color:NSColor) {
-        outerColor = color
+        outerColor = color.blended(withFraction: 0.3, of: NSColor.white)!
     }
     
     func setFont(font:NSFont) {
@@ -94,11 +94,10 @@ class WallpaperText: NSObject {
         var attributes = [String : AnyObject]()
         
         attributes[NSFontAttributeName] = font
-        //attributes[NSForegroundColorAttributeName] = innerColor.blended(withFraction: 0.5, of: NSColor.black)
+        //attributes[NSForegroundColorAttributeName] = innerColor.blended(withFraction: 0.9, of: NSColor.white)
         attributes[NSForegroundColorAttributeName] = innerColor
         attributes[NSStrokeWidthAttributeName] = NSNumber.init(value: -1.0 as Float)
-        attributes[NSStrokeColorAttributeName] = outerColor
-        
+        attributes[NSStrokeColorAttributeName] = outerColor        
         let textStyle = NSMutableParagraphStyle()
         if alignment == 1 {
             textStyle.alignment = NSTextAlignment.right
