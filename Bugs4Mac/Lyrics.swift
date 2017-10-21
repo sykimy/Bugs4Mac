@@ -10,16 +10,11 @@ import Cocoa
 
 class Lyrics: NSObject {
     var string = [NSString]()
+    var time = [Int]()
+    var sync = false
     
-    func append(_ string:String) {
-        if string.range(of: "</strong>") != nil {
-            let tmp = string.replacingOccurrences(of: "<strong id=\"rt\">", with: "")
-            let str = tmp.replacingOccurrences(of: "</strong>", with: "")
-            self.string.append(str as NSString)
-            
-        }
-        else {
-            self.string.append(string as NSString)
-        }
+    func append(_ time:Int, _ string:String) {
+        self.string.append(string as NSString)
+        self.time.append(time)
     }
 }

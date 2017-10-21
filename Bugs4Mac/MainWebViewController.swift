@@ -14,6 +14,8 @@ class MainWebViewController: NSViewController {
     
     var webView:WKWebView!
     var radioWindow:NSWindow!
+    var popupWindow:NSWindow!
+    var popupController:NSWindowController!
     
     @IBOutlet var mvPlayer: MoviePlayerController!
     @IBOutlet var radio: RadioController!
@@ -23,12 +25,16 @@ class MainWebViewController: NSViewController {
     @IBOutlet var search: SearchController!
     @IBOutlet var appDelegate: AppDelegate!
     @IBOutlet var webPlayer: WebPlayerController!
+    @IBOutlet var loginController: LoginWebViewController!
     
     let nc = NotificationCenter.default
     
     @IBOutlet var tabView: NSTabView!
     
     var isMain = true
+    var doLogin = false //로그인 중임을 나타낸다.
+    var isInit = false  //초기 플레이어 로딩 상태를 나타낸다.
+    var doInit = false
     
     var chartTimer:Timer!
     
@@ -40,29 +46,10 @@ class MainWebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        /*
-        /* Create our preferences on how the web page should be loaded */
-        let preferences = WKPreferences()
-        preferences.javaScriptEnabled = true
-        preferences.javaEnabled = true
-        preferences.javaScriptCanOpenWindowsAutomatically = true
-        preferences.plugInsEnabled = true
-        
-        /* Create a configuration for our preferences */
-        let configuration = WKWebViewConfiguration()
-        configuration.preferences = preferences
-        configuration.processPool = webPlayer.processPool
-        
-        /* Now instantiate the web view */
-        webView = WKWebView(frame: view.bounds, configuration: configuration)
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-        
-        self.view.addSubview(webView)
-        webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))*/
-        
-        nc.addObserver(self, selector: #selector(MainWebViewController.resizeWebView), name: NSNotification.Name(rawValue: "NSViewFrameDidChangeNotification"), object: nil)
+        nc.addObserver(self, selector: #selector(MainWebViewController.resizeWebView), name:
+        NSNotification.Name(rawValue: "NSViewFrameDidChangeNotification"), object: nil)
+        initWebView()
+        openHome()
     }
     
     func initWebView() {
@@ -89,6 +76,7 @@ class MainWebViewController: NSViewController {
     }
     
     func deinitWebView() {
+        /*
         for view in view.subviews {
             view.removeFromSuperview()
         }
@@ -97,7 +85,7 @@ class MainWebViewController: NSViewController {
         
         if chartTimer != nil {
             chartTimer.invalidate()
-        }
+        }*/
     }
     
     /* 검색창을 열고 검색을 시작한다. */
@@ -131,7 +119,7 @@ class MainWebViewController: NSViewController {
     
     func openHome() {
         isMain = true
-        webView.load(URLRequest(url: URL(string: "http://www.bugs.co.kr/")!))
+        webView.load(URLRequest(url: URL(string: "http://www.genie.co.kr")!))
     }
     
     
@@ -376,6 +364,25 @@ class MainWebViewController: NSViewController {
         return isLoad
     }
     
+    func isLogin()->Bool {
+        var isFinish = false
+        var isLoad = false
+        self.webView.evaluateJavaScript("document.getElementsByClassName('logout')[0].innerHTML") { (result, error) in
+            if error == nil {
+                if !(result is NSNull) {
+                    isLoad = true
+                }
+            }
+            isFinish = true
+        }
+        
+        while (!isFinish) {
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
+        }
+        
+        return isLoad
+    }
+    
     //플레이버튼 함수를 받아온다.
     func getPlayFunction()->String {
         var isFinish = false
@@ -394,6 +401,10 @@ class MainWebViewController: NSViewController {
         }
         
         return str
+    }
+    
+    func openPlayer() {
+        webView.evaluateJavaScript("fnPlaySongQuick()", completionHandler: nil)
     }
     
     /* WKWebView에 스크립트를 입력하고, string값을 리턴한다. */
@@ -444,7 +455,26 @@ extension MainWebViewController: WKNavigationDelegate, WKUIDelegate {
     
     /* 페이지 로드가 끝나면 호출하는 함수 */
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if !isMain {
+        
+        if webView == self.webView {
+            if !isInit {
+                doInit = true
+                openPlayer()
+                isInit = true
+            }
+            else if doLogin && isLogin() {
+                loginController.popupController.close()
+                loginController.deinitPopUp()
+                doLogin = false;
+            }
+        }
+        else if webView == webPlayer.webView {
+            playerController.startSyncWithWebPlayer()
+            if webPlayer.webView != nil {
+                webPlayer.isSync = true
+            }
+        }
+        else if !isMain {
             //사이트를 수정해서 뜨게해도 되는지 몰라 주석처리 하였습니다.
             editCSS4Player()
             if isChartPage() {
@@ -454,7 +484,6 @@ extension MainWebViewController: WKNavigationDelegate, WKUIDelegate {
             else {
                 if chartTimer != nil { chartTimer.invalidate() }
             }
-            
             //URL이 검색 URL일시,
             if webView.url!.absoluteString.range(of: "http://search.bugs.co.kr/track?q=") != nil {
                 //곡이있는지 찾은후
@@ -462,11 +491,9 @@ extension MainWebViewController: WKNavigationDelegate, WKUIDelegate {
                     searchNPlay()   //곡이있다면 재생
                 }
             }
-            
             if webView.url!.absoluteString == "http://www.bugs.co.kr/user/library/myalbum/list?wl_ref=M_left_03_07" {
                 sideList.getSideList()
             }
-            
         }
     }
     
@@ -502,29 +529,45 @@ extension MainWebViewController: WKNavigationDelegate, WKUIDelegate {
     /* 팝업창이 뜰때의 delegate */
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
-            let url = navigationAction.request.url
+            let url = String(describing: navigationAction.request.url)
+            print(navigationAction)
+            if doInit {
+                doInit = false
+                /* 새로운 WKWebView를 만든다. */
+                return webPlayer.initWebPlayer(configuration: configuration)
+            }
+            if url.range(of: "popLogin") != nil {
+                doLogin = true
+                return loginController.initLoginWebView(
+                    configuration: configuration,
+                    windowSize: NSMakeRect(NSScreen.main()!.visibleFrame.size.width/2-227, NSScreen.main()!.visibleFrame.size.height/2-122, 455, 244)
+                )
+            }
+            else if url.range(of: "Kakao") != nil {
+                doLogin = true
+                return loginController.initLoginWebView(
+                    configuration: configuration,
+                    windowSize: NSMakeRect(NSScreen.main()!.visibleFrame.size.width/2-240, NSScreen.main()!.visibleFrame.size.height/2-330, 480, 660)
+                )
+            }
+            else if url.range(of: "twitter") != nil {
+                doLogin = true
+                return loginController.initLoginWebView(
+                    configuration: configuration,
+                    windowSize: NSMakeRect(NSScreen.main()!.visibleFrame.size.width/2-400, NSScreen.main()!.visibleFrame.size.height/2-360, 800, 720)
+                )
+            }
+            else if url.range(of: "facebook") != nil {
+                doLogin = true
+                return loginController.initLoginWebView(
+                    configuration: configuration,
+                    windowSize: NSMakeRect(NSScreen.main()!.visibleFrame.size.width/2-250, NSScreen.main()!.visibleFrame.size.height/2-150, 500, 300)
+                )
+            }
             
-            if String(describing: url).range(of: "newRadio") != nil {
-                if playerController.isLogin {
-                    radio.initRadio()
-                    radio.load(url!)
-                    lyricPlayer.mode = .Radio
-                    playerController.mode = .Radio
-                }
-            }
-            else if String(describing: url).range(of: "mvPlayer") != nil {
-                mvPlayer.initMoviePlayer()
-                mvPlayer.load(url!)
-            }
-            else if String(describing: url).range(of: "payco") != nil || String(describing: url).range(of: "facebook") != nil {
-                let alert = NSAlert()
-                alert.messageText = "잘못된 로그인 시도입니다."
-                alert.informativeText = "우측 상단의 초록색 문버튼을 눌러 로그인해주세요."
-                alert.alertStyle = .warning
-                alert.addButton(withTitle: "확인")
-                alert.runModal()
-            }
+            
         }
+        
         return nil
     }
     

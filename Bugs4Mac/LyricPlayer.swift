@@ -213,7 +213,7 @@ class LyricPlayer: NSObject, NSWindowDelegate {
         }
         
         /* 문자열 초기화 */
-        let numOflyric = webPlayer.getNumOfNowPlayingLyric()
+        let numOflyric = 0
         
         let id = webPlayer.getSongID()
         
@@ -284,8 +284,8 @@ class LyricPlayer: NSObject, NSWindowDelegate {
             
             if !beLyrics {
                 let noLyrics = Lyrics()
-                noLyrics.append("")
-                noLyrics.append("가사가 없습니다.")
+                noLyrics.append(0, "")
+                noLyrics.append(0, "가사가 없습니다.")
                 
                 textView.set(noLyrics)
             }
@@ -383,8 +383,8 @@ class LyricPlayer: NSObject, NSWindowDelegate {
             
             if !beLyrics {
                 let noLyrics = Lyrics()
-                noLyrics.append("")
-                noLyrics.append("가사가 없습니다.")
+                noLyrics.append(0, "")
+                noLyrics.append(0, "가사가 없습니다.")
                 
                 textView.set(noLyrics)
             }

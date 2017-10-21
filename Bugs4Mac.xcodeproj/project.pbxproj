@@ -64,7 +64,6 @@
 		0F3D6A351E0F76EC00571F6A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D6A341E0F76EC00571F6A /* TodayViewController.swift */; };
 		0F3D6A381E0F76EC00571F6A /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3D6A361E0F76EC00571F6A /* TodayViewController.xib */; };
 		0F3D6A3C1E0F76EC00571F6A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3D6A3A1E0F76EC00571F6A /* InfoPlist.strings */; };
-		0F3D6A3F1E0F76EC00571F6A /* BugsWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0F3D6A2D1E0F76EC00571F6A /* BugsWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0F3D6A451E0F777500571F6A /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D6A441E0F777500571F6A /* ProgressBarView.swift */; };
 		0F3D6A471E0F778600571F6A /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D6A461E0F778600571F6A /* WidgetView.swift */; };
 		0F54D1351E0D7B8100FEC2F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */; };
@@ -87,6 +86,7 @@
 		0F7076411E654D0900DCF987 /* tbprev.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F7076401E654D0900DCF987 /* tbprev.png */; };
 		0F7076431E6550AC00DCF987 /* tblike.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F7076421E6550AC00DCF987 /* tblike.png */; };
 		0F7076451E6555D400DCF987 /* tbunlike.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F7076441E6555D400DCF987 /* tbunlike.png */; };
+		0F72EDA51F72AC160090165C /* GinieWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0F3D6A2D1E0F76EC00571F6A /* GinieWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0F81A1491E650599002E2F33 /* tblyric.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F81A1481E650599002E2F33 /* tblyric.png */; };
 		0F81A14B1E6506C2002E2F33 /* tbsearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F81A14A1E6506C2002E2F33 /* tbsearch.png */; };
 		0F9152791E15FBEA00BDA341 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0F9152771E15FBEA00BDA341 /* LICENSE */; };
@@ -99,13 +99,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0F3D6A3D1E0F76EC00571F6A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F54D1291E0D7B8100FEC2F7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F3D6A2C1E0F76EC00571F6A;
-			remoteInfo = BugsWidget;
-		};
 		0F54D1411E0D7B8100FEC2F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F54D1291E0D7B8100FEC2F7 /* Project object */;
@@ -120,16 +113,23 @@
 			remoteGlobalIDString = 0F54D1301E0D7B8100FEC2F7;
 			remoteInfo = Bugs4Mac;
 		};
+		0F72EDA61F72AC160090165C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F54D1291E0D7B8100FEC2F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F3D6A2C1E0F76EC00571F6A;
+			remoteInfo = GinieWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0F3D6A431E0F76EC00571F6A /* Embed App Extensions */ = {
+		0F72EDA81F72AC160090165C /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				0F3D6A3F1E0F76EC00571F6A /* BugsWidget.appex in Embed App Extensions */,
+				0F72EDA51F72AC160090165C /* GinieWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,7 +157,7 @@
 		0F136FA91E0F789200AEB3A9 /* widgetpause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = widgetpause.png; path = resources/widgetpause.png; sourceTree = "<group>"; };
 		0F136FAA1E0F789200AEB3A9 /* widgetplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = widgetplay.png; path = resources/widgetplay.png; sourceTree = "<group>"; };
 		0F136FAB1E0F789200AEB3A9 /* widgetprev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = widgetprev.png; path = resources/widgetprev.png; sourceTree = "<group>"; };
-		0F136FB21E0F7A7F00AEB3A9 /* Bugs4Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bugs4Mac.entitlements; sourceTree = "<group>"; };
+		0F136FB21E0F7A7F00AEB3A9 /* Ginie4Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ginie4Mac.entitlements; sourceTree = "<group>"; };
 		0F2B1F201E0DFFE300CEBDEF /* RadioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioController.swift; sourceTree = "<group>"; };
 		0F2B1F221E0E000B00CEBDEF /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
 		0F2B1F241E0E005600CEBDEF /* MainWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWebViewController.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		0F2B1F6D1E0E062E00CEBDEF /* GetMediaKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMediaKey.swift; sourceTree = "<group>"; };
 		0F2B1F6F1E0E3FD000CEBDEF /* TitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
 		0F2F9E9C1E6456CE005DEEFB /* BSScrubberItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSScrubberItemView.swift; sourceTree = "<group>"; };
-		0F3D6A2D1E0F76EC00571F6A /* BugsWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BugsWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F3D6A2D1E0F76EC00571F6A /* GinieWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GinieWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F3D6A2F1E0F76EC00571F6A /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		0F3D6A331E0F76EC00571F6A /* BugsWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BugsWidget.entitlements; sourceTree = "<group>"; };
 		0F3D6A341E0F76EC00571F6A /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -200,14 +200,14 @@
 		0F3D6A3B1E0F76EC00571F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0F3D6A441E0F777500571F6A /* ProgressBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		0F3D6A461E0F778600571F6A /* WidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
-		0F54D1311E0D7B8100FEC2F7 /* Bugs4Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bugs4Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F54D1311E0D7B8100FEC2F7 /* Bugs4Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Bugs4Mac.app; path = Ginie4Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F54D1361E0D7B8100FEC2F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F54D13B1E0D7B8100FEC2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F54D1401E0D7B8100FEC2F7 /* Bugs4MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bugs4MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F54D1401E0D7B8100FEC2F7 /* Ginie4MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ginie4MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D1441E0D7B8100FEC2F7 /* Bugs4MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bugs4MacTests.swift; sourceTree = "<group>"; };
 		0F54D1461E0D7B8100FEC2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F54D14B1E0D7B8100FEC2F7 /* Bugs4MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bugs4MacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F54D14B1E0D7B8100FEC2F7 /* Ginie4MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ginie4MacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F54D14F1E0D7B8100FEC2F7 /* Bugs4MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bugs4MacUITests.swift; sourceTree = "<group>"; };
 		0F54D1511E0D7B8100FEC2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F54D15E1E0D7E3100FEC2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 			children = (
 				0F9152771E15FBEA00BDA341 /* LICENSE */,
 				0F9152781E15FBEA00BDA341 /* LICENSE_2 */,
-				0F54D1331E0D7B8100FEC2F7 /* Bugs4Mac */,
+				0F54D1331E0D7B8100FEC2F7 /* Ginie4Mac */,
 				0F54D1431E0D7B8100FEC2F7 /* Bugs4MacTests */,
 				0F54D14E1E0D7B8100FEC2F7 /* Bugs4MacUITests */,
 				0F3D6A311E0F76EC00571F6A /* BugsWidget */,
@@ -492,17 +492,17 @@
 			isa = PBXGroup;
 			children = (
 				0F54D1311E0D7B8100FEC2F7 /* Bugs4Mac.app */,
-				0F54D1401E0D7B8100FEC2F7 /* Bugs4MacTests.xctest */,
-				0F54D14B1E0D7B8100FEC2F7 /* Bugs4MacUITests.xctest */,
-				0F3D6A2D1E0F76EC00571F6A /* BugsWidget.appex */,
+				0F54D1401E0D7B8100FEC2F7 /* Ginie4MacTests.xctest */,
+				0F54D14B1E0D7B8100FEC2F7 /* Ginie4MacUITests.xctest */,
+				0F3D6A2D1E0F76EC00571F6A /* GinieWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0F54D1331E0D7B8100FEC2F7 /* Bugs4Mac */ = {
+		0F54D1331E0D7B8100FEC2F7 /* Ginie4Mac */ = {
 			isa = PBXGroup;
 			children = (
-				0F136FB21E0F7A7F00AEB3A9 /* Bugs4Mac.entitlements */,
+				0F136FB21E0F7A7F00AEB3A9 /* Ginie4Mac.entitlements */,
 				0F136F881E0F780D00AEB3A9 /* resources */,
 				0F54D1341E0D7B8100FEC2F7 /* AppDelegate.swift */,
 				0F2B1F6D1E0E062E00CEBDEF /* GetMediaKey.swift */,
@@ -518,6 +518,7 @@
 				0F2B1F531E0E03B700CEBDEF /* PreferencePart */,
 				0F54D1651E0D816100FEC2F7 /* TypePart */,
 			);
+			name = Ginie4Mac;
 			path = Bugs4Mac;
 			sourceTree = "<group>";
 		};
@@ -561,9 +562,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0F3D6A2C1E0F76EC00571F6A /* BugsWidget */ = {
+		0F3D6A2C1E0F76EC00571F6A /* GinieWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F3D6A401E0F76EC00571F6A /* Build configuration list for PBXNativeTarget "BugsWidget" */;
+			buildConfigurationList = 0F3D6A401E0F76EC00571F6A /* Build configuration list for PBXNativeTarget "GinieWidget" */;
 			buildPhases = (
 				0F3D6A291E0F76EC00571F6A /* Sources */,
 				0F3D6A2A1E0F76EC00571F6A /* Frameworks */,
@@ -573,33 +574,33 @@
 			);
 			dependencies = (
 			);
-			name = BugsWidget;
+			name = GinieWidget;
 			productName = BugsWidget;
-			productReference = 0F3D6A2D1E0F76EC00571F6A /* BugsWidget.appex */;
+			productReference = 0F3D6A2D1E0F76EC00571F6A /* GinieWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		0F54D1301E0D7B8100FEC2F7 /* Bugs4Mac */ = {
+		0F54D1301E0D7B8100FEC2F7 /* Ginie4Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F54D1541E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4Mac" */;
+			buildConfigurationList = 0F54D1541E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4Mac" */;
 			buildPhases = (
 				0F54D12D1E0D7B8100FEC2F7 /* Sources */,
 				0F54D12E1E0D7B8100FEC2F7 /* Frameworks */,
 				0F54D12F1E0D7B8100FEC2F7 /* Resources */,
-				0F3D6A431E0F76EC00571F6A /* Embed App Extensions */,
+				0F72EDA81F72AC160090165C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0F3D6A3E1E0F76EC00571F6A /* PBXTargetDependency */,
+				0F72EDA71F72AC160090165C /* PBXTargetDependency */,
 			);
-			name = Bugs4Mac;
+			name = Ginie4Mac;
 			productName = Bugs4Mac;
 			productReference = 0F54D1311E0D7B8100FEC2F7 /* Bugs4Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0F54D13F1E0D7B8100FEC2F7 /* Bugs4MacTests */ = {
+		0F54D13F1E0D7B8100FEC2F7 /* Ginie4MacTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F54D1571E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4MacTests" */;
+			buildConfigurationList = 0F54D1571E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4MacTests" */;
 			buildPhases = (
 				0F54D13C1E0D7B8100FEC2F7 /* Sources */,
 				0F54D13D1E0D7B8100FEC2F7 /* Frameworks */,
@@ -610,14 +611,14 @@
 			dependencies = (
 				0F54D1421E0D7B8100FEC2F7 /* PBXTargetDependency */,
 			);
-			name = Bugs4MacTests;
+			name = Ginie4MacTests;
 			productName = Bugs4MacTests;
-			productReference = 0F54D1401E0D7B8100FEC2F7 /* Bugs4MacTests.xctest */;
+			productReference = 0F54D1401E0D7B8100FEC2F7 /* Ginie4MacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0F54D14A1E0D7B8100FEC2F7 /* Bugs4MacUITests */ = {
+		0F54D14A1E0D7B8100FEC2F7 /* Ginie4MacUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F54D15A1E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4MacUITests" */;
+			buildConfigurationList = 0F54D15A1E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4MacUITests" */;
 			buildPhases = (
 				0F54D1471E0D7B8100FEC2F7 /* Sources */,
 				0F54D1481E0D7B8100FEC2F7 /* Frameworks */,
@@ -628,9 +629,9 @@
 			dependencies = (
 				0F54D14D1E0D7B8100FEC2F7 /* PBXTargetDependency */,
 			);
-			name = Bugs4MacUITests;
+			name = Ginie4MacUITests;
 			productName = Bugs4MacUITests;
-			productReference = 0F54D14B1E0D7B8100FEC2F7 /* Bugs4MacUITests.xctest */;
+			productReference = 0F54D14B1E0D7B8100FEC2F7 /* Ginie4MacUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -640,7 +641,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = sykimy;
 				TargetAttributes = {
 					0F3D6A2C1E0F76EC00571F6A = {
@@ -690,10 +691,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0F54D1301E0D7B8100FEC2F7 /* Bugs4Mac */,
-				0F54D13F1E0D7B8100FEC2F7 /* Bugs4MacTests */,
-				0F54D14A1E0D7B8100FEC2F7 /* Bugs4MacUITests */,
-				0F3D6A2C1E0F76EC00571F6A /* BugsWidget */,
+				0F54D1301E0D7B8100FEC2F7 /* Ginie4Mac */,
+				0F54D13F1E0D7B8100FEC2F7 /* Ginie4MacTests */,
+				0F54D14A1E0D7B8100FEC2F7 /* Ginie4MacUITests */,
+				0F3D6A2C1E0F76EC00571F6A /* GinieWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -848,20 +849,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0F3D6A3E1E0F76EC00571F6A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F3D6A2C1E0F76EC00571F6A /* BugsWidget */;
-			targetProxy = 0F3D6A3D1E0F76EC00571F6A /* PBXContainerItemProxy */;
-		};
 		0F54D1421E0D7B8100FEC2F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F54D1301E0D7B8100FEC2F7 /* Bugs4Mac */;
+			target = 0F54D1301E0D7B8100FEC2F7 /* Ginie4Mac */;
 			targetProxy = 0F54D1411E0D7B8100FEC2F7 /* PBXContainerItemProxy */;
 		};
 		0F54D14D1E0D7B8100FEC2F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F54D1301E0D7B8100FEC2F7 /* Bugs4Mac */;
+			target = 0F54D1301E0D7B8100FEC2F7 /* Ginie4Mac */;
 			targetProxy = 0F54D14C1E0D7B8100FEC2F7 /* PBXContainerItemProxy */;
+		};
+		0F72EDA71F72AC160090165C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F3D6A2C1E0F76EC00571F6A /* GinieWidget */;
+			targetProxy = 0F72EDA61F72AC160090165C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -902,7 +903,7 @@
 				DEVELOPMENT_TEAM = M8UH3YFP9K;
 				INFOPLIST_FILE = BugsWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Bugs4Mac.BugsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Ginie4Mac.GinieWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -918,7 +919,7 @@
 				DEVELOPMENT_TEAM = M8UH3YFP9K;
 				INFOPLIST_FILE = BugsWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Bugs4Mac.BugsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Ginie4Mac.GinieWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -934,7 +935,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -942,7 +945,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -983,7 +990,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -991,7 +1000,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1020,13 +1033,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bugs4Mac/Bugs4Mac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bugs4Mac/Ginie4Mac.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = M8UH3YFP9K;
 				INFOPLIST_FILE = Bugs4Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Bugs4Mac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Ginie4Mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1037,13 +1050,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bugs4Mac/Bugs4Mac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bugs4Mac/Ginie4Mac.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = M8UH3YFP9K;
 				INFOPLIST_FILE = Bugs4Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Bugs4Mac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sykimy.blog.Ginie4Mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1114,7 +1127,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0F3D6A401E0F76EC00571F6A /* Build configuration list for PBXNativeTarget "BugsWidget" */ = {
+		0F3D6A401E0F76EC00571F6A /* Build configuration list for PBXNativeTarget "GinieWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F3D6A411E0F76EC00571F6A /* Debug */,
@@ -1132,7 +1145,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0F54D1541E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4Mac" */ = {
+		0F54D1541E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F54D1551E0D7B8100FEC2F7 /* Debug */,
@@ -1141,7 +1154,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0F54D1571E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4MacTests" */ = {
+		0F54D1571E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4MacTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F54D1581E0D7B8100FEC2F7 /* Debug */,
@@ -1150,7 +1163,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0F54D15A1E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Bugs4MacUITests" */ = {
+		0F54D15A1E0D7B8100FEC2F7 /* Build configuration list for PBXNativeTarget "Ginie4MacUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F54D15B1E0D7B8100FEC2F7 /* Debug */,

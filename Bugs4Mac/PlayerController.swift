@@ -60,7 +60,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     let defaults = UserDefaults.standard
     
-    let sharedUserDefaults = UserDefaults.init(suiteName: "group.bugs4mac.sykimy")
+    let sharedUserDefaults = UserDefaults.init(suiteName: "group.genie4mac.sykimy")
     
     var checkAudioJack = false
     
@@ -68,7 +68,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     @IBOutlet var prevButton: ButtonController!
     @IBOutlet var playButton: ButtonController!
     @IBOutlet var nextButton: ButtonController!
-    @IBOutlet var loginButton: ButtonController!
     @IBOutlet var similarButton: ButtonController!
     
     /* 버튼 */
@@ -130,6 +129,12 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     var fadeTime: Double = 0.1
     private var syncTiming = 0.5
     
+    private var playTimeInt:Int!
+    
+    private var lyricNext:Int = 0
+    private var lyricNextTime:Int = 9999
+    private var lyrics:Lyrics = Lyrics()
+    
     /* 화면이 꺼졌을 때 */
     func windowWillClose(_ notification: Notification) {
         /* 버튼 보이기를 해제한다. */
@@ -145,7 +150,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         playButton.alphaValue = CGFloat(0)
         nextButton.alphaValue = CGFloat(0)
         volumeBar.alphaValue = CGFloat(0)
-        loginButton.alphaValue = CGFloat(0)
         similarButton.alphaValue = CGFloat(0)
         search.alphaValue(value: 0)
     }
@@ -162,8 +166,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         nc.addObserver(self, selector: #selector(PlayerController.exitFullScreen), name: NSNotification.Name.NSWindowDidExitFullScreen, object: nil)
         
         /* 이미지 버튼의 이미지 파일을 불러온다. */
-        //loginButton.image = NSImage(named: "login.png")
-        loginButton.title = "로그인"
         prevButton.image = NSImage(named: "prev.png")
         playButton.image = NSImage(named: "play.png")
         nextButton.image = NSImage(named: "next.png")
@@ -178,7 +180,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         prevButton.alphaValue = CGFloat(buttonTrans)
         playButton.alphaValue = CGFloat(buttonTrans)
         nextButton.alphaValue = CGFloat(buttonTrans)
-        loginButton.alphaValue = CGFloat(buttonTrans)
         volumeBar.alphaValue = CGFloat(buttonTrans)
         similarButton.alphaValue = CGFloat(buttonTrans)
         search.alphaValue(value: CGFloat(buttonTrans))
@@ -218,9 +219,10 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         sideListController.syncSideList()
         
         /* 볼륨값을 받아온다. */
-        let vol = getDefaultVolume()
-        webPlayer.volume(vol)
-        sendVolumeNotification(volume: webPlayer.getVolume())
+        //let vol = getDefaultVolume()
+        //webPlayer.volume(vol)
+        //sendVolumeNotification(volume: webPlayer.getVolume())
+        startPlayer()
     }
     
     func getDefaultVolume()->Int {
@@ -276,49 +278,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         fadeValue = fadeTiming / fadeTime
     }
     
-    //-------------------------------------------------------------------------------------------------------------------------
-    //  로그인과 관련된 함수 모음
-    
-    /* 로그인View를 Popup창으로 띄우는 함수 */
-    var isLoginViewOpen = false
-    @IBAction func login(_ sender: AnyObject) {
-        /* 로그아웃 상태이면 */
-        if !isLogin {
-            /* 로그인뷰가 켜지있으면 로그인 뷰를 끈다. */
-            if isLoginViewOpen {
-                loginpop.close()
-                loginController.deinitLogin()
-                isLoginViewOpen = false
-            }
-                /* 로그인뷰가 꺼져있으면 로그인 뷰를 킨다. */
-            else {
-                loginController.initLoginView()
-                loginpop.show(relativeTo: loginButton.bounds, of: loginButton, preferredEdge: NSRectEdge.maxY)
-                isLoginViewOpen = true
-            }
-        }
-            /* 로그인 상태이면 로그아웃을 진행한다. */
-        else {
-            webPlayer.logout()
-            isLogin = false
-        }
-    }
-    
-    /* 로그인 상태로 변환하는 함수 */
-    func loginComplete() {
-        loginpop.close()
-        isLogin = true
-        //loginButton.image = NSImage(named: "logout.png")
-        loginButton.title = "로그아웃"
-    }
-    
-    /* 로그아웃 상태로 변환하는 함수 */
-    func logoutComplete() {
-        webPlayer.logout()
-        //loginButton.image = NSImage(named: "login.png")
-        loginButton.title  = "로그인"
-        isLogin = false
-    }
     
     //-------------------------------------------------------------------------------------------------------------------------
     //  사용자로부터 받는 각종 조작 함수 모음
@@ -493,12 +452,12 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     @IBAction func streamingType(_ sender: AnyObject) {
         webPlayer.changeStreamingType()
         if webPlayer.getStreamingType() == 0 {
-            streamingTypeButton.title = "AAC->320kbps"
-            sendStreamingTypeNotification("AAC->\n320kbps")
+            streamingTypeButton.title = "320kbps"
+            sendStreamingTypeNotification("320kbps")
         }
         else {
-            streamingTypeButton.title = "320kbps->AAC"
-            sendStreamingTypeNotification("320kbps\n->AAC")
+            streamingTypeButton.title = "192kbps"
+            sendStreamingTypeNotification("192kbps")
         }
     }
     
@@ -591,7 +550,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     //  라디오 동기화 함수 관려 모음.
     
     /* 라디오 타이머의 함수(정해진 시간마다 라디오플레이어에서 곡 정보를 받아온다.) */
-    func syncWithRadio() {
+    func syncWithRadio2() {
         sendIsPlayNotification(radio.checkPlay())
         
         //오디오의 상태를 체크한다.
@@ -650,7 +609,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             }
             else {
                 let noLyric = Lyrics()
-                noLyric.append("")
+                noLyric.append(0, "")
                 lyrics = noLyric
             }
             
@@ -707,7 +666,12 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     }
     
     func syncLyricWithWebPlayer() {
-        let numOfLyrics = webPlayer.getNumOfNowPlayingLyric()
+        if (lyricNextTime <= playTimeInt &&
+            lyricNext < lyrics.time.endIndex) {
+            lyricNextTime = lyrics.time[lyricNext]
+            lyricNext = lyricNext+1
+        }
+        let numOfLyrics = lyricNext-1
         
         if prevNumOfLyrics != numOfLyrics {
             wallPaperPlayer.refreshLyric(numOfLyrics)
@@ -765,7 +729,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     
     /* WebPlayer로부터 값을 받아와 반영한다. */
     func syncWithWebPlayer() {
-        //재생 여부를 바당온다.
+        //재생 여부를 받아온다.
         sendIsPlayNotification(webPlayer.checkPlay())
         
         //오디오의 상태를 체크한다.
@@ -794,7 +758,6 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         }
         else {
             songName = webPlayer.getTitle() //현재 재생곡의 타이틀을 받아온다.
-            
             /* 노래가 변경되었으면 ID와 노래정보를 갱신한다. */
             if songName != prevSongName {
                 nowLogin = false
@@ -811,6 +774,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
             numOfSong = webPlayer.getNumOfSong()
             
             /* 플레이리스트의 음악 수가 변경되면 플레이리스트를 갱신한다. */
+            
             if numOfSong != prevNumOfSong {
                 prevNumOfSong = numOfSong
                 
@@ -857,7 +821,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
 
         /* String(00:00) -> Int 형으로 변환한다. */
         let totalTimeInt = timeStringToInt(totalTimeString)
-        let playTimeInt = timeStringToInt(playTimeString)
+        playTimeInt = timeStringToInt(playTimeString)
         
         /* 진행바에 시간을 반영한다. */
         progressBar.sync(totalTime: totalTimeInt, playTime: playTimeInt)
@@ -957,7 +921,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         let title = webPlayer.getTitle()
         let artist = webPlayer.getArtist()
         let album = webPlayer.getAlbum()
-        
+
         /* 이름, 아티스트, 앨범명을 반영 */
         nameTextField.stringValue = title
         artistTextField.stringValue = artist
@@ -983,27 +947,31 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
         albumTextField.textColor = NSColor.darkGray
         
         //가사가 없을시 갱신하지 가사가 없음을 반영한다.
-        var lyrics:Lyrics? = nil
         if webPlayer.beLyrics() {
             lyrics = webPlayer.getLyrics()
+            lyricNextTime = lyrics.time[0]
+            print("!!!\(lyricNextTime)")
+            lyricNext = 1
         }
         else {
             let noLyric = Lyrics()
-            noLyric.append("")
+            noLyric.append(0, "")
             lyrics = noLyric
+            lyricNextTime = 9999
+            lyricNext = 1
         }
         
         /* 월페이퍼의 정보를 갱신한다. */
-        wallPaperPlayer.set(title: webPlayer.getTitle(), artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: lyrics!, color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
+        wallPaperPlayer.set(title: webPlayer.getTitle(), artist: artistTextField.stringValue, album: albumTextField.stringValue, image: albumImage, lyric: lyrics, color: NSColor(calibratedRed: r, green: g, blue: b, alpha: 1.0))
         
         /* 현재 재생중인 곡의 스트리밍 타입을 반영한다. */
         if webPlayer.getStreamingType() == 0 {
-            streamingTypeButton.title = "AAC"
-            sendStreamingTypeNotification("AAC")
-        }
-        else {
             streamingTypeButton.title = "320kbps"
             sendStreamingTypeNotification("320kbps")
+        }
+        else {
+            streamingTypeButton.title = "192kbps"
+            sendStreamingTypeNotification("192kbps")
         }
         
         if menuBar {
@@ -1066,7 +1034,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     }
     
     func getLyric() {
-        statusItem.title = webPlayer.getLyricsNow()
+        statusItem.title = lyrics.string[lyricNext-1] as String
         if statusItem.title == "" {
             statusItem.title = "\(nameTextField.stringValue) - \(artistTextField.stringValue)"
         }
@@ -1122,7 +1090,7 @@ class PlayerController:NSViewController, NSApplicationDelegate, NSWindowDelegate
     func alertNoList() {
         albumImageField.image = nil
         nameTextField.stringValue = "재생목록에 음악이 없습니다."
-        artistTextField.stringValue = "음악을 추가해주세요."
+        artistTextField.stringValue = ""
         albumTextField.stringValue = ""
     }
     
@@ -1405,21 +1373,12 @@ extension PlayerController:PlayerViewDelegate {
     
     /* 마우스가 플레이어 안에 들어왔을때 */
     func mouseIn() {
+        
         /* 타이틀바의 아이콘을 보인다.. */
         showTitleButton()
         
         if mouseOutTimer != nil { mouseOutTimer.invalidate() }
-        
-        /* 로그인 여부를 체크 */
-        if !nowLogin {
-            if webPlayer.checkLogin() {
-                loginComplete()
-            }
-            else {
-                logoutComplete()
-            }
-        }
-        
+        /*
         /* 재생여부 갱신 */
         applyPlayState()
         
@@ -1435,7 +1394,7 @@ extension PlayerController:PlayerViewDelegate {
         case .Radio :
             volumeBar.integerValue = radio.getVolume()
             sendVolumeNotification(volume: radio.getVolume())
-        }
+        }*/
         
         if fadeValue == 0 {
             showButton()
@@ -1492,7 +1451,6 @@ extension PlayerController:PlayerViewDelegate {
         playButton.alphaValue = CGFloat(1)
         nextButton.alphaValue = CGFloat(1)
         volumeBar.alphaValue = CGFloat(1)
-        loginButton.alphaValue = CGFloat(1)
         similarButton.alphaValue = CGFloat(1)
         search.alphaValue(value: 1)
     }
@@ -1507,7 +1465,6 @@ extension PlayerController:PlayerViewDelegate {
         playButton.alphaValue = CGFloat(0)
         nextButton.alphaValue = CGFloat(0)
         volumeBar.alphaValue = CGFloat(0)
-        loginButton.alphaValue = CGFloat(0)
         similarButton.alphaValue = CGFloat(0)
         search.alphaValue(value: 0)
     }
@@ -1531,7 +1488,6 @@ extension PlayerController:PlayerViewDelegate {
         playButton.alphaValue = CGFloat(buttonTrans)
         nextButton.alphaValue = CGFloat(buttonTrans)
         volumeBar.alphaValue = CGFloat(buttonTrans)
-        loginButton.alphaValue = CGFloat(buttonTrans)
         similarButton.alphaValue = CGFloat(buttonTrans)
         search.alphaValue(value: CGFloat(buttonTrans))
     }
@@ -1555,7 +1511,6 @@ extension PlayerController:PlayerViewDelegate {
         playButton.alphaValue = CGFloat(buttonTrans)
         nextButton.alphaValue = CGFloat(buttonTrans)
         volumeBar.alphaValue = CGFloat(buttonTrans)
-        loginButton.alphaValue = CGFloat(buttonTrans)
         similarButton.alphaValue = CGFloat(buttonTrans)
         search.alphaValue(value: CGFloat(buttonTrans))
     }

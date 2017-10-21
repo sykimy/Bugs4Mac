@@ -117,7 +117,7 @@ class RadioController: NSObject, WKNavigationDelegate, WKUIDelegate {
         for i in lyric.characters.indices {
             if lyric[i] == "<" {
                 if lyric[lyric.index(i, offsetBy: 1)] == "b" {
-                    lyrics.append(lyric.substring(with: (front..<lyric.index(i, offsetBy: 0)))+"\n")
+                    lyrics.append(0, lyric.substring(with: (front..<lyric.index(i, offsetBy: 0)))+"\n")
                     front = lyric.index(i, offsetBy: 4)
                 }
             }

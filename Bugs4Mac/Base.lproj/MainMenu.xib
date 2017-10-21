@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="12062"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="13038"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="the Touch Bar" message="Use a version of macOS with Touch Bar support." minToolsVersion="8.1" minSystemVersion="10.12.1" requiredIntegratedClassName="NSTouchBar"/>
+        <capability name="the Touch Bar" message="Use a version of macOS with Touch Bar support." minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -18,7 +16,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="icon" destination="A4G-ia-hRD" id="jpM-Zh-61d"/>
                 <outlet property="player" destination="dtv-af-M2g" id="31P-kr-LJF"/>
@@ -35,7 +33,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="1150" height="700"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="OYX-ss-5uw" customClass="PlayerView" customModule="Bugs4Mac" customModuleProvider="target">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="OYX-ss-5uw" customClass="PlayerView" customModule="Ginie4Mac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="615" width="1150" height="85"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PZQ-iY-kpf">
@@ -53,12 +51,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="i33-Wd-JIy" customClass="ButtonController" customModule="Bugs4Mac" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="i33-Wd-JIy" customClass="ButtonController" customModule="Ginie4Mac" customModuleProvider="target">
                                 <rect key="frame" x="620" y="30" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Nd9-PB-7u4"/>
+                                    <constraint firstAttribute="height" constant="30" id="3eo-F0-nDq"/>
+                                    <constraint firstAttribute="width" constant="30" id="k9g-kN-is8"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Uoy-aE-2Al">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Uoy-aE-2Al">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -66,12 +65,13 @@
                                     <action selector="next:" target="dtv-af-M2g" id="D6w-dK-Tch"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1lv-vA-3Ox" customClass="ButtonController" customModule="Bugs4Mac" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1lv-vA-3Ox" customClass="ButtonController" customModule="Ginie4Mac" customModuleProvider="target">
                                 <rect key="frame" x="500" y="30" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="NgV-lX-3t6"/>
+                                    <constraint firstAttribute="height" constant="30" id="6LW-o2-YnJ"/>
+                                    <constraint firstAttribute="width" constant="30" id="ohb-ey-LFp"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="zIb-2b-668">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="zIb-2b-668">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -79,12 +79,13 @@
                                     <action selector="prev:" target="dtv-af-M2g" id="cuj-wf-hX7"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hCn-vN-OTz" customClass="ButtonController" customModule="Bugs4Mac" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="hCn-vN-OTz" customClass="ButtonController" customModule="Ginie4Mac" customModuleProvider="target">
                                 <rect key="frame" x="560" y="30" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="cDe-Xc-skW"/>
+                                    <constraint firstAttribute="height" constant="30" id="UXa-MW-1kn"/>
+                                    <constraint firstAttribute="width" constant="30" id="iLS-cV-18M"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6Y9-rB-bse">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="6Y9-rB-bse">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -92,20 +93,10 @@
                                     <action selector="play:" target="dtv-af-M2g" id="7rj-O5-2yb"/>
                                 </connections>
                             </button>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="izB-HC-la4">
-                                <rect key="frame" x="378" y="34" width="96" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="92" id="lhK-c3-4RT"/>
-                                </constraints>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="40" doubleValue="30" tickMarkPosition="above" sliderType="linear" id="ItY-Du-Dke"/>
-                                <connections>
-                                    <action selector="volume:" target="dtv-af-M2g" id="fiE-e3-asy"/>
-                                </connections>
-                            </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ig7-gq-gty">
                                 <rect key="frame" x="1112" y="9" width="35" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="Ek6-ue-hPc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="31" id="Ek6-ue-hPc"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00:00" id="Xwj-Ns-ij8">
                                     <font key="font" metaFont="system" size="10"/>
@@ -168,7 +159,7 @@
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="OGb-S5-TDh">
                                 <rect key="frame" x="1013" y="9" width="13" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="13" id="2WG-sc-Zae"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="13" id="2WG-sc-Zae"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="9SN-TT-wy2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -178,8 +169,8 @@
                                     <action selector="like:" target="dtv-af-M2g" id="GBr-W1-gGb"/>
                                 </connections>
                             </button>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHz-dr-ZUF">
-                                <rect key="frame" x="879" y="34" width="196" height="22"/>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHz-dr-ZUF">
+                                <rect key="frame" x="879" y="27" width="196" height="22"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="nkp-40-Tq7">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -200,11 +191,9 @@
                                     <action selector="streamingType:" target="dtv-af-M2g" id="yma-Ba-E6Y"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OX4-4r-s90" customClass="ButtonController" customModule="Bugs4Mac" customModuleProvider="target">
-                                <rect key="frame" x="676" y="35" width="24" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="tPt-Vm-UOP"/>
-                                </constraints>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OX4-4r-s90" customClass="ButtonController" customModule="Ginie4Mac" customModuleProvider="target">
+                                <rect key="frame" x="697" y="30" width="24" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="squareTextured" title="+" bezelStyle="texturedSquare" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="NMe-2K-XWt">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="29"/>
@@ -213,20 +202,20 @@
                                     <action selector="addSimilar:" target="dtv-af-M2g" id="12n-9I-mVO"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yQs-Zc-syD" customClass="ButtonController" customModule="Bugs4Mac" customModuleProvider="target">
-                                <rect key="frame" x="1089" y="60" width="53" height="19"/>
-                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="fY9-ph-ayk">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                </buttonCell>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="izB-HC-la4">
+                                <rect key="frame" x="368" y="35" width="96" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="49S-Ok-pFa"/>
+                                    <constraint firstAttribute="height" constant="15" id="tH8-dL-OtK"/>
+                                </constraints>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="40" doubleValue="30" tickMarkPosition="above" sliderType="linear" id="ItY-Du-Dke"/>
                                 <connections>
-                                    <action selector="login:" target="dtv-af-M2g" id="rR4-cf-6jd"/>
+                                    <action selector="volume:" target="dtv-af-M2g" id="fiE-e3-asy"/>
                                 </connections>
-                            </button>
+                            </slider>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="OX4-4r-s90" firstAttribute="centerY" secondItem="5Ch-hp-nAZ" secondAttribute="centerY" constant="-1" id="03l-uW-zHV"/>
-                            <constraint firstItem="i33-Wd-JIy" firstAttribute="baseline" secondItem="hCn-vN-OTz" secondAttribute="baseline" id="1yo-6t-5sE"/>
+                            <constraint firstItem="rSe-ML-4eV" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="62" id="1U8-cG-Ohu"/>
                             <constraint firstItem="oTZ-GD-qbZ" firstAttribute="bottom" secondItem="PZQ-iY-kpf" secondAttribute="bottom" constant="-1" id="2MG-Ef-c1M"/>
                             <constraint firstAttribute="trailing" secondItem="avU-90-Kp0" secondAttribute="trailing" constant="44" id="2cI-oR-yaf"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="bottom" secondItem="YOn-Xa-utc" secondAttribute="bottom" id="4Jo-Ve-XJp"/>
@@ -237,46 +226,43 @@
                             <constraint firstItem="rSe-ML-4eV" firstAttribute="top" secondItem="5Ch-hp-nAZ" secondAttribute="bottom" constant="15" id="AFU-FI-3p4"/>
                             <constraint firstItem="YOn-Xa-utc" firstAttribute="leading" secondItem="OGb-S5-TDh" secondAttribute="trailing" constant="8" id="ANj-Wo-ueS"/>
                             <constraint firstItem="PZQ-iY-kpf" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" id="B0E-eu-exv"/>
-                            <constraint firstItem="ic3-7N-U1v" firstAttribute="top" secondItem="yQs-Zc-syD" secondAttribute="bottom" constant="31" id="GC5-HA-hu6"/>
-                            <constraint firstAttribute="trailing" secondItem="yQs-Zc-syD" secondAttribute="trailing" constant="8" id="GGo-vo-t3q"/>
+                            <constraint firstItem="oTZ-GD-qbZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OYX-ss-5uw" secondAttribute="leading" id="FYj-SY-0lp"/>
                             <constraint firstAttribute="trailing" secondItem="6im-dY-sEY" secondAttribute="trailing" constant="83" id="Hl9-oP-yNC"/>
                             <constraint firstAttribute="trailing" secondItem="Ig7-gq-gty" secondAttribute="trailing" constant="5" id="IKt-U6-Hvt"/>
-                            <constraint firstItem="PZQ-iY-kpf" firstAttribute="centerY" secondItem="1lv-vA-3Ox" secondAttribute="centerY" id="Ium-nN-4Sw"/>
-                            <constraint firstItem="PZQ-iY-kpf" firstAttribute="leading" secondItem="Aqd-9v-yzr" secondAttribute="leading" id="KOB-KW-Yki"/>
-                            <constraint firstItem="OGb-S5-TDh" firstAttribute="leading" secondItem="oTZ-GD-qbZ" secondAttribute="trailing" constant="4" id="Koc-nm-gGr"/>
+                            <constraint firstItem="izB-HC-la4" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="33" id="J1K-e4-WfL"/>
+                            <constraint firstItem="PZQ-iY-kpf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Aqd-9v-yzr" secondAttribute="leading" id="KOB-KW-Yki"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="bottom" secondItem="OGb-S5-TDh" secondAttribute="bottom" id="MRD-Om-cjt"/>
+                            <constraint firstItem="Ig7-gq-gty" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OYX-ss-5uw" secondAttribute="leading" constant="20" symbolic="YES" id="NA6-rD-28S"/>
                             <constraint firstItem="PZQ-iY-kpf" firstAttribute="leading" secondItem="OYX-ss-5uw" secondAttribute="leading" id="NzR-vS-g3J"/>
                             <constraint firstAttribute="trailing" secondItem="YOn-Xa-utc" secondAttribute="trailing" constant="103" id="O2o-wl-tmZ"/>
-                            <constraint firstItem="PZQ-iY-kpf" firstAttribute="centerY" secondItem="hCn-vN-OTz" secondAttribute="centerY" id="RXb-Se-7Y9"/>
-                            <constraint firstItem="i33-Wd-JIy" firstAttribute="leading" secondItem="hCn-vN-OTz" secondAttribute="trailing" constant="30" id="RZv-fb-u0K"/>
+                            <constraint firstItem="1lv-vA-3Ox" firstAttribute="left" secondItem="izB-HC-la4" secondAttribute="right" constant="38" id="R4W-tS-Hz5"/>
                             <constraint firstItem="ic3-7N-U1v" firstAttribute="top" secondItem="5Ch-hp-nAZ" secondAttribute="bottom" constant="8" symbolic="YES" id="RqS-Tl-WUw"/>
+                            <constraint firstAttribute="trailing" secondItem="oTZ-GD-qbZ" secondAttribute="trailing" constant="141" id="Stw-RN-vyO"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="bottom" secondItem="Ig7-gq-gty" secondAttribute="bottom" id="T6t-jE-RWy"/>
-                            <constraint firstItem="PZQ-iY-kpf" firstAttribute="centerY" secondItem="i33-Wd-JIy" secondAttribute="centerY" id="THs-N5-jpv"/>
-                            <constraint firstItem="ic3-7N-U1v" firstAttribute="centerX" secondItem="hCn-vN-OTz" secondAttribute="centerX" id="Tx8-yu-4Zh"/>
+                            <constraint firstItem="ZHz-dr-ZUF" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="36" id="TJN-Yg-U0C"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="top" secondItem="OGb-S5-TDh" secondAttribute="top" id="V4K-Yz-DuI"/>
                             <constraint firstAttribute="bottom" secondItem="ic3-7N-U1v" secondAttribute="bottom" constant="13" id="VCy-yQ-r3r"/>
                             <constraint firstItem="5Ch-hp-nAZ" firstAttribute="width" secondItem="OYX-ss-5uw" secondAttribute="width" id="VNp-fw-pUr"/>
                             <constraint firstItem="Aqd-9v-yzr" firstAttribute="width" secondItem="OYX-ss-5uw" secondAttribute="width" id="W2l-O7-tYh"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="top" secondItem="YOn-Xa-utc" secondAttribute="top" id="Wn0-0d-yZs"/>
-                            <constraint firstItem="ZHz-dr-ZUF" firstAttribute="baseline" secondItem="izB-HC-la4" secondAttribute="baseline" id="XQc-qA-lMw"/>
-                            <constraint firstItem="izB-HC-la4" firstAttribute="centerY" secondItem="1lv-vA-3Ox" secondAttribute="centerY" constant="1.5" id="XU3-cT-Bsc"/>
-                            <constraint firstItem="Aqd-9v-yzr" firstAttribute="baseline" secondItem="yQs-Zc-syD" secondAttribute="firstBaseline" id="Zqd-mb-X7M"/>
-                            <constraint firstItem="OX4-4r-s90" firstAttribute="leading" secondItem="i33-Wd-JIy" secondAttribute="trailing" constant="26" id="acb-zQ-p5z"/>
+                            <constraint firstItem="hCn-vN-OTz" firstAttribute="leading" secondItem="1lv-vA-3Ox" secondAttribute="trailing" constant="30" id="Yyf-IR-Iaz"/>
                             <constraint firstItem="PZQ-iY-kpf" firstAttribute="leading" secondItem="ic3-7N-U1v" secondAttribute="leading" id="aty-1N-VFJ"/>
                             <constraint firstAttribute="bottom" secondItem="PZQ-iY-kpf" secondAttribute="bottom" constant="5" id="bml-XJ-7zz"/>
-                            <constraint firstItem="OX4-4r-s90" firstAttribute="width" secondItem="i33-Wd-JIy" secondAttribute="height" multiplier="4:5" id="bsU-ba-uG5"/>
                             <constraint firstAttribute="bottom" secondItem="rSe-ML-4eV" secondAttribute="bottom" constant="6" id="dEr-Mi-vTF"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="top" secondItem="Ig7-gq-gty" secondAttribute="top" id="dyL-wQ-YBM"/>
-                            <constraint firstItem="yQs-Zc-syD" firstAttribute="centerX" secondItem="Ig7-gq-gty" secondAttribute="centerX" constant="-14" id="eGw-Ab-9kT"/>
-                            <constraint firstItem="ic3-7N-U1v" firstAttribute="top" secondItem="hCn-vN-OTz" secondAttribute="bottom" id="gly-Wj-zOp"/>
-                            <constraint firstItem="1lv-vA-3Ox" firstAttribute="leading" secondItem="hCn-vN-OTz" secondAttribute="leading" constant="-60" id="hIi-ka-Tto"/>
-                            <constraint firstItem="i33-Wd-JIy" firstAttribute="baseline" secondItem="1lv-vA-3Ox" secondAttribute="baseline" id="hxc-yV-zZC"/>
+                            <constraint firstItem="hCn-vN-OTz" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="25" id="eSq-1V-wmo"/>
+                            <constraint firstItem="i33-Wd-JIy" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="25" id="fb0-7v-acW"/>
+                            <constraint firstItem="hCn-vN-OTz" firstAttribute="centerX" secondItem="OYX-ss-5uw" secondAttribute="centerX" id="g8i-iK-77g"/>
+                            <constraint firstItem="i33-Wd-JIy" firstAttribute="left" secondItem="hCn-vN-OTz" secondAttribute="right" constant="30" id="gc8-Yb-qUR"/>
+                            <constraint firstAttribute="trailing" secondItem="Aqd-9v-yzr" secondAttribute="trailing" id="ht6-I6-BDu"/>
                             <constraint firstAttribute="trailing" secondItem="rSe-ML-4eV" secondAttribute="trailing" constant="38" id="jKb-f5-z3r"/>
                             <constraint firstItem="PZQ-iY-kpf" firstAttribute="leading" secondItem="5Ch-hp-nAZ" secondAttribute="leading" id="jtb-g1-bNo"/>
                             <constraint firstItem="5Ch-hp-nAZ" firstAttribute="top" secondItem="Aqd-9v-yzr" secondAttribute="bottom" constant="8" symbolic="YES" id="kJN-TM-SSN"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="top" secondItem="avU-90-Kp0" secondAttribute="top" id="lUP-gj-nCw"/>
+                            <constraint firstItem="rSe-ML-4eV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OYX-ss-5uw" secondAttribute="leading" constant="20" symbolic="YES" id="mwb-uw-FWN"/>
+                            <constraint firstItem="1lv-vA-3Ox" firstAttribute="top" secondItem="OYX-ss-5uw" secondAttribute="top" constant="25" id="nJ0-PD-1O6"/>
+                            <constraint firstItem="avU-90-Kp0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OYX-ss-5uw" secondAttribute="leading" constant="20" symbolic="YES" id="oLK-J1-duk"/>
                             <constraint firstItem="ic3-7N-U1v" firstAttribute="width" secondItem="OYX-ss-5uw" secondAttribute="width" id="rmG-eQ-Drv"/>
-                            <constraint firstItem="izB-HC-la4" firstAttribute="leading" secondItem="1lv-vA-3Ox" secondAttribute="leading" constant="-120" id="sdd-uX-mpy"/>
                             <constraint firstItem="oTZ-GD-qbZ" firstAttribute="width" secondItem="OGb-S5-TDh" secondAttribute="height" multiplier="81:13" id="wC6-Fm-HN0"/>
                             <constraint firstItem="6im-dY-sEY" firstAttribute="leading" secondItem="YOn-Xa-utc" secondAttribute="trailing" constant="7" id="xee-6Q-zGK"/>
                         </constraints>
@@ -284,7 +270,7 @@
                             <outlet property="menu" destination="vBw-8a-sgD" id="d3m-Ko-bTw"/>
                         </connections>
                     </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="dUK-Kh-Y9f" customClass="ProgressBarView" customModule="Bugs4Mac" customModuleProvider="target">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="dUK-Kh-Y9f" customClass="ProgressBarView" customModule="Ginie4Mac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="615" width="1150" height="5"/>
                     </customView>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GWl-xG-aNe">
@@ -382,7 +368,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="SUo-XW-0El">
-                                            <rect key="frame" x="141" y="615" width="15" height="0.0"/>
+                                            <rect key="frame" x="140" y="615" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <connections>
@@ -420,7 +406,7 @@
                                                                 <rect key="frame" x="1" y="0.0" width="991" height="614"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" rowHeight="14" rowSizeStyle="automatic" headerView="TZw-R2-b9z" viewBased="YES" id="bsc-P2-nuE" customClass="NowPlayingList" customModule="Bugs4Mac" customModuleProvider="target">
+                                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" typeSelect="NO" rowHeight="14" rowSizeStyle="automatic" headerView="TZw-R2-b9z" viewBased="YES" id="bsc-P2-nuE" customClass="NowPlayingList" customModule="Ginie4Mac" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="991" height="591"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <size key="intercellSpacing" width="3" height="5"/>
@@ -586,7 +572,7 @@
                                                                 </subviews>
                                                             </clipView>
                                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Dh-g1-ccg">
-                                                                <rect key="frame" x="1" y="698" width="741" height="16"/>
+                                                                <rect key="frame" x="1" y="598" width="991" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Lw2-kB-Skk">
@@ -609,11 +595,11 @@
                                             </tabViewItem>
                                             <tabViewItem label="WebView" identifier="3" id="v9c-sb-5YT">
                                                 <view key="view" id="f8t-cR-JCS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="743" height="715"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="993" height="615"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="DvY-tz-Gt3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="743" height="715"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="993" height="615"/>
                                                         </customView>
                                                     </subviews>
                                                     <constraints>
@@ -625,7 +611,7 @@
                                                 </view>
                                             </tabViewItem>
                                             <tabViewItem label="LoadView" identifier="" id="Khg-tM-JpN">
-                                                <view key="view" id="uit-1J-Zjt" customClass="LoadView" customModule="Bugs4Mac" customModuleProvider="target">
+                                                <view key="view" id="uit-1J-Zjt" customClass="LoadView" customModule="Ginie4Mac" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="993" height="615"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -651,7 +637,8 @@
                                     <constraint firstItem="NdN-FF-B4B" firstAttribute="height" secondItem="lbR-5c-hHU" secondAttribute="height" id="FVu-gu-vGX"/>
                                     <constraint firstItem="NdN-FF-B4B" firstAttribute="top" secondItem="lbR-5c-hHU" secondAttribute="top" id="HuG-QC-9D2"/>
                                     <constraint firstItem="NdN-FF-B4B" firstAttribute="width" secondItem="lbR-5c-hHU" secondAttribute="width" id="QLn-BS-lOr"/>
-                                    <constraint firstItem="NdN-FF-B4B" firstAttribute="leading" secondItem="lbR-5c-hHU" secondAttribute="leading" id="ekv-oC-Ted"/>
+                                    <constraint firstAttribute="trailing" secondItem="NdN-FF-B4B" secondAttribute="trailing" id="dIl-qP-vDY"/>
+                                    <constraint firstItem="NdN-FF-B4B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lbR-5c-hHU" secondAttribute="leading" id="ekv-oC-Ted"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -681,7 +668,7 @@
             <connections>
                 <outlet property="delegate" destination="dtv-af-M2g" id="YYJ-VP-YKA"/>
             </connections>
-            <point key="canvasLocation" x="237" y="-1748"/>
+            <point key="canvasLocation" x="440" y="-1906"/>
         </window>
         <customObject id="dcH-Ea-wIe" customClass="NSWindowController">
             <connections>
@@ -1161,7 +1148,7 @@ CA
             </items>
             <point key="canvasLocation" x="555" y="-1111.5"/>
         </menu>
-        <customObject id="fx7-9x-Imf" customClass="NowPlayingListPreference" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="fx7-9x-Imf" customClass="NowPlayingListPreference" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="addBottomButton" destination="pwW-T6-vl9" id="STH-qM-5ka"/>
                 <outlet property="addNextButton" destination="lC2-vq-g6V" id="NS1-RE-GKk"/>
@@ -1170,7 +1157,7 @@ CA
                 <outlet property="removeDuplicateSongButton" destination="D7m-1s-vAJ" id="wDh-2h-Tm1"/>
             </connections>
         </customObject>
-        <customObject id="2qk-f6-MRL" customClass="TouchBarController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="2qk-f6-MRL" customClass="TouchBarController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="addSimilarButton" destination="mIv-T2-gqs" id="uIW-Sp-hEe"/>
                 <outlet property="albumImageButton" destination="lxL-di-2rZ" id="oue-of-ksx"/>
@@ -1202,28 +1189,28 @@ CA
                 <outlet property="volumeSlider" destination="QW8-BC-Jwu" id="b4G-aM-Epz"/>
             </connections>
         </customObject>
-        <customObject id="KBh-ib-seA" customClass="WebPlayerController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="KBh-ib-seA" customClass="WebPlayerController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
+                <outlet property="mainWebViewController" destination="fsA-oI-JDN" id="lro-wc-vAU"/>
                 <outlet property="playerController" destination="dtv-af-M2g" id="ciz-6X-A1M"/>
                 <outlet property="sourceItemView" destination="bsc-P2-nuE" id="WJz-Rc-gh7"/>
                 <outlet property="view" destination="dWa-CN-W5a" id="esz-BY-s22"/>
             </connections>
         </customObject>
-        <customObject id="gqM-Pz-296" customClass="RadioController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="gqM-Pz-296" customClass="RadioController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="playerController" destination="dtv-af-M2g" id="q91-mr-qVn"/>
                 <outlet property="wallpaper" destination="D7y-X7-Np8" id="qq5-x2-92l"/>
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="8Fb-Zk-YeL"/>
             </connections>
         </customObject>
-        <customObject id="dtv-af-M2g" customClass="PlayerController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="dtv-af-M2g" customClass="PlayerController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="albumImageField" destination="PZQ-iY-kpf" id="br7-JK-jsZ"/>
                 <outlet property="albumTextField" destination="5Ch-hp-nAZ" id="i1x-Xa-C3T"/>
                 <outlet property="appDelegate" destination="Voe-Tx-rLC" id="4fq-si-SDC"/>
                 <outlet property="artistTextField" destination="ic3-7N-U1v" id="Czm-ZN-7tP"/>
                 <outlet property="likeButton" destination="OGb-S5-TDh" id="6O7-Uk-7My"/>
-                <outlet property="loginButton" destination="yQs-Zc-syD" id="hvQ-HD-S7G"/>
                 <outlet property="loginController" destination="qMb-Qm-bfY" id="qbI-AE-q3E"/>
                 <outlet property="loginpop" destination="HSw-RI-ES3" id="3zU-bS-gSZ"/>
                 <outlet property="lyricPlayer" destination="acV-e9-Bta" id="Mib-30-YDX"/>
@@ -1251,7 +1238,7 @@ CA
                 <outlet property="window" destination="wuL-YS-11Q" id="Fwp-Xu-615"/>
             </connections>
         </customObject>
-        <customObject id="SAs-eT-r4Q" customClass="SideListController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="SAs-eT-r4Q" customClass="SideListController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="mainWebViewController" destination="fsA-oI-JDN" id="yuM-pb-Fpy"/>
                 <outlet property="player" destination="dtv-af-M2g" id="05S-Cg-YNe"/>
@@ -1261,9 +1248,10 @@ CA
                 <outlet property="webPlayerWindow" destination="lnu-zf-NCF" id="oQv-hl-FA6"/>
             </connections>
         </customObject>
-        <customObject id="fsA-oI-JDN" customClass="MainWebViewController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="fsA-oI-JDN" customClass="MainWebViewController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="appDelegate" destination="Voe-Tx-rLC" id="xS1-w7-Hbp"/>
+                <outlet property="loginController" destination="qMb-Qm-bfY" id="eAv-3j-JTZ"/>
                 <outlet property="lyricPlayer" destination="acV-e9-Bta" id="iEB-h9-gvd"/>
                 <outlet property="mvPlayer" destination="4lz-Mp-gbG" id="KYd-yf-110"/>
                 <outlet property="playerController" destination="dtv-af-M2g" id="mkF-u6-ZPn"/>
@@ -1275,13 +1263,13 @@ CA
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="DTc-W6-YCw"/>
             </connections>
         </customObject>
-        <customObject id="Cln-bl-Rz7" customClass="NowPlayingListController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="Cln-bl-Rz7" customClass="NowPlayingListController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="nowPlayingList" destination="bsc-P2-nuE" id="Dfo-gb-DRq"/>
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="3mX-yU-o6d"/>
             </connections>
         </customObject>
-        <customObject id="d3b-CH-YXn" customClass="SearchController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="d3b-CH-YXn" customClass="SearchController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="appDelegate" destination="Voe-Tx-rLC" id="IFY-u4-6LQ"/>
                 <outlet property="mainWebViewController" destination="fsA-oI-JDN" id="z1R-AT-HLh"/>
@@ -1295,22 +1283,18 @@ CA
                 <outlet property="contentViewController" destination="q1s-ew-3Pi" id="DMm-Il-kwd"/>
             </connections>
         </popover>
-        <customObject id="4lz-Mp-gbG" customClass="MoviePlayerController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="4lz-Mp-gbG" customClass="MoviePlayerController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="ZS1-5Z-JQg"/>
             </connections>
         </customObject>
-        <customObject id="qMb-Qm-bfY" customClass="LoginWebViewController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="qMb-Qm-bfY" customClass="LoginWebViewController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
-                <outlet property="alwaysLoginButton" destination="8sw-CJ-9uc" id="lNN-pk-5pK"/>
-                <outlet property="idField" destination="zfh-yF-Nyd" id="nj5-ja-NBq"/>
-                <outlet property="idTextField" destination="xeV-YD-e1O" id="3Gi-d4-oZp"/>
-                <outlet property="loginButton" destination="lHZ-kf-SVv" id="sHB-Td-9AR"/>
+                <outlet property="loginView" destination="MOB-zo-5tf" id="WRi-w1-ICZ"/>
+                <outlet property="loginpop" destination="HSw-RI-ES3" id="zQI-Cs-2D4"/>
+                <outlet property="mainWebViewController" destination="fsA-oI-JDN" id="IiW-qz-4cD"/>
                 <outlet property="playerController" destination="dtv-af-M2g" id="Anr-to-LhT"/>
-                <outlet property="pwField" destination="i3H-20-zho" id="vVc-mv-Pem"/>
-                <outlet property="pwTextField" destination="7R8-ta-tkz" id="vqw-80-B8D"/>
                 <outlet property="sideListController" destination="SAs-eT-r4Q" id="WGI-Ot-lFt"/>
-                <outlet property="state" destination="wle-mN-Oba" id="YfH-6h-srg"/>
                 <outlet property="view" destination="BSZ-IW-dB8" id="Km4-hC-VKd"/>
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="IhU-7J-5XJ"/>
             </connections>
@@ -1320,7 +1304,7 @@ CA
                 <outlet property="view" destination="hDx-gw-Cdy" id="ADP-Ry-0Gp"/>
             </connections>
         </viewController>
-        <window title="BugsPlayer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lnu-zf-NCF">
+        <window title="BugsPlayer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="lnu-zf-NCF">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="348" width="428" height="718"/>
@@ -1331,140 +1315,34 @@ CA
             </view>
             <point key="canvasLocation" x="-189" y="-1734"/>
         </window>
-        <customView id="hDx-gw-Cdy" customClass="LoginView" customModule="Bugs4Mac" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="264" height="244"/>
+        <customView id="hDx-gw-Cdy" customClass="LoginView" customModule="Ginie4Mac" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="244"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xeV-YD-e1O">
-                    <rect key="frame" x="51" y="177" width="196" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="SUL-2G-e7U">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7R8-ta-tkz">
-                    <rect key="frame" x="51" y="145" width="196" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="1LB-eT-bCj">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <allowedInputSourceLocales>
-                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                        </allowedInputSourceLocales>
-                    </secureTextFieldCell>
-                    <connections>
-                        <action selector="performClick:" target="lHZ-kf-SVv" id="mlG-xq-a4l"/>
-                    </connections>
-                </secureTextField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfh-yF-Nyd">
-                    <rect key="frame" x="22" y="182" width="17" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ID" drawsBackground="YES" id="ovw-ln-Q4m">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3H-20-zho">
-                    <rect key="frame" x="20" y="148" width="21" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PW" drawsBackground="YES" id="YXF-ds-Q0Q">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8sw-CJ-9uc">
-                    <rect key="frame" x="18" y="109" width="18" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ZGl-2H-wfF">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHZ-kf-SVv">
-                    <rect key="frame" x="176" y="102" width="74" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="로그인" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="smQ-fn-eWY">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="login:" target="qMb-Qm-bfY" id="85q-nl-b9e"/>
-                    </connections>
-                </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wle-mN-Oba">
-                    <rect key="frame" x="20" y="207" width="227" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" drawsBackground="YES" id="yma-j7-886">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMN-LX-GLt">
-                    <rect key="frame" x="14" y="46" width="236" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="PAYCO로 로그인" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j2t-c5-L2y">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="loginWithPAYCO:" target="qMb-Qm-bfY" id="upC-y7-qai"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJn-qf-eYI">
-                    <rect key="frame" x="14" y="13" width="236" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="FACEBOOK으로 로그인" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OJc-Vl-Iiv">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="loginWithFacebook:" target="qMb-Qm-bfY" id="A3C-oM-u3W"/>
-                    </connections>
-                </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ebd-xp-BkZ">
-                    <rect key="frame" x="37" y="111" width="64" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="항상 로그인" drawsBackground="YES" id="7FO-EB-Zjo">
-                        <font key="font" size="13" name=".AppleSDGothicNeoI-Regular"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BSZ-IW-dB8">
                     <rect key="frame" x="0.0" y="214" width="34" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FjD-IV-enb">
-                    <rect key="frame" x="20" y="88" width="191" height="17"/>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOB-zo-5tf">
+                    <rect key="frame" x="0.0" y="0.0" width="455" height="244"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(PAYCO, FACEBOOK 로그인 포함)" drawsBackground="YES" id="hwm-n7-4o7">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </textFieldCell>
-                </textField>
+                </customView>
             </subviews>
-            <point key="canvasLocation" x="-1735" y="-1601"/>
+            <point key="canvasLocation" x="-1748.5" y="-1683.5"/>
         </customView>
-        <customObject id="rDI-ZQ-OK2" customClass="LoadViewController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="rDI-ZQ-OK2" customClass="LoadViewController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="loadIcon" destination="BER-tQ-lb8" id="ZeC-GN-19S"/>
                 <outlet property="view" destination="uit-1J-Zjt" id="cT5-Ns-K1y"/>
             </connections>
         </customObject>
-        <customObject id="M8z-BE-qRP" customClass="PreferenceViewController" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="M8z-BE-qRP" customClass="PreferenceViewController" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="vPY-o4-cIq" id="nIL-yl-3G4"/>
                 <outlet property="wallPaperPreference" destination="PLm-DM-7MJ" id="tuV-eV-If4"/>
             </connections>
         </customObject>
-        <customObject id="PLm-DM-7MJ" customClass="WallPaperPlayerPreference" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="PLm-DM-7MJ" customClass="WallPaperPlayerPreference" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="albumAlignmentButton" destination="ij5-T5-Ahm" id="Rtm-Bj-7jU"/>
                 <outlet property="albumAlwaysTopButton" destination="IUt-DZ-yUx" id="bwG-cG-9G2"/>
@@ -1501,7 +1379,7 @@ CA
                 <outlet property="wallPaperPlayer" destination="D7y-X7-Np8" id="Aa8-oY-Tte"/>
             </connections>
         </customObject>
-        <customObject id="F5q-ce-Cqs" customClass="DockAndMenuBarPreference" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="F5q-ce-Cqs" customClass="DockAndMenuBarPreference" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="atDockButton" destination="R8R-3b-ixu" id="8rH-qa-iSA"/>
                 <outlet property="atMenuBarButton" destination="tw4-Zo-G4N" id="8T4-hT-1Bu"/>
@@ -1515,7 +1393,7 @@ CA
                 <outlet property="titleArtistAlbum2MenuBarButton" destination="bnp-aX-sVm" id="Df8-Q9-0e6"/>
             </connections>
         </customObject>
-        <customObject id="1rl-D9-iAJ" customClass="AlarmCenterPreference" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="1rl-D9-iAJ" customClass="AlarmCenterPreference" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="audioJackButton" destination="6J7-zt-EJR" id="ZVM-XG-nvn"/>
                 <outlet property="funcKeyButton" destination="3eb-DC-y3v" id="7bF-HC-LNJ"/>
@@ -1523,7 +1401,7 @@ CA
                 <outlet property="playerController" destination="dtv-af-M2g" id="NSq-W2-rTD"/>
             </connections>
         </customObject>
-        <customObject id="acV-e9-Bta" customClass="LyricPlayer" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="acV-e9-Bta" customClass="LyricPlayer" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="alwaysTop" destination="cGZ-ih-mHJ" id="XsF-3N-HIx"/>
                 <outlet property="menu" destination="mIu-2q-wnJ" id="MO4-hs-p2Z"/>
@@ -1531,8 +1409,8 @@ CA
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="Ncs-Eb-K6r"/>
             </connections>
         </customObject>
-        <customObject id="Hxw-Fl-iEC" customClass="UserDefaultsController" customModule="Bugs4Mac" customModuleProvider="target"/>
-        <customObject id="D7y-X7-Np8" customClass="WallpaperPlayer" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="Hxw-Fl-iEC" customClass="UserDefaultsController" customModule="Ginie4Mac" customModuleProvider="target"/>
+        <customObject id="D7y-X7-Np8" customClass="WallpaperPlayer" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="defaults" destination="Hxw-Fl-iEC" id="mxF-Nf-jva"/>
                 <outlet property="preference" destination="PLm-DM-7MJ" id="doa-A8-hsp"/>
@@ -1541,7 +1419,7 @@ CA
                 <outlet property="webPlayer" destination="KBh-ib-seA" id="3h3-OG-nt6"/>
             </connections>
         </customObject>
-        <customObject id="W8u-Qz-cCa" customClass="SyncPrefernece" customModule="Bugs4Mac" customModuleProvider="target">
+        <customObject id="W8u-Qz-cCa" customClass="SyncPrefernece" customModule="Ginie4Mac" customModuleProvider="target">
             <connections>
                 <outlet property="player" destination="dtv-af-M2g" id="hG4-Kf-dmK"/>
                 <outlet property="slider" destination="abP-DH-afH" id="070-OE-E9N"/>
@@ -2350,7 +2228,7 @@ CA
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dRu-kH-q1e">
-                                <rect key="frame" x="18" y="128" width="530" height="76"/>
+                                <rect key="frame" x="18" y="128" width="530" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6M-n8-lRA">
@@ -2412,7 +2290,7 @@ CA
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="hJo-IC-XNJ">
-                                <rect key="frame" x="12" y="167" width="536" height="5"/>
+                                <rect key="frame" x="12" y="167" width="536" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-js-Ym1">
@@ -2763,14 +2641,14 @@ CA
             <touchBarItems>
                 <touchBarItem id="FhL-6N-EbF">
                     <viewController key="viewController" id="4ak-vf-VS0">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFN-V4-oP4">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                        <button key="view" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="ZFN-V4-oP4">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="x1m-TN-2GH"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="x1m-TN-2GH"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9bH-2R-4hv">
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9bH-2R-4hv">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="system" size="1"/>
                             </buttonCell>
                             <connections>
                                 <action selector="others:" target="2qk-f6-MRL" id="RNR-Pi-M8A"/>
@@ -2781,10 +2659,10 @@ CA
                 </touchBarItem>
                 <touchBarItem id="vgs-XD-PdZ">
                     <viewController key="viewController" id="CSN-sJ-hBU">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wL4-Jh-Ixt">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                        <button key="view" horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wL4-Jh-Ixt">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="Gea-0g-ckf"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Gea-0g-ckf"/>
                             </constraints>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gv2-57-oH3">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2795,16 +2673,16 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="MPt-yq-8Hk">
                     <viewController key="viewController" id="6Z6-Eg-8mu">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-wg-bOu">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                        <button key="view" horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-wg-bOu">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="VWy-qQ-egq"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="3go-A7-PvT"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="PLAY" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c2L-Wd-Int">
+                            <buttonCell key="cell" type="push" title="P" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c2L-Wd-Int">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" usesAppearanceFont="YES"/>
                             </buttonCell>
@@ -2813,16 +2691,16 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="vLe-zO-gcf">
                     <viewController key="viewController" id="SBL-ju-uN2">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nU6-D3-ShM">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="wUq-PS-0MU"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="s8h-Su-kAB"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="NEXT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uX1-mr-5CV">
+                            <buttonCell key="cell" type="push" title="N" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uX1-mr-5CV">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" usesAppearanceFont="YES"/>
                             </buttonCell>
@@ -2831,16 +2709,16 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="Ijd-go-Om5">
                     <viewController key="viewController" id="K7y-ce-f4U">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rZl-Tb-M7r">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                        <button key="view" horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rZl-Tb-M7r">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="qpF-uM-vLU"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="qpF-uM-vLU"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="LIKE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HR0-Vi-yff">
+                            <buttonCell key="cell" type="push" title="L" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HR0-Vi-yff">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" usesAppearanceFont="YES"/>
                             </buttonCell>
@@ -2849,15 +2727,15 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="XzN-gc-3UQ"/>
                 <touchBarItem id="zJP-5o-M1b">
                     <viewController key="viewController" id="wtG-Eh-mjK">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lxL-di-2rZ">
-                            <rect key="frame" x="-6" y="-7" width="42" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="hi0-2v-IuM"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="hi0-2v-IuM"/>
                             </constraints>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yL9-Sh-2eF">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2868,13 +2746,12 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="30" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="zAM-f6-ozy">
                     <viewController key="viewController" id="0Fh-Rl-g0g">
-                        <textField key="view" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gP1-OS-18I">
-                            <rect key="frame" x="0.0" y="0.0" width="350" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textField key="view" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gP1-OS-18I">
+                            <rect key="frame" x="-349" y="0.0" width="349" height="24"/>
                             <textFieldCell key="cell" borderStyle="bezel" alignment="left" title="Label" drawsBackground="YES" id="Ysh-Yc-QsF">
                                 <font key="font" usesAppearanceFont="YES"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2882,24 +2759,24 @@ CA
                             </textFieldCell>
                         </textField>
                     </viewController>
-                    <size key="designTimeSize" width="350" height="24"/>
+                    <size key="designTimeSize" width="349" height="24"/>
                 </touchBarItem>
             </touchBarItems>
             <connections>
                 <outlet property="delegate" destination="2qk-f6-MRL" id="0xD-lM-xZU"/>
             </connections>
-            <point key="canvasLocation" x="-77.5" y="-278"/>
+            <point key="canvasLocation" x="-796" y="-41"/>
         </touchBar>
         <touchBar id="S7O-7e-ISD">
             <touchBarItems>
                 <touchBarItem id="EmR-DY-aoI">
                     <viewController key="viewController" id="Uds-xF-c8w">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lza-PT-DOn">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="3J7-ta-p34"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="3J7-ta-p34"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pye-qQ-G6q">
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pye-qQ-G6q">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" usesAppearanceFont="YES"/>
                             </buttonCell>
@@ -2908,16 +2785,16 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="gpE-xX-Zdf">
                     <viewController key="viewController" id="vQv-by-hUY">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TTn-K8-edF">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="xgn-aO-heo"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="wZR-If-X4v"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="설정" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mvf-ML-55J">
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mvf-ML-55J">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" usesAppearanceFont="YES"/>
                             </buttonCell>
@@ -2926,14 +2803,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="AEo-2P-dfh">
                     <viewController key="viewController" id="lyn-N9-l4T">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mIv-T2-gqs">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="8Xl-Lf-c94"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="8Xl-Lf-c94"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="ADD" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BSO-y2-FsH">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2944,14 +2821,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="Duv-Ne-NFj">
                     <viewController key="viewController" id="PCr-4K-c9f">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m2q-JC-meq">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="KEQ-Wq-Q9s"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="KEQ-Wq-Q9s"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="SEARCH" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qNc-Oh-FE8">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2962,14 +2839,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="90" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="Orw-IJ-Jdh">
                     <viewController key="viewController" id="cnv-Eh-byQ">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J0v-K3-ay1">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="Gm7-se-2da"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Gm7-se-2da"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="가사" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Ag-Il-gqm">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2980,7 +2857,7 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <sliderTouchBarItem id="9ge-yK-Nrr">
                     <sliderAccessory key="minimumValueAccessory" id="8Lp-j9-wkc">
@@ -2990,7 +2867,7 @@ CA
                         <sliderAccessoryBehavior key="behavior" id="ntA-GW-giS"/>
                     </sliderAccessory>
                     <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-BC-Jwu">
-                        <rect key="frame" x="-2" y="-2" width="221" height="34"/>
+                        <rect key="frame" x="-6" y="0.0" width="69" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="5ho-Cs-yMR"/>
                         </constraints>
@@ -3003,9 +2880,9 @@ CA
                 <touchBarItem id="Ism-0D-5ib">
                     <viewController key="viewController" id="3SU-cq-FWI">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QZJ-AL-jb1">
-                            <rect key="frame" x="-5" y="-6" width="60" height="30"/>
+                            <rect key="frame" x="-5" y="-6" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="t4t-fC-ElS"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="t4t-fC-ElS"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="320" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9HQ-cC-yvL">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3016,14 +2893,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="20"/>
+                    <size key="designTimeSize" width="62" height="20"/>
                 </touchBarItem>
                 <touchBarItem id="YmF-DC-aDk">
                     <viewController key="viewController" id="QxT-gH-jRG">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-lv-Tul">
-                            <rect key="frame" x="-5" y="-6" width="60" height="30"/>
+                            <rect key="frame" x="-5" y="-6" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="MWr-jH-joR"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="MWr-jH-joR"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="REPEAT" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wx8-XI-Lqf">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3034,14 +2911,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="20"/>
+                    <size key="designTimeSize" width="62" height="20"/>
                 </touchBarItem>
                 <touchBarItem id="jje-cY-hG3">
                     <viewController key="viewController" id="qDs-LP-zhR">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mbe-hW-KUd">
                             <rect key="frame" x="-5" y="-6" width="60" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="4KQ-gu-bfz"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="4KQ-gu-bfz"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="REPEAT" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="29k-Dt-3uS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3055,34 +2932,34 @@ CA
                     <size key="designTimeSize" width="50" height="20"/>
                 </touchBarItem>
             </touchBarItems>
-            <point key="canvasLocation" x="-79" y="-149"/>
+            <point key="canvasLocation" x="201" y="-82"/>
         </touchBar>
         <touchBar id="LHA-a1-a1H">
             <touchBarItems>
                 <touchBarItem id="Txf-nh-Aep">
                     <viewController key="viewController" id="4WA-jn-XKU">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-Ti-zfw">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-Ti-zfw">
+                            <rect key="frame" x="-5" y="-6" width="62" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="Gql-YS-7Aw"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Gql-YS-7Aw"/>
                             </constraints>
-                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HkM-EU-IRS">
+                            <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HkM-EU-IRS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
                                 <action selector="others:" target="2qk-f6-MRL" id="g81-kL-7Vf"/>
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="52" height="20"/>
                 </touchBarItem>
                 <touchBarItem id="Q6h-60-b6f">
                     <viewController key="viewController" id="v51-gR-caz">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F3o-58-8P5">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="N1V-3K-teV"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="N1V-3K-teV"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="PREV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FYu-bv-zDJ">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3093,14 +2970,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="lbt-Nu-xrD">
                     <viewController key="viewController" id="wao-jt-dpU">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-6S-cyb">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="L92-1v-cSQ"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="L92-1v-cSQ"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="PLAY" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9gL-P3-9aC">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3111,14 +2988,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="abb-JS-Tgt">
                     <viewController key="viewController" id="FNc-1i-IiL">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NzR-pa-6ob">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="IMR-c8-svA"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="IMR-c8-svA"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="NEXT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W8k-nG-KtV">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3129,14 +3006,14 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="9gn-X8-2NK">
                     <viewController key="viewController" id="WtU-OM-YXj">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dpx-H9-eoA">
-                            <rect key="frame" x="-6" y="-7" width="62" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="FIQ-7d-YGe"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="FIQ-7d-YGe"/>
                             </constraints>
                             <buttonCell key="cell" type="push" title="LIKE" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5bH-XT-iQA">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3147,15 +3024,15 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="50" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="XC8-eO-40Y"/>
                 <touchBarItem id="HGP-4I-UTn">
                     <viewController key="viewController" id="4XH-35-17Z">
                         <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qNX-mC-GTs">
-                            <rect key="frame" x="-6" y="-7" width="42" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="IYt-GY-yVf"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="IYt-GY-yVf"/>
                             </constraints>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Fe-cQ-GHx">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3166,22 +3043,22 @@ CA
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="30" height="30"/>
+                    <size key="designTimeSize" width="72" height="30"/>
                 </touchBarItem>
                 <touchBarItem id="d08-TX-uOy">
                     <viewController key="viewController" id="t33-2p-eLu">
                         <scrubber key="view" translatesAutoresizingMaskIntoConstraints="NO" id="cli-dy-gXA">
-                            <rect key="frame" x="0.0" y="0.0" width="349" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <rect key="frame" x="-349" y="0.0" width="349" height="30"/>
                             <scrubberFlowLayout key="scrubberLayout">
                                 <size key="itemSize" width="3" height="30"/>
                             </scrubberFlowLayout>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </scrubber>
                     </viewController>
+                    <size key="designTimeSize" width="349" height="30"/>
                 </touchBarItem>
             </touchBarItems>
-            <point key="canvasLocation" x="-78" y="-217"/>
+            <point key="canvasLocation" x="119" y="-245"/>
         </touchBar>
     </objects>
     <resources>

@@ -96,7 +96,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         player.nameTextField.stringValue = "add Header"
         /* 헤더를 추가해준다. */
         items.append(ParentItem(name:"지금 재생 목록", isHeader: true))
-        items.append(ParentItem(name:"벅스 뮤직", isHeader: true))
+        items.append(ParentItem(name:"지니 뮤직", isHeader: true))
         
         /* 웹에서 받아오는 것으로 하려했지만 속도를 위해 직접입력한다. */
         items.append(ParentItem(name: "벅스차트", isHeader: false))
@@ -131,7 +131,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             }
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date.distantFuture)
         }
-        
+        /*
         player.nameTextField.stringValue = "get NumOfButgsTV"
         /* 벅스TV의 자식들의 수를 받아온다. */
         let numOfBugsOnTVElements = getNumOfBugsOnTV()
@@ -146,7 +146,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
                 items[items.count-1].appendChild(getTitleOfBugsOnTVElement(i), href: getHrefOfBugsOnTVElement(i), num: i, parent: items[items.count-1].name)
             }
         }
-        
+        */
         items.append(ParentItem(name: "내 음악", isHeader: false))
         items[items.count-1].appendChild("최근 들은 곡", num: 0, parent: items[items.count-1].name)
         items[items.count-1].appendChild("가장 많이 들은 곡", num: 1, parent: items[items.count-1].name)
@@ -155,7 +155,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         
         items.append(ParentItem(name: "내 앨범", isHeader: false))
         
-        
+        /*
         player.nameTextField.stringValue = "get MyAlbum"
         if webView == nil {
             return
@@ -184,8 +184,8 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
             }
             items[items.count-1].appendChild(getTitleOfMyAlbumElement(i), href: getHrefOfMyAlbumElement(i), num: i, parent: items[items.count-1].name)
         }
-        
-        player.nameTextField.stringValue = webPlayer.getTitle()
+        */
+        //player.nameTextField.stringValue = webPlayer.getTitle()
         sideList.reloadItem(items, reloadChildren: true)
         self.sideList.reloadData()
         
@@ -224,9 +224,7 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
         
         let item = sender.item(atRow: sender.clickedRow)
         
-        //print(sender.clickedRow)
-        //print(item)
-        
+
         /* 아이템이 부모항목이면 */
         if item is ParentItem {
             
@@ -238,18 +236,18 @@ class SideListController:NSObject, WKNavigationDelegate, WKUIDelegate {
                     mainWebViewController.deinitWebView()
                 }
                 else if node.name == "벅스 뮤직" {
-                    showWebPlayer()
-                    mainWebViewController.deinitWebView()
-                    mainWebViewController.initWebView()
+                    //showWebPlayer()
+                    //mainWebViewController.deinitWebView()
+                    //mainWebViewController.initWebView()
                     mainWebViewController.openHome()
                     tabView.selectTabViewItem(at: 1)
-                    closeWebPlayer()
+                    //closeWebPlayer()
                 }
             }
             else {
                 showWebPlayer()
                 mainWebViewController.deinitWebView()
-                mainWebViewController.initWebView()
+                //mainWebViewController.initWebView()
                 if node.name == "벅스차트" {
                     mainWebViewController.openBugsChart()
                     tabView.selectTabViewItem(at: 2)

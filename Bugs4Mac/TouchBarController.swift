@@ -87,6 +87,7 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
     var mode = PlayerState.WebPlayer
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         nc.addObserver(self, selector: #selector(TouchBarController.changeImage), name: NSNotification.Name(rawValue: "touchBarImage"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeRepeat), name: NSNotification.Name(rawValue: "touchBarRepeat"), object: nil)
         nc.addObserver(self, selector: #selector(TouchBarController.changeRandom), name: NSNotification.Name(rawValue: "touchBarRandom"), object: nil)
@@ -109,14 +110,21 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         scrubber.dataSource = self
         
         lyricButton.image = NSImage(named: "tblyric.png")
+        lyricButton.setFrameSize(NSSize(width: 50, height: 40))
         searchButton.image = NSImage(named: "tbsearch.png")
-        prevButton.image = NSImage(named: "tblyric.png")
+        searchButton.setFrameSize(NSSize(width: 50, height: 40))
         addSimilarButton.image = NSImage(named: "tbadd.png")
+        addSimilarButton.setFrameSize(NSSize(width: 50, height: 40))
         preferenceButton.image = NSImage(named: "tbsetting.png")
+        preferenceButton.setFrameSize(NSSize(width: 50, height: 40))
         playButton.image = NSImage(named: "tbplay.png")
+        playButton.setFrameSize(NSSize(width: 50, height: 40))
         nextButton.image = NSImage(named: "tbnext.png")
+        nextButton.setFrameSize(NSSize(width: 50, height: 40))
         prevButton.image = NSImage(named: "tbprev.png")
+        prevButton.setFrameSize(NSSize(width: 50, height: 40))
         likeButton.image = NSImage(named: "tbunlike.png")
+        likeButton.setFrameSize(NSSize(width: 50, height: 40))
         scrubberPlayButton.image = NSImage(named: "tbplay.png")
         scrubberNextButton.image = NSImage(named: "tbnext.png")
         scrubberPrevButton.image = NSImage(named: "tbprev.png")
@@ -129,7 +137,6 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         othersOthersButton.image = NSImage(named: "tbothers")
         
         //prevBar.view?.setFrameSize(NSSize(width: 50, height: 30))
-        super.awakeFromNib()
     }
     
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
@@ -189,6 +196,7 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         
         if mode == .Radio {
             prevButton.image = NSImage(named: "tbplay.png")
+            prevButton.setFrameSize(NSSize(width: 50, height: 40))
             playButton.image = NSImage(named: "tbnext.png")
             nextButton.image = NSImage(named: "tbunlike.png")
             scrubberLikeButton.image = NSImage(named: "tbhate.png")
@@ -205,7 +213,9 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
         }
         else {
             prevButton.image = NSImage(named: "tbprev.png")
+            prevButton.setFrameSize(NSSize(width: 50, height: 40))
             playButton.image = NSImage(named: "tbplay.png")
+            
             nextButton.image = NSImage(named: "tbnext.png")
             scrubberLikeButton.image = NSImage(named: "tbunlike.png")
             scrubberPrevButton.image = NSImage(named: "tbprev.png")
@@ -315,7 +325,7 @@ class TouchBarController:NSViewController, NSTouchBarDelegate, NSScrubberDelegat
             break
         case .WebPlayer:
             if isLyrics {
-                label.stringValue = player.webPlayer.getLyricsNow()
+                //label.stringValue = player.lyrics.string[lyricNext-1]
             }
             else {
                 label.stringValue = name + " - " + artist
